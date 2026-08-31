@@ -1,0 +1,323 @@
+{
+  "meta": {
+    "description": "20 cleaned logic problems (5 each: negation, conditional, quantifier, spatial), authored fresh for Week 2 per the Part C cleaning criteria (no Week 1 file was found in this environment, so these replace rather than clean prior items). Each item tests one core logical phenomenon, uses no external world knowledge beyond the stated premises, and carries a formal/symbolic ground truth.",
+    "label_set": [
+      "entailed",
+      "contradicted",
+      "unknown"
+    ],
+    "n_items": 20
+  },
+  "items": [
+    {
+      "id": "neg_01",
+      "reasoning_type": "negation",
+      "subtype": "simple_negation",
+      "premises_nl": [
+        "Alice is not in the room."
+      ],
+      "query_nl": "Alice is in the room.",
+      "premises_formal": [
+        "not(in_room(Alice))"
+      ],
+      "query_formal": "in_room(Alice)",
+      "label": "contradicted"
+    },
+    {
+      "id": "neg_02",
+      "reasoning_type": "negation",
+      "subtype": "double_negation_elimination",
+      "premises_nl": [
+        "It is not the case that Bob is not in the room."
+      ],
+      "query_nl": "Bob is in the room.",
+      "premises_formal": [
+        "not(not(in_room(Bob)))"
+      ],
+      "query_formal": "in_room(Bob)",
+      "label": "entailed"
+    },
+    {
+      "id": "neg_03",
+      "reasoning_type": "negation",
+      "subtype": "double_negation_contradiction",
+      "premises_nl": [
+        "Cara is not in the room."
+      ],
+      "query_nl": "It is not the case that Cara is not in the room.",
+      "premises_formal": [
+        "not(in_room(Cara))"
+      ],
+      "query_formal": "not(not(in_room(Cara)))",
+      "label": "contradicted"
+    },
+    {
+      "id": "neg_04",
+      "reasoning_type": "negation",
+      "subtype": "plain_affirmation_vs_negated_query",
+      "premises_nl": [
+        "Dan is in the room."
+      ],
+      "query_nl": "Dan is not in the room.",
+      "premises_formal": [
+        "in_room(Dan)"
+      ],
+      "query_formal": "not(in_room(Dan))",
+      "label": "contradicted"
+    },
+    {
+      "id": "neg_05",
+      "reasoning_type": "negation",
+      "subtype": "irrelevant_individual",
+      "premises_nl": [
+        "Elin is not in the room."
+      ],
+      "query_nl": "Frank is in the room.",
+      "premises_formal": [
+        "not(in_room(Elin))"
+      ],
+      "query_formal": "in_room(Frank)",
+      "label": "unknown"
+    },
+    {
+      "id": "cond_01",
+      "reasoning_type": "conditional",
+      "subtype": "modus_ponens",
+      "premises_nl": [
+        "If it rains, the ground gets wet.",
+        "It is raining."
+      ],
+      "query_nl": "The ground is wet.",
+      "premises_formal": [
+        "if(rains, wet(ground))",
+        "rains"
+      ],
+      "query_formal": "wet(ground)",
+      "label": "entailed"
+    },
+    {
+      "id": "cond_02",
+      "reasoning_type": "conditional",
+      "subtype": "modus_tollens",
+      "premises_nl": [
+        "If it rains, the ground gets wet.",
+        "The ground is not wet."
+      ],
+      "query_nl": "It is not raining.",
+      "premises_formal": [
+        "if(rains, wet(ground))",
+        "not(wet(ground))"
+      ],
+      "query_formal": "not(rains)",
+      "label": "entailed"
+    },
+    {
+      "id": "cond_03",
+      "reasoning_type": "conditional",
+      "subtype": "denying_the_antecedent_fallacy",
+      "premises_nl": [
+        "If it rains, the ground gets wet.",
+        "It is not raining."
+      ],
+      "query_nl": "The ground is not wet.",
+      "premises_formal": [
+        "if(rains, wet(ground))",
+        "not(rains)"
+      ],
+      "query_formal": "not(wet(ground))",
+      "label": "unknown"
+    },
+    {
+      "id": "cond_04",
+      "reasoning_type": "conditional",
+      "subtype": "affirming_the_consequent_fallacy",
+      "premises_nl": [
+        "If it rains, the ground gets wet.",
+        "The ground is wet."
+      ],
+      "query_nl": "It is raining.",
+      "premises_formal": [
+        "if(rains, wet(ground))",
+        "wet(ground)"
+      ],
+      "query_formal": "rains",
+      "label": "unknown"
+    },
+    {
+      "id": "cond_05",
+      "reasoning_type": "conditional",
+      "subtype": "hypothetical_syllogism_chain",
+      "premises_nl": [
+        "If the alarm rings, Alice wakes up.",
+        "If Alice wakes up, she turns off the alarm.",
+        "The alarm rings."
+      ],
+      "query_nl": "Alice turns off the alarm.",
+      "premises_formal": [
+        "if(rings(alarm), wakes(Alice))",
+        "if(wakes(Alice), turns_off(Alice, alarm))",
+        "rings(alarm)"
+      ],
+      "query_formal": "turns_off(Alice, alarm)",
+      "label": "entailed"
+    },
+    {
+      "id": "quant_01",
+      "reasoning_type": "quantifier",
+      "subtype": "universal_instantiation",
+      "premises_nl": [
+        "All birds fly.",
+        "Tweety is a bird."
+      ],
+      "query_nl": "Tweety flies.",
+      "premises_formal": [
+        "forall(x, bird(x) -> flies(x))",
+        "bird(Tweety)"
+      ],
+      "query_formal": "flies(Tweety)",
+      "label": "entailed"
+    },
+    {
+      "id": "quant_02",
+      "reasoning_type": "quantifier",
+      "subtype": "existential_generalization",
+      "premises_nl": [
+        "Tweety is a bird.",
+        "Tweety flies."
+      ],
+      "query_nl": "Something flies.",
+      "premises_formal": [
+        "bird(Tweety)",
+        "flies(Tweety)"
+      ],
+      "query_formal": "exists(x, flies(x))",
+      "label": "entailed"
+    },
+    {
+      "id": "quant_03",
+      "reasoning_type": "quantifier",
+      "subtype": "universal_negative",
+      "premises_nl": [
+        "No fish fly.",
+        "Nemo is a fish."
+      ],
+      "query_nl": "Nemo flies.",
+      "premises_formal": [
+        "forall(x, fish(x) -> not(flies(x)))",
+        "fish(Nemo)"
+      ],
+      "query_formal": "flies(Nemo)",
+      "label": "contradicted"
+    },
+    {
+      "id": "quant_04",
+      "reasoning_type": "quantifier",
+      "subtype": "existential_does_not_entail_specific_individual",
+      "premises_nl": [
+        "Some students passed the exam."
+      ],
+      "query_nl": "Sam passed the exam.",
+      "premises_formal": [
+        "exists(x, student(x) and passed(x))"
+      ],
+      "query_formal": "passed(Sam)",
+      "label": "unknown"
+    },
+    {
+      "id": "quant_05",
+      "reasoning_type": "quantifier",
+      "subtype": "denying_antecedent_of_universal_conditional",
+      "premises_nl": [
+        "All dogs bark.",
+        "Milo is not a dog."
+      ],
+      "query_nl": "Milo does not bark.",
+      "premises_formal": [
+        "forall(x, dog(x) -> barks(x))",
+        "not(dog(Milo))"
+      ],
+      "query_formal": "not(barks(Milo))",
+      "label": "unknown"
+    },
+    {
+      "id": "spat_01",
+      "reasoning_type": "spatial",
+      "subtype": "transitivity",
+      "premises_nl": [
+        "A is to the left of B.",
+        "B is to the left of C."
+      ],
+      "query_nl": "A is to the left of C.",
+      "premises_formal": [
+        "left_of(A,B)",
+        "left_of(B,C)"
+      ],
+      "query_formal": "left_of(A,C)",
+      "label": "entailed"
+    },
+    {
+      "id": "spat_02",
+      "reasoning_type": "spatial",
+      "subtype": "asymmetry",
+      "premises_nl": [
+        "A is to the left of B."
+      ],
+      "query_nl": "B is to the left of A.",
+      "premises_formal": [
+        "left_of(A,B)"
+      ],
+      "query_formal": "left_of(B,A)",
+      "label": "contradicted"
+    },
+    {
+      "id": "spat_03",
+      "reasoning_type": "spatial",
+      "subtype": "transitivity_longer_chain",
+      "premises_nl": [
+        "A is to the left of B.",
+        "B is to the left of C.",
+        "C is to the left of D."
+      ],
+      "query_nl": "A is to the left of D.",
+      "premises_formal": [
+        "left_of(A,B)",
+        "left_of(B,C)",
+        "left_of(C,D)"
+      ],
+      "query_formal": "left_of(A,D)",
+      "label": "entailed"
+    },
+    {
+      "id": "spat_04",
+      "reasoning_type": "spatial",
+      "subtype": "disjoint_chains_unknown",
+      "premises_nl": [
+        "A is to the left of B.",
+        "C is to the left of D."
+      ],
+      "query_nl": "A is to the left of D.",
+      "premises_formal": [
+        "left_of(A,B)",
+        "left_of(C,D)"
+      ],
+      "query_formal": "left_of(A,D)",
+      "label": "unknown"
+    },
+    {
+      "id": "spat_05",
+      "reasoning_type": "spatial",
+      "subtype": "vertical_transitivity",
+      "premises_nl": [
+        "X is above Y.",
+        "Y is above Z."
+      ],
+      "query_nl": "X is above Z.",
+      "premises_formal": [
+        "above(X,Y)",
+        "above(Y,Z)"
+      ],
+      "query_formal": "above(X,Z)",
+      "label": "entailed"
+    }
+  ]
+}

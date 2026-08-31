@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+data/week1_cherokee.json
+results/*.csv
+results/api_call_log.jsonl

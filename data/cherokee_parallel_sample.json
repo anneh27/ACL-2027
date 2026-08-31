@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "source": "ChrEn (Zhang et al.) dev split, github.com/ZhangShiyue/ChrEn, data/demo/04112021/raw_dev.{chr,en}",
+    "note": "Human-produced Cherokee-English sentence pairs, used ONLY as reference translations to test GPT-5.6's raw Cherokee<->English ability before trusting it to translate our own logic items (Part 5.1). Not used as training data.",
+    "n_pairs": 12
+  },
+  "items": [
+    {
+      "id": "chren_00",
+      "cherokee": "ᎿᏉᏃ ᏚᏂᏐᏨ ᎨᏂᏏᎳᏗ ᎤᏂᎷᏨᎩ.",
+      "english": "And when they had crossed over, they came to the land, unto Gennesaret."
+    },
+    {
+      "id": "chren_01",
+      "cherokee": "ᎠᏎᏃ ᏔᎵᎭ ᎠᎴ ᏦᎢᎭ ᎭᎾᏉ ᎠᎾᏁᎳᏗᏍᎨ ᎦᎶᎯᏍᏗ ᎦᎸᎳᏗᏣ.",
+      "english": "But always two or three stayed and set up housekeeping in the doorway."
+    },
+    {
+      "id": "chren_02",
+      "cherokee": "ᎠᏁᎷᎲᏍᎨᎢ ᎠᎾᏓᏩᏛᎯᏙᎢ.",
+      "english": "At this the crowd would yell and cheer."
+    },
+    {
+      "id": "chren_03",
+      "cherokee": "ᎦᎶᎯᏍᏗᏳᎳ ᏥᏙᎬ ᏥᏯᎦᏎᏍᏗ ᏓᎭᎾᏩᎩᏍᎬ ᏅᏙ ᎠᎦᎵᏍᎬ.",
+      "english": "I stood in the doorway and watched as she undressed in the moonlight."
+    },
+    {
+      "id": "chren_04",
+      "cherokee": "ᎤᏰᎸᏗ “ᎤᏨᏉᏗ ᏱᎨᏒᎾ’ ᏃᎴ “ᎦᏙᎯ ᎾᎥᏂ, ᏍᎩᏗ ᏄᏍᏗ ᏫᎵᎻ.”",
+      "english": "It means ‘not proud’ and it means ‘near the ground.’ That’s Wilbur all over."
+    },
+    {
+      "id": "chren_05",
+      "cherokee": "ᏌᏊᏃ ᎢᏳᏩᎪᏗ ᎡᎵᏏ ᎡᏚᏚᏃ ᎤᏒ ᎢᎠᎾᎢᏎ ᏧᏁᏅᏒ ᎢᏗᏜ ᏧᏂᎳᏫᎢᏍᏗ ᎤᏁᏙᎸᎯ.",
+      "english": "One night my grandmother and grandfather were walking home from church."
+    },
+    {
+      "id": "chren_06",
+      "cherokee": "ᎨᏍᏗ ᏅᏲ ᎭᏫᏂᏣ ᎬᏗᏍᎦᎶᏗ ᏱᎩ.",
+      "english": "And a man cannot crawl under a rock and disappear."
+    },
+    {
+      "id": "chren_07",
+      "cherokee": "ᏣᏁᎳ ᏐᏁᎳ ᏩᏍᏗ, ᏙᏱᏨ ᎠᎦᎵᏍᎬ ᎤᏢᏅᏍᏗ ᎤᏪᎵᏎ.",
+      "english": "From eight to nine, Wilbur planned to take a nap outdoors in the sun."
+    },
+    {
+      "id": "chren_08",
+      "cherokee": "ᏂᎦᏓ ᎣᎪᎵᏍᏗ.",
+      "english": "Doctors are supposed to understand everything."
+    },
+    {
+      "id": "chren_09",
+      "cherokee": "ᎾᎾᏃ ᏩᎭᏯ ᎦᏂᏓᏛ ᏃᎴ ᏗᎦᎴᎾ ᏗᏍᏛᎦᏴᎮᏗ ᏄᎵᏍᏔᏁ.",
+      "english": "Then Wolf's tail and ears stiffened."
+    },
+    {
+      "id": "chren_10",
+      "cherokee": "ᏐᏉ ᎢᏳᏩᎦᏘ, ᏥᏫᎾ ᏥᎨᎲ, ᎣᎩᎾᎵᎪᏓ ᎡᎲ ᎠᎨᏳᏣ.",
+      "english": "Once when I was a young man, I had a girlfriend."
+    },
+    {
+      "id": "chren_11",
+      "cherokee": "ᎠᎹ ᎨᏴ ᏭᎶᏒ.",
+      "english": "She walked into the river."
+    }
+  ]
+}
