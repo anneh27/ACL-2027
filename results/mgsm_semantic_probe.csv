@@ -1,0 +1,16 @@
+id,language,language_name,semantic_recovery_correct,reasoning_correct,gold_answer,parsed_answer
+mgsm_001,en,English,True,True,3,3
+mgsm_001,fr,French,True,True,3,3
+mgsm_001,sw,Swahili,True,True,3,3
+mgsm_006,en,English,True,True,260,260
+mgsm_006,fr,French,True,True,260,260
+mgsm_006,sw,Swahili,True,True,260,260
+mgsm_022,en,English,True,True,7,7
+mgsm_022,fr,French,True,True,7,7
+mgsm_022,sw,Swahili,True,True,7,7
+mgsm_023,en,English,False,True,8,8
+mgsm_023,fr,French,False,True,8,8
+mgsm_023,sw,Swahili,False,True,8,8
+mgsm_035,en,English,False,True,9,9
+mgsm_035,fr,French,False,True,9,9
+mgsm_035,sw,Swahili,False,True,9,9
