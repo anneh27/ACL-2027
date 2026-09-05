@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "description": "20 cleaned logic problems (5 each: negation, conditional, quantifier, spatial), cleaned from the actual Week 1 '20 Questions' set per the Part C criteria: True/False relabeled to Entailed/Contradicted/Unknown, one core logical phenomenon per item where possible, no dependence on unstated world knowledge, and a formal/symbolic ground truth for every item.",
+    "source": "Week 1 '20 Questions' document (Negation / Conditionals / Quantifiers / Spatial Relations sections), items 1-20.",
+    "label_set": ["entailed", "contradicted", "unknown"],
+    "n_items": 20,
+    "cleaning_changes": [
+      "Items 8, 10, 14 were relabeled. Under classical entailment semantics these are fallacies (affirming the consequent, denying the antecedent, undistributed middle respectively): the premises neither entail nor contradict the query, so the correct label is Unknown. The original Week 1 answer key marked all three False, which conflates 'not validly derivable' with 'derivably false' -- exactly the ambiguity Part C's True/False -> Entailed/Contradicted/Unknown relabeling is meant to remove.",
+      "Items 18 and 19 implicitly relied on knowing that 'behind'/'in front of' and 'east of'/'west of' are converse relations -- unstated lexical world knowledge. Made each converse relation an explicit formal meaning-postulate premise (e.g. forall(X,Y, behind(X,Y) <-> front_of(Y,X))) so the ground truth is self-contained rather than depending on implicit semantics, per Part C.",
+      "All other items (1-7, 9, 11-13, 15-17, 20) were already single-phenomenon and free of external world-knowledge dependence; only their label was renamed (True->Entailed, False->Contradicted) and a formal representation was added."
+    ]
+  },
+  "items": [
+    {
+      "id": "neg_01",
+      "source_item_number": 1,
+      "reasoning_type": "negation",
+      "subtype": "simple_negation",
+      "premises_nl": ["Liam is not at school."],
+      "query_nl": "Liam is at school.",
+      "premises_formal": ["not(at(Liam, school))"],
+      "query_formal": "at(Liam, school)",
+      "label": "contradicted"
+    },
+    {
+      "id": "neg_02",
+      "source_item_number": 2,
+      "reasoning_type": "negation",
+      "subtype": "simple_negation",
+      "premises_nl": ["The door is not open."],
+      "query_nl": "The door is open.",
+      "premises_formal": ["not(open(door))"],
+      "query_formal": "open(door)",
+      "label": "contradicted"
+    },
+    {
+      "id": "neg_03",
+      "source_item_number": 3,
+      "reasoning_type": "negation",
+      "subtype": "simple_negation",
+      "premises_nl": ["Nina does not own a bicycle."],
+      "query_nl": "Nina owns a bicycle.",
+      "premises_formal": ["not(owns(Nina, bicycle))"],
+      "query_formal": "owns(Nina, bicycle)",
+      "label": "contradicted"
+    },
+    {
+      "id": "neg_04",
+      "source_item_number": 4,
+      "reasoning_type": "negation",
+      "subtype": "double_negation_elimination",
+      "premises_nl": ["It is not true that the light is not on."],
+      "query_nl": "The light is on.",
+      "premises_formal": ["not(not(on(light)))"],
+      "query_formal": "on(light)",
+      "label": "entailed"
+    },
+    {
+      "id": "neg_05",
+      "source_item_number": 5,
+      "reasoning_type": "negation",
+      "subtype": "simple_negation",
+      "premises_nl": ["Daniel did not lose the key."],
+      "query_nl": "Daniel lost the key.",
+      "premises_formal": ["not(lost(Daniel, key))"],
+      "query_formal": "lost(Daniel, key)",
+      "label": "contradicted"
+    },
+    {
+      "id": "cond_01",
+      "source_item_number": 6,
+      "reasoning_type": "conditional",
+      "subtype": "modus_ponens",
+      "premises_nl": ["If Emma studies, she passes the exam.", "Emma studies."],
+      "query_nl": "Emma passes the exam.",
+      "premises_formal": ["if(studies(Emma), passes(Emma))", "studies(Emma)"],
+      "query_formal": "passes(Emma)",
+      "label": "entailed"
+    },
+    {
+      "id": "cond_02",
+      "source_item_number": 7,
+      "reasoning_type": "conditional",
+      "subtype": "modus_ponens",
+      "premises_nl": ["If the alarm rings, Mia leaves the building.", "The alarm rings."],
+      "query_nl": "Mia leaves the building.",
+      "premises_formal": ["if(rings(alarm), leaves(Mia, building))", "rings(alarm)"],
+      "query_formal": "leaves(Mia, building)",
+      "label": "entailed"
+    },
+    {
+      "id": "cond_03",
+      "source_item_number": 8,
+      "reasoning_type": "conditional",
+      "subtype": "affirming_the_consequent_fallacy",
+      "premises_nl": ["If Noah exercises, he feels tired.", "Noah feels tired."],
+      "query_nl": "Noah exercised.",
+      "premises_formal": ["if(exercises(Noah), tired(Noah))", "tired(Noah)"],
+      "query_formal": "exercises(Noah)",
+      "label": "unknown",
+      "cleaning_note": "Original Week 1 label was False. Affirming the consequent is a fallacy: tiredness could have another cause, so the premises don't determine whether Noah exercised. Correct label under Entailed/Contradicted/Unknown is Unknown."
+    },
+    {
+      "id": "cond_04",
+      "source_item_number": 9,
+      "reasoning_type": "conditional",
+      "subtype": "modus_tollens",
+      "premises_nl": ["If Ava takes the bus, she arrives before noon.", "Ava does not arrive before noon."],
+      "query_nl": "Ava took the bus.",
+      "premises_formal": ["if(takes(Ava, bus), arrives_before_noon(Ava))", "not(arrives_before_noon(Ava))"],
+      "query_formal": "takes(Ava, bus)",
+      "label": "contradicted"
+    },
+    {
+      "id": "cond_05",
+      "source_item_number": 10,
+      "reasoning_type": "conditional",
+      "subtype": "denying_the_antecedent_fallacy",
+      "premises_nl": ["If Leo presses the button, the machine starts.", "Leo does not press the button."],
+      "query_nl": "The machine does not start.",
+      "premises_formal": ["if(presses(Leo, button), starts(machine))", "not(presses(Leo, button))"],
+      "query_formal": "not(starts(machine))",
+      "label": "unknown",
+      "cleaning_note": "Original Week 1 label was False. Denying the antecedent is a fallacy: the machine could start some other way, so the premises don't determine whether it starts. Correct label is Unknown."
+    },
+    {
+      "id": "quant_01",
+      "source_item_number": 11,
+      "reasoning_type": "quantifier",
+      "subtype": "universal_instantiation",
+      "premises_nl": ["All painters are artists.", "Maria is a painter."],
+      "query_nl": "Maria is an artist.",
+      "premises_formal": ["forall(X, painter(X) -> artist(X))", "painter(Maria)"],
+      "query_formal": "artist(Maria)",
+      "label": "entailed"
+    },
+    {
+      "id": "quant_02",
+      "source_item_number": 12,
+      "reasoning_type": "quantifier",
+      "subtype": "universal_negative",
+      "premises_nl": ["No cats are reptiles.", "Felix is a cat."],
+      "query_nl": "Felix is a reptile.",
+      "premises_formal": ["forall(X, cat(X) -> not(reptile(X)))", "cat(Felix)"],
+      "query_formal": "reptile(Felix)",
+      "label": "contradicted"
+    },
+    {
+      "id": "quant_03",
+      "source_item_number": 13,
+      "reasoning_type": "quantifier",
+      "subtype": "valid_particular_syllogism",
+      "premises_nl": ["All teachers are employees.", "Some teachers are musicians."],
+      "query_nl": "Some musicians are employees.",
+      "premises_formal": ["forall(X, teacher(X) -> employee(X))", "exists(X, teacher(X) and musician(X))"],
+      "query_formal": "exists(X, musician(X) and employee(X))",
+      "label": "entailed"
+    },
+    {
+      "id": "quant_04",
+      "source_item_number": 14,
+      "reasoning_type": "quantifier",
+      "subtype": "undistributed_middle_fallacy",
+      "premises_nl": ["Some students are athletes.", "Some students are musicians."],
+      "query_nl": "Some athletes are musicians.",
+      "premises_formal": ["exists(X, student(X) and athlete(X))", "exists(X, student(X) and musician(X))"],
+      "query_formal": "exists(X, athlete(X) and musician(X))",
+      "label": "unknown",
+      "cleaning_note": "Original Week 1 label was False. This is the classic undistributed-middle fallacy: the athlete-students and musician-students need not overlap, so the premises neither entail nor contradict the query. Correct label is Unknown, not Contradicted."
+    },
+    {
+      "id": "quant_05",
+      "source_item_number": 15,
+      "reasoning_type": "quantifier",
+      "subtype": "valid_particular_syllogism",
+      "premises_nl": ["No doctors are pilots.", "Some doctors are writers."],
+      "query_nl": "Some writers are not pilots.",
+      "premises_formal": ["forall(X, doctor(X) -> not(pilot(X)))", "exists(X, doctor(X) and writer(X))"],
+      "query_formal": "exists(X, writer(X) and not(pilot(X)))",
+      "label": "entailed"
+    },
+    {
+      "id": "spat_01",
+      "source_item_number": 16,
+      "reasoning_type": "spatial",
+      "subtype": "transitivity",
+      "premises_nl": ["The apple is left of the book.", "The book is left of the cup."],
+      "query_nl": "The apple is left of the cup.",
+      "premises_formal": ["left_of(apple, book)", "left_of(book, cup)"],
+      "query_formal": "left_of(apple, cup)",
+      "label": "entailed"
+    },
+    {
+      "id": "spat_02",
+      "source_item_number": 17,
+      "reasoning_type": "spatial",
+      "subtype": "transitivity",
+      "premises_nl": ["Mia is north of Noah.", "Noah is north of Liam."],
+      "query_nl": "Mia is north of Liam.",
+      "premises_formal": ["north_of(Mia, Noah)", "north_of(Noah, Liam)"],
+      "query_formal": "north_of(Mia, Liam)",
+      "label": "entailed"
+    },
+    {
+      "id": "spat_03",
+      "source_item_number": 18,
+      "reasoning_type": "spatial",
+      "subtype": "converse_relation",
+      "premises_nl": ["The chair is behind the desk."],
+      "query_nl": "The desk is in front of the chair.",
+      "premises_formal": ["behind(chair, desk)", "forall(X, Y, behind(X, Y) <-> front_of(Y, X))"],
+      "query_formal": "front_of(desk, chair)",
+      "label": "entailed",
+      "cleaning_note": "Original item implicitly relied on knowing 'behind' and 'in front of' are converse relations, an unstated lexical fact. Added the converse relation as an explicit formal meaning-postulate premise so the item's ground truth is self-contained per Part C."
+    },
+    {
+      "id": "spat_04",
+      "source_item_number": 19,
+      "reasoning_type": "spatial",
+      "subtype": "transitivity_with_converse_relation",
+      "premises_nl": ["The park is east of the school.", "The library is east of the park."],
+      "query_nl": "The library is west of the school.",
+      "premises_formal": ["east_of(park, school)", "east_of(library, park)", "forall(X, Y, west_of(X, Y) <-> east_of(Y, X))"],
+      "query_formal": "west_of(library, school)",
+      "label": "contradicted",
+      "cleaning_note": "Same fix as spat_03: made the east_of/west_of converse relation an explicit formal premise rather than assumed world knowledge. Kept as a compound transitivity+converse item ('as much as possible' single-phenomenon, not absolute, per Part C) since it deliberately tests whether direction is tracked correctly across a chain and a converse together."
+    },
+    {
+      "id": "spat_05",
+      "source_item_number": 20,
+      "reasoning_type": "spatial",
+      "subtype": "transitivity_and_antisymmetry",
+      "premises_nl": ["The red box is above the blue box.", "The blue box is above the green box."],
+      "query_nl": "The green box is above the red box.",
+      "premises_formal": ["above(red, blue)", "above(blue, green)"],
+      "query_formal": "above(green, red)",
+      "label": "contradicted"
+    }
+  ]
+}
