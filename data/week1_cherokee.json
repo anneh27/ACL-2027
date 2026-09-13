@@ -1,0 +1,168 @@
+{
+  "meta": {
+    "description": "20 cleaned logic items (see week1_cleaned.json) translated into candidate Cherokee by Claude (interactive, in-conversation), per Part D.5.2. IMPORTANT HONESTY NOTE: I do not have reliable, fluent, productive command of Cherokee grammar -- specifically its pronominal-prefix and aspect-suffix verb morphology, which carries most of the grammatical work in the language. These translations are a genuine best-effort attempt using vocabulary and patterns I have some confidence in, NOT a claim of fluency. Per the plan's own instruction, treat every cherokee_candidate_translation below as unvalidated candidate text, not ground truth -- translation_validation.human_reviewed is false for all items and should stay false until a fluent Cherokee speaker checks them. Part D.5.1 (testing translation ability against the real ChrEn parallel corpus) was skipped for a methodological reason, not omitted by oversight: by the time translation was attempted, both sides of every ChrEn pair in data/cherokee_parallel_sample.json had already been read into this same conversation, so a 'blind' translation test against that file would not have been blind -- it risked pattern-matching against visible references rather than genuinely testing ability. That gate is replaced here by the blind back-translation and blind Section-6 conditions below, which WERE run without contamination (see run_logic_pilot_claude.py): the Cherokee text was handed to a fresh subagent with no access to this conversation's English originals, formal ground truth, or my own back-translations.",
+    "source_data": "data/week1_cleaned.json"
+  },
+  "items": [
+    {
+      "id": "neg_01",
+      "english_source": "Liam is not at school. Question: Liam is at school.",
+      "formal_semantics": {"premises": ["not(at(Liam, school))"], "query": "at(Liam, school)"},
+      "cherokee_candidate_translation": "ᎳᎥᎻ ᎥᏝ ᏗᎦᎳᏫᎢᏍᏗᏱ ᏱᎡᏙᎭ. ᎳᎥᎻ ᏗᎦᎳᏫᎢᏍᏗᏱ ᎡᎭ.",
+      "translator_confidence": "low",
+      "label": "contradicted"
+    },
+    {
+      "id": "neg_02",
+      "english_source": "The door is not open. Question: The door is open.",
+      "formal_semantics": {"premises": ["not(open(door))"], "query": "open(door)"},
+      "cherokee_candidate_translation": "ᎠᏍᏓᏱ ᎥᏝ ᎠᏥᎸᏔᏅ. ᎠᏍᏓᏱ ᎠᏥᎸᏔᏅ.",
+      "translator_confidence": "low",
+      "label": "contradicted"
+    },
+    {
+      "id": "neg_03",
+      "english_source": "Nina does not own a bicycle. Question: Nina owns a bicycle.",
+      "formal_semantics": {"premises": ["not(owns(Nina, bicycle))"], "query": "owns(Nina, bicycle)"},
+      "cherokee_candidate_translation": "ᏂᏁ ᎥᏝ ᏧᏤᎵ ᏔᎵᏬᏳᎵ ᎦᎸᎳᏗ. ᏂᏁ ᎤᏤᎵ ᏔᎵᏬᏳᎵ.",
+      "translator_confidence": "low",
+      "label": "contradicted"
+    },
+    {
+      "id": "neg_04",
+      "english_source": "It is not true that the light is not on. Question: The light is on.",
+      "formal_semantics": {"premises": ["not(not(on(light)))"], "query": "on(light)"},
+      "cherokee_candidate_translation": "ᎥᏝ ᏚᏳᎪᏛ ᏱᎩ ᎾᏍᎩ ᎠᏨᏍᏗ ᎥᏝ ᏱᎠᎪᎵ. ᎠᏨᏍᏗ ᎠᎪᎵ.",
+      "translator_confidence": "very low (double negation is exactly where I'm least confident in Cherokee morphology)",
+      "label": "entailed"
+    },
+    {
+      "id": "neg_05",
+      "english_source": "Daniel did not lose the key. Question: Daniel lost the key.",
+      "formal_semantics": {"premises": ["not(lost(Daniel, key))"], "query": "lost(Daniel, key)"},
+      "cherokee_candidate_translation": "ᏓᏂᏱᎵ ᎥᏝ ᏳᏲᏎᎢ ᎠᏍᏓᏳᏍᏗ. ᏓᏂᏱᎵ ᎤᏲᏎ ᎠᏍᏓᏳᏍᏗ.",
+      "translator_confidence": "very low; name transliteration + verb morphology both uncertain. (Note: an earlier draft of this item briefly contained a stray corrupted character and English words that leaked in during generation -- caught and fixed before this file was used for anything downstream.)",
+      "label": "contradicted"
+    },
+    {
+      "id": "cond_01",
+      "english_source": "If Emma studies, she passes the exam. Emma studies. Question: Emma passes the exam.",
+      "formal_semantics": {"premises": ["if(studies(Emma), passes(Emma))", "studies(Emma)"], "query": "passes(Emma)"},
+      "cherokee_candidate_translation": "ᎢᏳᏃ ᎡᎹ ᎠᎴᏅᏗᏍᎨᏍᏗ ᎠᏕᎶᏆᏍᏗ, ᎠᎦᏛᎦ. ᎡᎹ ᎠᎴᏅᏗᏍᎦ ᎠᏕᎶᏆᏍᏗ. ᎡᎹ ᎠᎦᏛᎦ.",
+      "translator_confidence": "low",
+      "label": "entailed"
+    },
+    {
+      "id": "cond_02",
+      "english_source": "If the alarm rings, Mia leaves the building. The alarm rings. Question: Mia leaves the building.",
+      "formal_semantics": {"premises": ["if(rings(alarm), leaves(Mia, building))", "rings(alarm)"], "query": "leaves(Mia, building)"},
+      "cherokee_candidate_translation": "ᎢᏳᏃ ᎠᏨᏔᏍᏗ ᎠᏨᏔᏍᎨᏍᏗ, ᎹᏯ ᎠᏓᏅᏍᎪᎢ ᎠᏓᏁᎸᎢ. ᎠᏨᏔᏍᏗ ᎠᏨᏔᏍᎦ. ᎹᏯ ᎠᏓᏅᏍᎪᎢ.",
+      "translator_confidence": "low",
+      "label": "entailed"
+    },
+    {
+      "id": "cond_03",
+      "english_source": "If Noah exercises, he feels tired. Noah feels tired. Question: Noah exercised.",
+      "formal_semantics": {"premises": ["if(exercises(Noah), tired(Noah))", "tired(Noah)"], "query": "exercises(Noah)"},
+      "cherokee_candidate_translation": "ᎢᏳᏃ ᏃᏩ ᎠᏛᏁᎮᏍᏗ ᎤᏰᎸᎦ, ᎤᏤᎳᎩ ᎠᏓᏅᏓᏗᏍᎦ. ᏃᏩ ᎤᏤᎳᎩ ᎠᏓᏅᏓᏗᏍᎦ. ᏃᏩ ᎤᏛᏁᎸ.",
+      "translator_confidence": "low",
+      "label": "unknown"
+    },
+    {
+      "id": "cond_04",
+      "english_source": "If Ava takes the bus, she arrives before noon. Ava does not arrive before noon. Question: Ava took the bus.",
+      "formal_semantics": {"premises": ["if(takes(Ava, bus), arrives_before_noon(Ava))", "not(arrives_before_noon(Ava))"], "query": "takes(Ava, bus)"},
+      "cherokee_candidate_translation": "ᎢᏳᏃ ᎡᏫ ᎤᎩᏍᏗᏍᎨᏍᏗ ᎤᏂᎦᏘᏂᎨ ᏥᏔᎢᏎᎯ, ᏄᏬᎾᏓᏂᏒᎾ ᎡᏆᎾᎭᎢᏳᏍᏗ ᏗᎳᏏᏗᏍᎬᎾ ᎢᎦ. ᎡᏫ ᎥᏝ ᏳᏓᎷᏨ ᎦᏳᎳᎨ ᎢᎦ. ᎡᏫ ᎤᎩᏍᏗᏍᎩ.",
+      "translator_confidence": "very low; 'noon/before noon' and the bus-vehicle concept are outside my confident Cherokee vocabulary, this is close to gloss-level guessing",
+      "label": "contradicted"
+    },
+    {
+      "id": "cond_05",
+      "english_source": "If Leo presses the button, the machine starts. Leo does not press the button. Question: The machine does not start.",
+      "formal_semantics": {"premises": ["if(presses(Leo, button), starts(machine))", "not(presses(Leo, button))"], "query": "not(starts(machine))"},
+      "cherokee_candidate_translation": "ᎢᏳᏃ ᎵᏲ ᎤᏂᏴᏍᎨᏍᏗ ᎦᏙᎯᏛ, ᏗᎦᏙᎯᏛ ᎠᎴᏂᏍᎦ. ᎵᏲ ᎥᏝ ᏳᏂᏴᏍᎦ ᎦᏙᎯᏛ. ᏗᎦᏙᎯᏛ ᎥᏝ ᏳᎴᏂᏍᎦ.",
+      "translator_confidence": "very low; 'button' and 'machine' are modern-technology vocabulary I don't have confident Cherokee terms for",
+      "label": "unknown"
+    },
+    {
+      "id": "quant_01",
+      "english_source": "All painters are artists. Maria is a painter. Question: Maria is an artist.",
+      "formal_semantics": {"premises": ["forall(X, painter(X) -> artist(X))", "painter(Maria)"], "query": "artist(Maria)"},
+      "cherokee_candidate_translation": "ᏂᎦᏛ ᏗᏓᏍᏉᏗᏍᎩ ᏗᎪᏪᎵᏍᎩ ᏂᎦᎵᏍᏗᎭ. ᎺᎵᎠ ᎠᏓᏍᏉᏗᏍᎩ. ᎺᎵᎠ ᎠᎪᏪᎵᏍᎩ.",
+      "translator_confidence": "low",
+      "label": "entailed"
+    },
+    {
+      "id": "quant_02",
+      "english_source": "No cats are reptiles. Felix is a cat. Question: Felix is a reptile.",
+      "formal_semantics": {"premises": ["forall(X, cat(X) -> not(reptile(X)))", "cat(Felix)"], "query": "reptile(Felix)"},
+      "cherokee_candidate_translation": "ᎥᏝ ᎦᎵᏍᎩᏂ ᎠᏂᏍᏉᏓ ᎨᏒ ᏱᎩ. ᏈᎵᎩᏏ ᎦᎵᏍᎩᏂ ᎨᏐᎢ. ᏈᎵᎩᏏ ᎠᏍᏉᏓ ᎨᏐᎢ.",
+      "translator_confidence": "low",
+      "label": "contradicted"
+    },
+    {
+      "id": "quant_03",
+      "english_source": "All teachers are employees. Some teachers are musicians. Question: Some musicians are employees.",
+      "formal_semantics": {"premises": ["forall(X, teacher(X) -> employee(X))", "exists(X, teacher(X) and musician(X))"], "query": "exists(X, musician(X) and employee(X))"},
+      "cherokee_candidate_translation": "ᏂᎦᏛ ᏗᏕᏲᎲᏍᎩ ᎪᎱᏍᏗ ᏗᎾᎸᏫᏍᏓᏁᎯ ᏂᎦᎵᏍᏗᎭ. ᎢᎦᏛ ᏗᏕᏲᎲᏍᎩ ᏗᏂᏃᎩᏍᎩ ᎨᏐᎢ. ᎢᎦᏛ ᏗᏂᏃᎩᏍᎩ ᏗᎾᎸᏫᏍᏓᏁᎯ ᎨᏐᎢ.",
+      "translator_confidence": "very low; quantifier words ('all', 'some') plus abstract nouns like 'employee'/'musician' compound the uncertainty",
+      "label": "entailed"
+    },
+    {
+      "id": "quant_04",
+      "english_source": "Some students are athletes. Some students are musicians. Question: Some athletes are musicians.",
+      "formal_semantics": {"premises": ["exists(X, student(X) and athlete(X))", "exists(X, student(X) and musician(X))"], "query": "exists(X, athlete(X) and musician(X))"},
+      "cherokee_candidate_translation": "ᎢᎦᏛ ᏗᎦᎾᏄᎪᏫᏍᎩ ᎠᏂᏨᏂᏗᏍᎩ ᎨᏐᎢ. ᎢᎦᏛ ᏗᎦᎾᏄᎪᏫᏍᎩ ᏗᏂᏃᎩᏍᎩ ᎨᏐᎢ. ᎢᎦᏛ ᎠᏂᏨᏂᏗᏍᎩ ᏗᏂᏃᎩᏍᎩ ᎨᏐᎢ.",
+      "translator_confidence": "very low",
+      "label": "unknown"
+    },
+    {
+      "id": "quant_05",
+      "english_source": "No doctors are pilots. Some doctors are writers. Question: Some writers are not pilots.",
+      "formal_semantics": {"premises": ["forall(X, doctor(X) -> not(pilot(X)))", "exists(X, doctor(X) and writer(X))"], "query": "exists(X, writer(X) and not(pilot(X)))"},
+      "cherokee_candidate_translation": "ᎥᏝ ᏗᏓᏅᏫᏍᎩ ᏗᎦᎸᏔᏂᏙᎯ ᎨᏒ ᏱᎩ. ᎢᎦᏛ ᏗᏓᏅᏫᏍᎩ ᏗᎪᏪᎵᏍᎩ ᎨᏐᎢ. ᎢᎦᏛ ᏗᎪᏪᎵᏍᎩ ᎥᏝ ᏗᎦᎸᏔᏂᏙᎯ ᏱᎩ.",
+      "translator_confidence": "low",
+      "label": "entailed"
+    },
+    {
+      "id": "spat_01",
+      "english_source": "The apple is left of the book. The book is left of the cup. Question: The apple is left of the cup.",
+      "formal_semantics": {"premises": ["left_of(apple, book)", "left_of(book, cup)"], "query": "left_of(apple, cup)"},
+      "cherokee_candidate_translation": "ᏔᎦᎾᏫ ᎾᎿ ᎣᏓᎸ ᎠᏢᏗᏍᎪ ᎠᏫᏰᏟ. ᎠᏫᏰᏟ ᎾᎿ ᎣᏓᎸ ᎠᏢᏗᏍᎪ ᎠᎵᏍᏓᏴᏗ. ᏔᎦᎾᏫ ᎾᎿ ᎣᏓᎸ ᎠᏢᏗᏍᎪ ᎠᎵᏍᏓᏴᏗ.",
+      "translator_confidence": "low; spatial relation vocabulary ('left of') is uncertain",
+      "label": "entailed"
+    },
+    {
+      "id": "spat_02",
+      "english_source": "Mia is north of Noah. Noah is north of Liam. Question: Mia is north of Liam.",
+      "formal_semantics": {"premises": ["north_of(Mia, Noah)", "north_of(Noah, Liam)"], "query": "north_of(Mia, Liam)"},
+      "cherokee_candidate_translation": "ᎹᏯ ᏧᏴᏢ ᎢᏗᏢ ᎡᎭ ᏃᏩᏱ. ᏃᏩ ᏧᏴᏢ ᎢᏗᏢ ᎡᎭ ᎳᎥᎻ. ᎹᏯ ᏧᏴᏢ ᎢᏗᏢ ᎡᎭ ᎳᎥᎻ.",
+      "translator_confidence": "low-medium; 'ᏧᏴᏢ' (north) is a word I'm more confident about than most",
+      "label": "entailed"
+    },
+    {
+      "id": "spat_03",
+      "english_source": "The chair is behind the desk. Question: The desk is in front of the chair.",
+      "formal_semantics": {"premises": ["behind(chair, desk)", "forall(X, Y, behind(X, Y) <-> front_of(Y, X))"], "query": "front_of(desk, chair)"},
+      "cherokee_candidate_translation": "ᎢᎦᏍᏗ ᎣᏂ ᎡᎭ ᏓᎦᏂᏢᏗᏱ. ᏓᎦᏂᏢᏗᏱ ᎢᎬᏱᏢ ᎡᎭ ᎢᎦᏍᏗ.",
+      "translator_confidence": "very low",
+      "label": "entailed"
+    },
+    {
+      "id": "spat_04",
+      "english_source": "The park is east of the school. The library is east of the park. Question: The library is west of the school.",
+      "formal_semantics": {"premises": ["east_of(park, school)", "east_of(library, park)", "forall(X, Y, west_of(X, Y) <-> east_of(Y, X))"], "query": "west_of(library, school)"},
+      "cherokee_candidate_translation": "ᎠᏓᏬᏍᏗ ᏗᎬᏢ ᎢᏗᏢ ᎡᎭ ᏫᏗᎦᎾᏄᎪᏫᏍᏗᏱ. ᎪᏪᎵᏗᏱ ᏗᎬᏢ ᎢᏗᏢ ᎡᎭ ᎠᏓᏬᏍᏗ. ᎪᏪᎵᏗᏱ ᏭᏕᎵᏗᏢ ᎢᏗᏢ ᎡᎭ ᏫᏗᎦᎾᏄᎪᏫᏍᏗᏱ.",
+      "translator_confidence": "very low; east/west vocabulary and the compound noun 'library' are both uncertain",
+      "label": "contradicted"
+    },
+    {
+      "id": "spat_05",
+      "english_source": "The red box is above the blue box. The blue box is above the green box. Question: The green box is above the red box.",
+      "formal_semantics": {"premises": ["above(red, blue)", "above(blue, green)"], "query": "above(green, red)"},
+      "cherokee_candidate_translation": "ᎦᎨ ᎦᏂᏱ ᎦᎸᎳᏗ ᎡᎭ ᏌᎪᏂᎨ ᎦᏂᏱ. ᏌᎪᏂᎨ ᎦᏂᏱ ᎦᎸᎳᏗ ᎡᎭ ᎢᏤᎢᏳᏍᏗ ᎦᏂᏱ. ᎢᏤᎢᏳᏍᏗ ᎦᏂᏱ ᎦᎸᎳᏗ ᎡᎭ ᎦᎨ ᎦᏂᏱ.",
+      "translator_confidence": "low-medium; color+box vocabulary is somewhat more confident than abstract-noun items",
+      "label": "contradicted"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+language_name,end_to_end_accuracy,semantic_recovery_rate,P(reasoning_correct | semantic_recovery_correct)
+English,1.0,0.6,1.0
+French,1.0,0.6,1.0
+Swahili,1.0,0.6,1.0

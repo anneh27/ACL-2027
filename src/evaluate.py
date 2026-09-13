@@ -50,10 +50,18 @@ def table2_cherokee_pilot():
         return None
 
     df = pd.read_csv(path)
-    table = df.groupby("reasoning_type")[
-        ["A_english_correct", "B_cherokee_correct", "C_cherokee_parse_correct", "D_oracle_symbolic_correct"]
-    ].mean()
-    table.columns = ["English", "Cherokee", "Cherokee Parse", "Oracle Symbolic"]
+    cols = ["A_english_correct", "B_cherokee_correct", "C_cherokee_parse_correct", "D_oracle_symbolic_correct"]
+    names = ["English", "Cherokee", "Cherokee Parse", "Oracle Symbolic"]
+    if "C_cherokee_parse_structural_match" in df.columns:
+        # Strict grading requires the parse's predicate/entity names to
+        # literally match gold; structural match instead checks whether the
+        # connective/negation-polarity/quantifier-type/argument-shape agrees,
+        # regardless of naming. The gap between these two columns is often
+        # the most informative number in this table -- see README.
+        cols.append("C_cherokee_parse_structural_match")
+        names.append("Cherokee Parse (structural match)")
+    table = df.groupby("reasoning_type")[cols].mean()
+    table.columns = names
     out_path = os.path.join(RESULTS_DIR, "table2_cherokee_pilot.csv")
     table.to_csv(out_path)
     print("=== Table 2: Cherokee Logic Pilot ===")
