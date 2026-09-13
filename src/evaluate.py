@@ -70,7 +70,40 @@ def table2_cherokee_pilot():
     return table
 
 
+def table1_mini_mgsm_v2_rescored():
+    """Week 3: same Table 1, but semantic recovery uses the audited v3 score
+    (src/semantic_probe_rescore.py) instead of the buggy Week 2 digit-match
+    rule. Original table1_mini_mgsm.csv is left untouched for continuity."""
+    path = os.path.join(RESULTS_DIR, "semantic_recovery_rescore_comparison.csv")
+    e2e_path = os.path.join(RESULTS_DIR, "mgsm_results.csv")
+    if not (os.path.exists(path) and os.path.exists(e2e_path)):
+        print("Missing rescore comparison and/or mgsm_results.csv -- run semantic_probe_rescore.py first.")
+        return None
+
+    e2e = pd.read_csv(e2e_path)
+    rescore = pd.read_csv(path)
+    lang_names = {"en": "English", "fr": "French", "sw": "Swahili"}
+    rescore["language_name"] = rescore["language"].map(lang_names)
+
+    acc = e2e.groupby("language_name")["correct"].mean().rename("end_to_end_accuracy")
+    recovery_v3 = rescore.groupby("language_name")["recovery_after_audit_v3"].mean().rename("semantic_recovery_rate_v3_audited")
+    cond = (
+        rescore[rescore["recovery_after_audit_v3"]]
+        .groupby("language_name")["reasoning_correct"]
+        .mean()
+        .rename("P(reasoning_correct | semantic_recovery_correct)_v3")
+    )
+    table = pd.concat([acc, recovery_v3, cond], axis=1)
+    out_path = os.path.join(RESULTS_DIR, "table1_mini_mgsm_v2_rescored.csv")
+    table.to_csv(out_path)
+    print("=== Table 1 (Week 3, rescored): Mini-MGSM ===")
+    print(table.round(3))
+    print(f"Saved to {out_path}\n")
+    return table
+
+
 if __name__ == "__main__":
     os.makedirs(RESULTS_DIR, exist_ok=True)
     table1_mini_mgsm()
     table2_cherokee_pilot()
+    table1_mini_mgsm_v2_rescored()
