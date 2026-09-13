@@ -1,0 +1,21 @@
+id,reasoning_type,gold_label,A_english_correct,B_cherokee_direct_correct,C_v2_cherokee_to_english_correct,D_oracle_symbolic_correct,error_attribution
+neg2_01,negation,entailed,True,False,False,True,"language/semantic-recovery bottleneck: fails in BOTH B and C_v2. C_v2's own translation shows the query rendered with 'and' ('Elisi is not at home, and also Bobby is not at home') where the intended connective was 'or' -- my Cherokee 'or' (a-priori flagged 'outside my confident vocabulary') was not conveyed, collapsing this item into the superficially similar but logically different neg2_02 pattern."
+neg2_02,negation,entailed,True,False,True,True,"language/semantic-recovery bottleneck, but only in Condition B: direct classification conflated this with neg2_01's pattern (grouped both under the same, wrong analysis in its own notes), while C_v2's explicit translation step correctly separated 'neither...nor' from the other item and got it right. A case where writing out the translation explicitly HELPED rather than hurt."
+neg2_03,negation,unknown,True,True,True,True,
+neg2_04,negation,entailed,True,True,True,True,
+neg2_05,negation,entailed,True,True,True,True,
+cond2_01,conditional,entailed,True,False,True,True,"language/semantic-recovery bottleneck, but only in Condition B: my Cherokee attempt at a biconditional ('if and only if', a-priori flagged very low confidence) was read with antecedent/consequent apparently swapped, producing an affirming-the-consequent misreading. C_v2 happened to preserve the right antecedent/consequent assignment even while also losing the 'only if' component, so modus ponens still applied correctly there."
+cond2_02,conditional,entailed,True,True,False,True,"language/semantic-recovery bottleneck, but only in Condition C_v2 this time (reverse of cond2_01): its own translation explicitly drops 'if and only if' down to a plain 'if', turning a valid biconditional inference into what LOOKS like denying-the-antecedent -- a real fallacy for a plain conditional, correctly flagged as such by the reasoner, but wrong here because the biconditional's extra 'only if' direction was lost in translation. Direct classification (B) got this one right."
+cond2_03,conditional,unknown,True,True,True,True,
+cond2_04,conditional,entailed,True,True,True,True,
+cond2_05,conditional,entailed,True,True,True,True,
+quant2_01,quantifier,unknown,True,True,True,True,
+quant2_02,quantifier,unknown,True,False,False,True,"NOT clearly a translation or semantic-recovery issue -- flagged as a likely logical-CONVENTION difference instead. Both blind agents independently answered 'entailed' citing 'subalternation' (All A are B implies Some A are B), a named, historically standard Aristotelian inference rule. My gold label ('unknown') instead follows modern predicate logic, which does not assume a universal statement's subject class is nonempty. Both agents' own English translations were accurate, so this isn't a translation failure -- it's a case where the item's gold label depends on which of two legitimate logical traditions is assumed, which the item didn't specify. This is a dataset-design caveat on my part, not necessarily a genuine model deficiency."
+quant2_03,quantifier,entailed,True,True,True,True,
+quant2_04,quantifier,unknown,True,True,True,True,
+quant2_05,quantifier,entailed,True,True,True,True,
+fall_01,fallacious_reasoning_form,unknown,True,True,True,True,
+fall_02,fallacious_reasoning_form,unknown,True,True,True,True,
+fall_03,fallacious_reasoning_form,unknown,True,True,True,True,
+fall_04,fallacious_reasoning_form,entailed,True,True,True,True,
+fall_05,fallacious_reasoning_form,unknown,True,True,True,True,

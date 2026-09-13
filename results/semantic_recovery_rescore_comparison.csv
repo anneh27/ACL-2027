@@ -1,0 +1,16 @@
+id,language,recovery_before_v1,recovery_after_fixed_check_v2,category,recovery_after_audit_v3,reasoning_correct,justification
+mgsm_001,en,True,True,fully_correct,True,True,Passes the fixed automated check directly; no manual review needed.
+mgsm_001,fr,True,True,fully_correct,True,True,Passes the fixed automated check directly; no manual review needed.
+mgsm_001,sw,True,True,fully_correct,True,True,Passes the fixed automated check directly; no manual review needed.
+mgsm_006,en,True,True,fully_correct,True,True,Passes the fixed automated check directly; no manual review needed.
+mgsm_006,fr,True,True,fully_correct,True,True,Passes the fixed automated check directly; no manual review needed.
+mgsm_006,sw,True,True,fully_correct,True,True,Passes the fixed automated check directly; no manual review needed.
+mgsm_022,en,True,True,fully_correct,True,True,Passes the fixed automated check directly; no manual review needed.
+mgsm_022,fr,True,True,fully_correct,True,True,Passes the fixed automated check directly; no manual review needed.
+mgsm_022,sw,True,True,fully_correct,True,True,Passes the fixed automated check directly; no manual review needed.
+mgsm_023,en,False,False,different_form,True,True,"Source (fixed) digits: rate=2, start_hour=1, end_hour=5. Extracted: rate=2, duration=4. The extractor computed the derived duration (end-start) instead of passing along the two raw clock digits -- strictly different tokens, but informationally equivalent for this problem (duration is exactly what's needed downstream, and nothing about *which* hours they were is used anywhere else). Stage-2 reasoning from this exact structure was correct (8), confirming no information relevant to the answer was actually lost."
+mgsm_023,fr,False,False,different_form,True,True,"Identical situation to the English trial (same extraction pattern, same source structure in French)."
+mgsm_023,sw,False,True,fully_correct,True,True,Passes the fixed automated check directly; no manual review needed.
+mgsm_035,en,False,False,different_form,True,True,"Source (fixed) digits: 40 (total game minutes), 20 (first-half minutes), 4 (first-half points), 20 (second-half minutes), 25 (percent increase). Extracted: 4, 25. The two '20-minute half' numbers and the '40-minute total' are pure narrative scaffolding -- removing them from the problem entirely would not change the required arithmetic (4 -> 4*1.25=5 -> 4+5=9). The extractor correctly triaged which numbers were load-bearing and which were not; Stage-2 reasoning was correct."
+mgsm_035,fr,False,False,different_form,True,True,Identical situation to the English trial.
+mgsm_035,sw,False,False,different_form,True,True,Identical situation to the English trial.
