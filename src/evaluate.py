@@ -70,7 +70,76 @@ def table2_cherokee_pilot():
     return table
 
 
+def table1_mini_mgsm_v2_rescored():
+    """Week 3: same Table 1, but semantic recovery uses the audited v3 score
+    (src/semantic_probe_rescore.py) instead of the buggy Week 2 digit-match
+    rule. Original table1_mini_mgsm.csv is left untouched for continuity."""
+    path = os.path.join(RESULTS_DIR, "semantic_recovery_rescore_comparison.csv")
+    e2e_path = os.path.join(RESULTS_DIR, "mgsm_results.csv")
+    if not (os.path.exists(path) and os.path.exists(e2e_path)):
+        print("Missing rescore comparison and/or mgsm_results.csv -- run semantic_probe_rescore.py first.")
+        return None
+
+    e2e = pd.read_csv(e2e_path)
+    rescore = pd.read_csv(path)
+    lang_names = {"en": "English", "fr": "French", "sw": "Swahili"}
+    rescore["language_name"] = rescore["language"].map(lang_names)
+
+    acc = e2e.groupby("language_name")["correct"].mean().rename("end_to_end_accuracy")
+    recovery_v3 = rescore.groupby("language_name")["recovery_after_audit_v3"].mean().rename("semantic_recovery_rate_v3_audited")
+    cond = (
+        rescore[rescore["recovery_after_audit_v3"]]
+        .groupby("language_name")["reasoning_correct"]
+        .mean()
+        .rename("P(reasoning_correct | semantic_recovery_correct)_v3")
+    )
+    table = pd.concat([acc, recovery_v3, cond], axis=1)
+    out_path = os.path.join(RESULTS_DIR, "table1_mini_mgsm_v2_rescored.csv")
+    table.to_csv(out_path)
+    print("=== Table 1 (Week 3, rescored): Mini-MGSM ===")
+    print(table.round(3))
+    print(f"Saved to {out_path}\n")
+    return table
+
+
+def table2_cherokee_pilot_v2():
+    """Week 3: Table 2 with Condition C redefined as Cherokee->English->answer,
+    for both the original 20-item set and the new harder 20-item set."""
+    orig_path = os.path.join(RESULTS_DIR, "cherokee_pilot_v2_four_condition.csv")
+    harder_path = os.path.join(RESULTS_DIR, "logic_pilot_harder_batch_four_condition.csv")
+    if not os.path.exists(orig_path):
+        print("Missing cherokee_pilot_v2_four_condition.csv -- run interactive_pilot_logic_v2.py first.")
+        return None
+
+    cols_map = {
+        "A_english_correct": "English",
+        "B_cherokee_direct_correct": "Cherokee (direct)",
+        "C_v2_cherokee_to_english_correct": "Cherokee->English->answer",
+        "D_oracle_symbolic_correct": "Oracle Symbolic",
+    }
+
+    orig = pd.read_csv(orig_path)
+    orig["batch"] = "original_20"
+    frames = [orig]
+    if os.path.exists(harder_path):
+        harder = pd.read_csv(harder_path)
+        harder["batch"] = "harder_20"
+        frames.append(harder)
+    combined = pd.concat(frames, ignore_index=True)
+
+    table = combined.groupby(["batch", "reasoning_type"])[list(cols_map.keys())].mean()
+    table.columns = list(cols_map.values())
+    out_path = os.path.join(RESULTS_DIR, "table2_cherokee_pilot_v2.csv")
+    table.to_csv(out_path)
+    print("=== Table 2 (Week 3, redefined Condition C): Cherokee Logic Pilot ===")
+    print(table.round(3))
+    print(f"Saved to {out_path}\n")
+    return table
+
+
 if __name__ == "__main__":
     os.makedirs(RESULTS_DIR, exist_ok=True)
     table1_mini_mgsm()
     table2_cherokee_pilot()
+    table1_mini_mgsm_v2_rescored()
+    table2_cherokee_pilot_v2()
