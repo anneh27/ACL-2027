@@ -1,4 +1,8 @@
-# ACL 2027 Week 2 — Mini-MGSM Replication + Cherokee Semantic-vs-Reasoning Pilot
+# ACL 2027 Week 2/3 — Mini-MGSM Replication + Cherokee Semantic-vs-Reasoning Pilot
+
+## Week 3 update (see checklist below for full detail)
+
+Week 3 fixed the Week 2 pipeline's methodology before expanding its scale, per that week's own "Acceptance Goal": revised semantic-recovery scoring (`src/semantic_probe_rescore.py`), a full translation-quality review of all 20 Week 2 Cherokee items (`src/translation_quality_review.py`), a redefined four-condition design with Condition C now "Cherokee → English → answer" instead of "Cherokee → formal parse" (`src/interactive_pilot_logic_v2.py`), and 40 new harder items — 20 MGSM-style math (`src/interactive_pilot_mgsm_harder.py`) and 20 new logic items covering De Morgan's laws, biconditionals, existential-import and quantifier-scope fallacies, composition/division, and a deliberate circular-but-formally-valid control (`data/week3_new_logic_items.json`, `src/interactive_pilot_logic_harder.py`). Two more blind subagents were used for the new logic batch's Conditions B/C, for the same reason as Week 2 (see "How `results/` was actually populated" below). Headline results: the semantic-recovery "failure" rate corrects from 60% to 100% once two scoring bugs are fixed; the harder logic batch breaks the ceiling (Condition B: 95%→80%) while the harder math batch does not (100%/100% held); every clean error found traces to translation/semantic-recovery or to a dataset-design ambiguity, never to reasoning. Full write-up: `results/one_page_summary.md` and `results/five_representative_error_cases.md`.
 
 Reproducible pipeline for the Week 2 plan: (A) a Mini-MGSM replication measuring
 end-to-end accuracy across English/French/Swahili, (B) a semantic-recovery-vs-
@@ -240,3 +244,19 @@ otherwise-flawed low-resource-language text) rather than a general claim
 about where multilingual reasoning bottlenecks sit -- rerunning
 `run_mgsm.py` / `run_logic_pilot.py` against a real GPT-5.6 key is needed
 before treating this as more than a pilot on the pipeline itself.
+
+**Week 3 supersedes some of the above with sharper evidence** -- see
+`results/one_page_summary.md` for the current-best version of this
+write-up; the paragraph above is left as-is (Week 2's original) for
+continuity rather than silently edited.
+
+## Week 3 checklist (against the plan's "Checklist for Next Friday")
+
+- [x] **Revised semantic-recovery scoring script** -- `src/semantic_probe_rescore.py`. Two automated bug fixes (per-language gold digits; clock-time ":00" stripping) plus a documented manual 4-category audit of anything still flagged. Corrects 60% -> 67% (automated) -> 100% (audited). `results/semantic_recovery_rescore_comparison.csv`.
+- [x] **Translation-quality review table for all 20 Cherokee questions** -- `src/translation_quality_review.py` / `results/translation_quality_review.csv`. Per-item negation/conditional/quantifier-scope/entity/predicate checks against the blind subagent's independent parse, High/Medium/Low rating, and an explicit record of where the evidence revised my a-priori self-rating (`neg_04`, upward).
+- [x] **Four-condition experimental design, item-level outputs, and summary results** -- redefined per this week's plan (Condition C is now Cherokee->English->answer): `src/interactive_pilot_logic_v2.py` / `results/cherokee_pilot_v2_four_condition.csv` (original 20 items) and `src/interactive_pilot_logic_harder.py` / `results/logic_pilot_harder_batch_four_condition.csv` (new 20 items). Error-attribution principle from the plan applied explicitly to every item where B or C erred.
+- [x] **Small-scale experiment containing at least 40 more difficult questions** -- 20 harder MGSM items (`src/interactive_pilot_mgsm_harder.py`, English+Swahili per the plan's "focus on English and one low-resource language") + 20 new logic items (`data/week3_new_logic_items.json`, `data/week3_logic_cherokee.json`). Math ceiling held (100%/100%); logic ceiling broke (Condition B 95%->80%).
+- [x] **Five representative error cases with error attribution** -- `results/five_representative_error_cases.md`. Spans translation/semantic-recovery (3 cases, including one method-dependent pair), a logical-convention ambiguity in the dataset design itself, and a pure scoring-method artifact -- explicitly noting zero cases of a clean reasoning-stage failure were found.
+- [x] **One-page experimental summary including limitations and next steps** -- `results/one_page_summary.md`.
+
+Not done this week, flagged rather than silently skipped: Quechua/AmericasNLI (mentioned in the plan as a possible future direction, not a Week 3 requirement) was not started; no native Cherokee speaker reviewed any translation (every rating above is self-assessed or blind-subagent-inferred, never ground truth); and this remains Claude Sonnet 5 as the subject throughout, not GPT-5.6.
