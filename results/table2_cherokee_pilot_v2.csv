@@ -1,0 +1,5 @@
+batch,reasoning_type,English,Cherokee (direct),Cherokee->English->answer,Oracle Symbolic
+original_20,conditional,1.0,0.8,0.8,1.0
+original_20,negation,1.0,1.0,0.8,1.0
+original_20,quantifier,1.0,1.0,1.0,1.0
+original_20,spatial,1.0,1.0,0.8,1.0

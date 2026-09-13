@@ -102,8 +102,44 @@ def table1_mini_mgsm_v2_rescored():
     return table
 
 
+def table2_cherokee_pilot_v2():
+    """Week 3: Table 2 with Condition C redefined as Cherokee->English->answer,
+    for both the original 20-item set and the new harder 20-item set."""
+    orig_path = os.path.join(RESULTS_DIR, "cherokee_pilot_v2_four_condition.csv")
+    harder_path = os.path.join(RESULTS_DIR, "logic_pilot_harder_batch_four_condition.csv")
+    if not os.path.exists(orig_path):
+        print("Missing cherokee_pilot_v2_four_condition.csv -- run interactive_pilot_logic_v2.py first.")
+        return None
+
+    cols_map = {
+        "A_english_correct": "English",
+        "B_cherokee_direct_correct": "Cherokee (direct)",
+        "C_v2_cherokee_to_english_correct": "Cherokee->English->answer",
+        "D_oracle_symbolic_correct": "Oracle Symbolic",
+    }
+
+    orig = pd.read_csv(orig_path)
+    orig["batch"] = "original_20"
+    frames = [orig]
+    if os.path.exists(harder_path):
+        harder = pd.read_csv(harder_path)
+        harder["batch"] = "harder_20"
+        frames.append(harder)
+    combined = pd.concat(frames, ignore_index=True)
+
+    table = combined.groupby(["batch", "reasoning_type"])[list(cols_map.keys())].mean()
+    table.columns = list(cols_map.values())
+    out_path = os.path.join(RESULTS_DIR, "table2_cherokee_pilot_v2.csv")
+    table.to_csv(out_path)
+    print("=== Table 2 (Week 3, redefined Condition C): Cherokee Logic Pilot ===")
+    print(table.round(3))
+    print(f"Saved to {out_path}\n")
+    return table
+
+
 if __name__ == "__main__":
     os.makedirs(RESULTS_DIR, exist_ok=True)
     table1_mini_mgsm()
     table2_cherokee_pilot()
     table1_mini_mgsm_v2_rescored()
+    table2_cherokee_pilot_v2()
