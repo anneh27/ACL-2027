@@ -58,7 +58,7 @@ def load_env(path):
                 os.environ.setdefault(key.strip(), value.strip())
 
 
-def call_model(client, model, prompt):
+def call_model(client, model, prompt, system=None):
     """One real chat-completion call with bounded retries on transient errors.
     Returns a dict of raw results; never raises."""
     import openai
@@ -71,7 +71,8 @@ def call_model(client, model, prompt):
         if _quota_exhausted.is_set():
             return {"raw_output": "", "error_message": "skipped: API credits exhausted earlier in this run"}
         try:
-            resp = client.chat.completions.create(model=model, messages=[{"role": "user", "content": prompt}])
+            messages = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]
+            resp = client.chat.completions.create(model=model, messages=messages)
             usage = resp.usage
             details = getattr(usage, "completion_tokens_details", None)
             return {

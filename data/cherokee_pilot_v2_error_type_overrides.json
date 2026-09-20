@@ -1,0 +1,112 @@
+{
+  "_readme": "JUDGMENT, not computed values. Written by Claude after reading each item's English source, Cherokee text, and the model's back-translation; Anne should verify these (the plan asks who verified what). The pilot script reads this file and marks every value it uses here as 'manual override' in the CSV; predictions and correct/incorrect flags are never taken from this file.",
+  "error_type_overrides": {
+    "neg_03": {
+      "type": "translation",
+      "note": "A, B, D correct; only the explicit back-translation failed. The model rendered the Cherokee as 'This is not their heavenly home. It is his home.', which has no connection to 'Nina does not own a bicycle'. B was still correct, most likely from surface structure (a negated statement followed by the same statement asserted), not from recovered meaning. Re-sampling (results/cherokee_pilot_v2_stability.csv): C was wrong in 1 of 3 fresh runs, and every fresh back-translation was again unrelated text ('his twins in heaven'), so the outcome is unstable: the label is reached, or missed, from structure alone."
+    },
+    "cond_04": {
+      "type": "translation",
+      "note": "Fails in both B and C while A and D are correct. The back-translation ('Whenever Ewi was about to eat those watching nearby... Ewi was a man-eater') shares nothing with the English modus-tollens problem. This Cherokee item was independently rated lowest confidence in Week 3 before any grading. Not a scoring error (see results/scoring_dispute_evidence.csv). Re-sampling: C was wrong in 3/3 fresh runs (each back-translation is a different unrelated story: deer feeding, a guest, a big eater), so the C failure is stable. B was wrong in 1 of 3 fresh runs (2 of 4 samples including the original), so B's failure on this item is not deterministic."
+    },
+    "spat_01": {
+      "type": "translation",
+      "note": "Fails in both B and C while A and D are correct. The 'left of' relation does not survive: the back-translation has no spatial relation at all ('there on the mountain makes...'), so there is no transitive chain to reason over. Re-sampling: B wrong in 1/3 fresh runs, C wrong in 2/3; the back-translations vary (hunter/game, farmer/animals) but never contain a left/right relation, so success or failure depends on whether the model happens to treat the invented 'X produces Y' chain as transitive."
+    },
+    "spat_02": {
+      "type": "translation",
+      "note": "C wrong in the original run only. The Cherokee text writes the second entity inconsistently (a locative-looking suffix in the first sentence, bare in the second). Original back-translation read the first as 'Norway' ('Maya is north of Norway. Noah is north of Lavmi...'), which breaks the chain, so 'unknown' was a valid answer to that text. Re-sampling: 2 of 3 fresh back-translations read the name as 'Noah' and answered entailed, so this error is unstable; the underlying defect is the inconsistent entity form in the Cherokee candidate."
+    },
+    "spat_03": {
+      "type": "translation",
+      "note": "C wrong in the original run only. The original back-translation ('A little way behind is where I will turn. The place where I will turn is a little way ahead.') keeps a behind/ahead relation but loses both objects (chair, desk). Re-sampling: 0 of 3 fresh runs were wrong (all answered entailed), although those back-translations are even further from the source ('My turn is a little later...'), so the correct answers there are not evidence of recovered meaning. Sampling noise contributes to this error."
+    },
+    "spat_04": {
+      "type": "data ambiguity",
+      "note": "D (oracle symbolic) is wrong although B and C are right. The formal premises give east_of(park,school), east_of(library,park) and the east/west converse postulate, but no transitivity or asymmetry axiom for east_of, and the gold label 'contradicted' needs both. Read strictly, 'unknown' is a defensible answer to the symbolic input as written. The other spatial items have the same implicit dependence (the gold labels assume transitivity), so this is a gap in the dataset's formal representations, not evidence about Cherokee. See the stability check for whether the wrong D answer repeats. Re-sampling: the wrong D answer ('unknown') repeated in 3/3 fresh runs, so it is stable, which supports the data-ambiguity reading over sampling noise."
+    }
+  },
+  "back_translation_fidelity": {
+    "_scale": "exact = same content; close = same structure with near-synonym content words; skeleton_only = negation/if/quantifier/relation structure intact but entities and predicates changed; broken = the logical structure itself is lost or altered",
+    "neg_01": {
+      "rating": "skeleton_only",
+      "note": "Liam->Lavmi, school->airport; negation and repeated predicate intact"
+    },
+    "neg_02": {
+      "rating": "skeleton_only",
+      "note": "door open -> bridge burned"
+    },
+    "neg_03": {
+      "rating": "broken",
+      "note": "unrelated statements"
+    },
+    "neg_04": {
+      "rating": "skeleton_only",
+      "note": "double negation preserved exactly; the content ('he can do it') is not the light being on"
+    },
+    "neg_05": {
+      "rating": "skeleton_only",
+      "note": "Daniel kept; lost the key -> said it would be hard"
+    },
+    "cond_01": {
+      "rating": "close",
+      "note": "studies->begins to learn, passes the exam->understands; modus ponens intact"
+    },
+    "cond_02": {
+      "rating": "skeleton_only",
+      "note": "alarm/leaves building -> danger/hides in the house"
+    },
+    "cond_03": {
+      "rating": "close",
+      "note": "Noah kept; tired -> breathes heavily; affirming-the-consequent shape intact"
+    },
+    "cond_04": {
+      "rating": "broken",
+      "note": "no conditional, no negated premise, unrelated story"
+    },
+    "cond_05": {
+      "rating": "skeleton_only",
+      "note": "button/machine -> groundhog; both negations intact"
+    },
+    "quant_01": {
+      "rating": "skeleton_only",
+      "note": "Maria kept; painters/artists -> students/writers"
+    },
+    "quant_02": {
+      "rating": "skeleton_only",
+      "note": "Felix kept; cats/reptiles -> governors/soldiers; universal negative intact"
+    },
+    "quant_03": {
+      "rating": "close",
+      "note": "teachers kept; employees->workers, musicians->singers"
+    },
+    "quant_04": {
+      "rating": "skeleton_only",
+      "note": "students/athletes/musicians -> performers/dancers/singers; shared-subject existential pattern intact"
+    },
+    "quant_05": {
+      "rating": "exact",
+      "note": "the only fully faithful back-translation"
+    },
+    "spat_01": {
+      "rating": "broken",
+      "note": "relation lost"
+    },
+    "spat_02": {
+      "rating": "broken",
+      "note": "Noah->Norway breaks the chain"
+    },
+    "spat_03": {
+      "rating": "broken",
+      "note": "objects lost"
+    },
+    "spat_04": {
+      "rating": "skeleton_only",
+      "note": "park/school/library -> theater/church/library; the east-east-then-west structure is isomorphic, so the label survives"
+    },
+    "spat_05": {
+      "rating": "close",
+      "note": "box->ball; above chain intact"
+    }
+  }
+}

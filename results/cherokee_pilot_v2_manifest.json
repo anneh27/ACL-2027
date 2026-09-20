@@ -1,0 +1,14 @@
+{
+  "started_utc": "2026-09-20T06:44:59.467167+00:00",
+  "finished_utc": "2026-09-20T06:44:59.467561+00:00",
+  "model": "gpt-5.6-sol",
+  "temperature": "not set (model only supports its default; explicit temperature=0 is rejected)",
+  "n_items": 20,
+  "calls_per_item": 5,
+  "records_reused_from_previous_invocation": 100,
+  "prompts": {
+    "classify_nl": "You will be given some premises and a query statement, in natural language. Decide whether the query is ENTAILED by the premises, CONTRADICTED by the premises, or UNKNOWN (neither follows). Respond with exactly one word: entailed, contradicted, or unknown.",
+    "classify_symbolic": "You will be given premises and a query in formal logical notation. Decide whether the query is ENTAILED by the premises, CONTRADICTED by the premises, or UNKNOWN. Respond with exactly one word: entailed, contradicted, or unknown.",
+    "translate": "Translate the following Cherokee (Tsalagi) text into English. Output only the English translation. Do not answer, analyze, or comment on it.\n\n{text}"
+  }
+}
