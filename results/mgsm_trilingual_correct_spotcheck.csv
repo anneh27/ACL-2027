@@ -1,0 +1,100 @@
+question_id,language,question,gold_answer,raw_output,parsed_prediction,parse_method,correct
+mgsm_trilingual_056,en,"Peter plans to go to the movies this week. He always gets a ticket for $7 and popcorn for $7. If he has 42 dollars for the week, how many times can he go to the movies?",3,"Each movie visit costs \(7 + 7 = 14\) dollars.
+
+\[
+42 \div 14 = 3
+\]
+
+FINAL ANSWER: 3",3.0,final_answer_line,True
+mgsm_trilingual_059,en,A raspberry bush has 6 clusters of 20 fruit each and 67 individual fruit scattered across the bush. How many raspberries are there total?,187,"There are \(6 \times 20 = 120\) raspberries in clusters. Adding the 67 scattered raspberries:
+
+\[
+120 + 67 = 187
+\]
+
+FINAL ANSWER: 187",187.0,final_answer_line,True
+mgsm_trilingual_108,en,"Henry is making cookies for a local baking competition. He wants to make twice as many as he did last year. When he finishes baking, he realizes he actually baked 15 more cookies than he meant to. He drops 5 of his cookies as he is putting them out to cool, and now has a total of 110 cookies. How many cookies did Henry bake last year?",50,"Let \(x\) be the number of cookies Henry baked last year.
+
+He baked \(2x+15\) cookies this year. After dropping 5, he had 110:
+
+\[
+2x+15-5=110
+\]
+
+\[
+2x=100 \quad\Rightarrow\quad x=50
+\]
+
+FINAL ANSWER: 50",50.0,final_answer_line,True
+mgsm_trilingual_214,en,"Jerry has two pools, both with leaks emptying them out at 4 gallons/minute. 4 minutes ago, the big pool had twice as much water as the small pool. Now the big pool has four times as much water as the small pool. How much water does the small pool have now?",8,"Let the small pool currently contain \(s\) gallons, so the big pool contains \(4s\) gallons.
+
+Four minutes ago, each pool had \(4 \times 4=16\) more gallons:
+
+\[
+4s+16=2(s+16)
+\]
+
+\[
+4s+16=2s+32 \implies 2s=16 \implies s=8
+\]
+
+FINAL ANSWER: 8",8.0,final_answer_line,True
+mgsm_trilingual_056,es,"Peter planea ir al cine esta semana. Siempre compra una entrada de $7 y palomitas de maíz por $7. Si tiene 42 dólares para la semana, ¿cuántas veces puede ir al cine?",3,"Cada visita cuesta \(7 + 7 = 14\) dólares.
+
+\[
+42 \div 14 = 3
+\]
+
+FINAL ANSWER: 3",3.0,final_answer_line,True
+mgsm_trilingual_059,es,Un arbusto de frambuesas tiene 6 racimos con 20 frutas cada uno y 67 frutas individuales desparramadas por el arbusto. ¿Cuántas frambuesas hay en total?,187,"6 racimos × 20 frambuesas = 120 frambuesas.  
+120 + 67 = 187 frambuesas.
+
+FINAL ANSWER: 187",187.0,final_answer_line,True
+mgsm_trilingual_114,es,"El teléfono de Jamal puede guardar 6 veces más fotografías que el teléfono de Brittany. La cantidad máxima de fotografías que puede guardar el teléfono de Brittany es 50 veces más que la cantidad de aves que hay en la fotografía que Jamal tomó de los patos en el zoológico. Si el teléfono de Jamal puede guardar 1800 fotografías, ¿cuántos patos se pueden ver en la fotografía que Jamal tomó de los patos en el zoológico?",6,"El teléfono de Brittany puede guardar:
+
+\(1800 \div 6 = 300\) fotografías.
+
+La cantidad de patos es:
+
+\(300 \div 50 = 6\).
+
+FINAL ANSWER: 6",6.0,final_answer_line,True
+mgsm_trilingual_057,ja,木の橋は5000ポンドを超える重さに耐えられません。配達トラックはそれぞれ15ポンドの同じ箱を33個積んでおり、橋を渡ろうとしています。運転手と空のトラックを合わせた重さは3755ポンドです。橋の重量制限を超える事なく、トラックに積み込める箱は、最大何個になりますか？,83,"橋に載せられる箱の総重量は、
+
+\[
+5000-3755=1245\text{ポンド}
+\]
+
+箱1個は15ポンドなので、
+
+\[
+1245\div15=83
+\]
+
+したがって、トラックに積める箱は最大83個です（現在の33個からさらに50個追加できます）。
+
+FINAL ANSWER: 83",83.0,final_answer_line,True
+mgsm_trilingual_062,ja,"マーシーが同じ会社で40年働くと、彼女は年に年金を$50,000もらえる。20年後から、彼女は年額5%の年金を受け取ることができるようになる。彼女が30年後にやめたら、彼女の年金は年額いくらになる？",25000,"20年勤務後から、毎年5%ずつ年金受給額が増えます。
+
+30年勤務した場合、加算期間は  
+\[
+30-20=10\text{年}
+\]
+
+したがって受け取れる割合は  
+\[
+10\times5\%=50\%
+\]
+
+年金額は  
+\[
+\$50{,}000\times50\%=\$25{,}000
+\]
+
+FINAL ANSWER: 25000",25000.0,final_answer_line,True
+mgsm_trilingual_114,ja,ジャマールの電話はブリタニーの電話の6倍多くの写真を保存できる。ブリタニーの電話が保存できる写真の最大の数は、ジャマールが動物園でアヒルを撮った写真の中の、鳥の数の50倍だ。もしもジャマールの携帯電話が、1800枚の写真を保存できる場合、ジャマールが動物園でアヒルを撮った写真に、何匹アヒルがいる？,6,"ジャマールの電話の容量はブリタニーの6倍なので、
+
+- ブリタニーの電話：\(1800 \div 6 = 300\) 枚
+- アヒルの数：\(300 \div 50 = 6\) 匹
+
+FINAL ANSWER: 6",6.0,final_answer_line,True

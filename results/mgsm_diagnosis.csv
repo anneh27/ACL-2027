@@ -1,0 +1,205 @@
+question_id,language,gold_answer,model,condition,prompt,raw_output,parsed_prediction,parse_method,correct,model_returned,temperature,timestamp,error_message,backtranslation
+mgsm_trilingual_039,ja,18,gpt-5.6-sol,B_resample_1,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: ダナは、徒歩の時よりも4倍の速さで走ることができますが、走る速度の半分の速さでスキップすることができます。彼女が1時間に3マイルの速度でスキップできる場合、3分の1の時間を走り、3分の2を歩くとしたら、6時間で何キロ進めますか？","スキップの速度は走る速度の半分なので、走る速度は  
+\(3 \times 2 = 6\) マイル毎時。
+
+走る速度は歩く速度の4倍なので、歩く速度は  
+\(6 \div 4 = 1.5\) マイル毎時。
+
+6時間のうち、
+
+- 走る時間：\(6 \times \frac13 = 2\) 時間 → \(6 \times 2 = 12\) マイル
+- 歩く時間：\(6 \times \frac23 = 4\) 時間 → \(1.5 \times 4 = 6\) マイル
+
+合計は \(12+6=18\) マイルです。  
+1マイルを1.6キロメートルとすると、
+
+\[
+18 \times 1.6 = 28.8
+\]
+
+FINAL ANSWER: 28.8",28.8,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:35:39.958240+00:00,,
+mgsm_trilingual_039,ja,18,gpt-5.6-sol,B_resample_2,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: ダナは、徒歩の時よりも4倍の速さで走ることができますが、走る速度の半分の速さでスキップすることができます。彼女が1時間に3マイルの速度でスキップできる場合、3分の1の時間を走り、3分の2を歩くとしたら、6時間で何キロ進めますか？","スキップ速度は走る速度の半分なので、走る速度は \(3 \times 2=6\) マイル毎時です。  
+走る速度は歩く速度の4倍なので、歩く速度は \(6 \div 4=1.5\) マイル毎時です。
+
+6時間のうち、
+- 走る時間：\(6 \times \frac13=2\) 時間 → \(6 \times 2=12\) マイル
+- 歩く時間：\(6 \times \frac23=4\) 時間 → \(1.5 \times 4=6\) マイル
+
+合計は \(12+6=18\) マイルです。\(1\)マイル \(=1.6\)キロメートルとして、
+
+\[
+18 \times 1.6=28.8
+\]
+
+FINAL ANSWER: 28.8",28.8,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:35:45.164083+00:00,,
+mgsm_trilingual_039,ja,18,gpt-5.6-sol,B_resample_3,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: ダナは、徒歩の時よりも4倍の速さで走ることができますが、走る速度の半分の速さでスキップすることができます。彼女が1時間に3マイルの速度でスキップできる場合、3分の1の時間を走り、3分の2を歩くとしたら、6時間で何キロ進めますか？","スキップ速度は走る速度の半分なので、走る速度は \(3 \times 2=6\) マイル/時です。  
+走る速度は歩く速度の4倍なので、歩く速度は \(6 \div 4=1.5\) マイル/時です。
+
+6時間のうち、
+- 走る時間：\(6 \times \frac13=2\) 時間 → \(6 \times 2=12\) マイル
+- 歩く時間：\(6 \times \frac23=4\) 時間 → \(1.5 \times 4=6\) マイル
+
+合計は \(18\) マイルです。\(1\) マイルを \(1.6\) kmとすると、
+
+\[
+18 \times 1.6=28.8\text{ km}
+\]
+
+FINAL ANSWER: 28.8",28.8,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:36:10.649210+00:00,,
+mgsm_trilingual_039,ja,18,gpt-5.6-sol,C_step1_backtranslation,"Translate the following math problem into English. Output only the English translation. Do not solve it and do not add any explanation.
+
+ダナは、徒歩の時よりも4倍の速さで走ることができますが、走る速度の半分の速さでスキップすることができます。彼女が1時間に3マイルの速度でスキップできる場合、3分の1の時間を走り、3分の2を歩くとしたら、6時間で何キロ進めますか？","Dana can run four times as fast as she walks, and she can skip at half her running speed. If she can skip at 3 miles per hour, how many kilometers will she travel in 6 hours if she spends one-third of the time running and two-thirds walking?",6.0,fallback_last_number,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:36:13.273637+00:00,,
+mgsm_trilingual_039,ja,18,gpt-5.6-sol,C_step2_answer_from_backtranslation,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: Dana can run four times as fast as she walks, and she can skip at half her running speed. If she can skip at 3 miles per hour, how many kilometers will she travel in 6 hours if she spends one-third of the time running and two-thirds walking?","Skipping speed is half her running speed, so:
+
+- Running speed: \(3 \times 2 = 6\) mph
+- Walking speed: \(6 \div 4 = 1.5\) mph
+
+Over 6 hours:
+
+- Running time: \(\frac13 \times 6 = 2\) hours → \(6 \times 2 = 12\) miles
+- Walking time: \(\frac23 \times 6 = 4\) hours → \(1.5 \times 4 = 6\) miles
+
+Total distance: \(12+6=18\) miles.
+
+Using \(1\) mile \(=1.6\) kilometers:
+
+\[
+18 \times 1.6=28.8\text{ kilometers}
+\]
+
+FINAL ANSWER: 28.8",28.8,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:36:18.569920+00:00,,"Dana can run four times as fast as she walks, and she can skip at half her running speed. If she can skip at 3 miles per hour, how many kilometers will she travel in 6 hours if she spends one-third of the time running and two-thirds walking?"
+mgsm_trilingual_086,es,22,gpt-5.6-sol,B_resample_1,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: Greg ha configurado una alarma que se activa tres veces al día a modo de recordatorio. Cuando suena la alarma, sigue sonando hasta que Greg la apaga. La primera vez que se activó hoy, sonó cuatro veces. La segunda vez que se activó, sonó tres veces más que la primera vez. La tercera vez, sonó la mitad del tiempo de la segunda vez. ¿Cuántas veces sonó la alarma en total?","Primera alarma: \(4\) veces.  
+Segunda alarma: \(4+3=7\) veces.  
+Tercera alarma: \(7\div2=3.5\) veces.
+
+Total: \(4+7+3.5=14.5\).
+
+FINAL ANSWER: 14.5",14.5,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:36:22.155382+00:00,,
+mgsm_trilingual_086,es,22,gpt-5.6-sol,B_resample_2,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: Greg ha configurado una alarma que se activa tres veces al día a modo de recordatorio. Cuando suena la alarma, sigue sonando hasta que Greg la apaga. La primera vez que se activó hoy, sonó cuatro veces. La segunda vez que se activó, sonó tres veces más que la primera vez. La tercera vez, sonó la mitad del tiempo de la segunda vez. ¿Cuántas veces sonó la alarma en total?","Primera alarma: \(4\) veces.  
+Segunda alarma: \(4+3=7\) veces.  
+Tercera alarma: \(7\div2=3.5\) veces.
+
+Total: \(4+7+3.5=14.5\).
+
+FINAL ANSWER: 14.5",14.5,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:36:26.431371+00:00,,
+mgsm_trilingual_086,es,22,gpt-5.6-sol,B_resample_3,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: Greg ha configurado una alarma que se activa tres veces al día a modo de recordatorio. Cuando suena la alarma, sigue sonando hasta que Greg la apaga. La primera vez que se activó hoy, sonó cuatro veces. La segunda vez que se activó, sonó tres veces más que la primera vez. La tercera vez, sonó la mitad del tiempo de la segunda vez. ¿Cuántas veces sonó la alarma en total?","Primera vez: 4 veces.  
+Segunda vez: \(4+3=7\) veces.  
+Tercera vez: \(7\div2=3.5\) veces.  
+
+Total: \(4+7+3.5=14.5\).
+
+FINAL ANSWER: 14.5",14.5,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:37:11.403892+00:00,,
+mgsm_trilingual_086,es,22,gpt-5.6-sol,C_step1_backtranslation,"Translate the following math problem into English. Output only the English translation. Do not solve it and do not add any explanation.
+
+Greg ha configurado una alarma que se activa tres veces al día a modo de recordatorio. Cuando suena la alarma, sigue sonando hasta que Greg la apaga. La primera vez que se activó hoy, sonó cuatro veces. La segunda vez que se activó, sonó tres veces más que la primera vez. La tercera vez, sonó la mitad del tiempo de la segunda vez. ¿Cuántas veces sonó la alarma en total?","Greg has set an alarm that goes off three times a day as a reminder. When the alarm goes off, it keeps ringing until Greg turns it off. The first time it went off today, it rang four times. The second time it went off, it rang three more times than the first time. The third time, it rang half as many times as the second time. How many times did the alarm ring in total?",,none,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:37:13.576238+00:00,,
+mgsm_trilingual_086,es,22,gpt-5.6-sol,C_step2_answer_from_backtranslation,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: Greg has set an alarm that goes off three times a day as a reminder. When the alarm goes off, it keeps ringing until Greg turns it off. The first time it went off today, it rang four times. The second time it went off, it rang three more times than the first time. The third time, it rang half as many times as the second time. How many times did the alarm ring in total?","First alarm: \(4\) rings  
+Second alarm: \(4+3=7\) rings  
+Third alarm: \(7\div2=3.5\) rings  
+
+Total: \(4+7+3.5=14.5\)
+
+FINAL ANSWER: 14.5",14.5,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:37:17.751887+00:00,,"Greg has set an alarm that goes off three times a day as a reminder. When the alarm goes off, it keeps ringing until Greg turns it off. The first time it went off today, it rang four times. The second time it went off, it rang three more times than the first time. The third time, it rang half as many times as the second time. How many times did the alarm ring in total?"
+mgsm_trilingual_139,ja,70,gpt-5.6-sol,B_resample_1,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: キャンディーマシーンには、青いガムボールの数の4倍の数のピンクのガムボールが入っている。12個の青いガムボールが入っているとすると、ピンクはいくつあるか？","ピンクのガムボールは、青の4倍なので、
+
+\(12 \times 4 = 48\)
+
+FINAL ANSWER: 48",48.0,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:37:19.413362+00:00,,
+mgsm_trilingual_139,ja,70,gpt-5.6-sol,B_resample_2,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: キャンディーマシーンには、青いガムボールの数の4倍の数のピンクのガムボールが入っている。12個の青いガムボールが入っているとすると、ピンクはいくつあるか？","ピンクのガムボールは、\(12 \times 4 = 48\) 個です。
+
+FINAL ANSWER: 48",48.0,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:37:41.135316+00:00,,
+mgsm_trilingual_139,ja,70,gpt-5.6-sol,B_resample_3,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: キャンディーマシーンには、青いガムボールの数の4倍の数のピンクのガムボールが入っている。12個の青いガムボールが入っているとすると、ピンクはいくつあるか？","青いガムボールは12個で、ピンクはその4倍です。
+
+\(12 \times 4 = 48\)
+
+FINAL ANSWER: 48",48.0,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:37:43.006553+00:00,,
+mgsm_trilingual_139,ja,70,gpt-5.6-sol,C_step1_backtranslation,"Translate the following math problem into English. Output only the English translation. Do not solve it and do not add any explanation.
+
+キャンディーマシーンには、青いガムボールの数の4倍の数のピンクのガムボールが入っている。12個の青いガムボールが入っているとすると、ピンクはいくつあるか？","A candy machine contains four times as many pink gumballs as blue gumballs. If there are 12 blue gumballs, how many pink gumballs are there?",12.0,fallback_last_number,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:37:44.066900+00:00,,
+mgsm_trilingual_139,ja,70,gpt-5.6-sol,C_step2_answer_from_backtranslation,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: A candy machine contains four times as many pink gumballs as blue gumballs. If there are 12 blue gumballs, how many pink gumballs are there?","There are \(4 \times 12 = 48\) pink gumballs.
+
+FINAL ANSWER: 48",48.0,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:38:05.761541+00:00,,"A candy machine contains four times as many pink gumballs as blue gumballs. If there are 12 blue gumballs, how many pink gumballs are there?"
+mgsm_trilingual_214,es,8,gpt-5.6-sol,B_resample_1,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: Jerry tiene dos piscinas, ambas con fugas que las van vaciando a una velocidad de 4 galones/minuto. Hace 4 minutos, la piscina grande tenía la misma cantidad de agua que la piscina pequeña. Ahora, la piscina grande tiene cuatro veces la cantidad de agua de la piscina chica. ¿Qué cantidad de agua tiene ahora la piscina chica?","Sea \(x\) la cantidad actual de agua en la piscina chica. La grande tiene \(4x\).
+
+Hace 4 minutos, cada piscina tenía 16 galones más:
+
+\[
+x+16=4x+16
+\]
+
+Entonces:
+
+\[
+3x=0 \quad\Rightarrow\quad x=0
+\]
+
+FINAL ANSWER: 0",0.0,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:38:10.793973+00:00,,
+mgsm_trilingual_214,es,8,gpt-5.6-sol,B_resample_2,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: Jerry tiene dos piscinas, ambas con fugas que las van vaciando a una velocidad de 4 galones/minuto. Hace 4 minutos, la piscina grande tenía la misma cantidad de agua que la piscina pequeña. Ahora, la piscina grande tiene cuatro veces la cantidad de agua de la piscina chica. ¿Qué cantidad de agua tiene ahora la piscina chica?","Como ambas piscinas tenían la misma cantidad hace 4 minutos y ambas pierden agua a la misma velocidad, ahora todavía deben tener la misma cantidad.
+
+Si la piscina chica tiene \(x\) galones, la grande también tiene \(x\), pero además:
+
+\[
+x=4x
+\]
+
+Por tanto, \(3x=0\), así que \(x=0\).
+
+FINAL ANSWER: 0",0.0,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:38:20.321007+00:00,,
+mgsm_trilingual_214,es,8,gpt-5.6-sol,B_resample_3,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: Jerry tiene dos piscinas, ambas con fugas que las van vaciando a una velocidad de 4 galones/minuto. Hace 4 minutos, la piscina grande tenía la misma cantidad de agua que la piscina pequeña. Ahora, la piscina grande tiene cuatro veces la cantidad de agua de la piscina chica. ¿Qué cantidad de agua tiene ahora la piscina chica?","En 4 minutos, cada piscina perdió:
+
+\[
+4\ \text{gal/min}\times 4\ \text{min}=16\ \text{galones}.
+\]
+
+Como hace 4 minutos tenían la misma cantidad y ambas pierden agua a la misma velocidad, ahora también deben tener la misma cantidad. Para que la cantidad de la piscina grande sea a la vez igual y cuatro veces la de la pequeña, ambas deben tener 0 galones.
+
+FINAL ANSWER: 0",0.0,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:38:25.967348+00:00,,
+mgsm_trilingual_214,es,8,gpt-5.6-sol,C_step1_backtranslation,"Translate the following math problem into English. Output only the English translation. Do not solve it and do not add any explanation.
+
+Jerry tiene dos piscinas, ambas con fugas que las van vaciando a una velocidad de 4 galones/minuto. Hace 4 minutos, la piscina grande tenía la misma cantidad de agua que la piscina pequeña. Ahora, la piscina grande tiene cuatro veces la cantidad de agua de la piscina chica. ¿Qué cantidad de agua tiene ahora la piscina chica?","Jerry has two swimming pools, both of which are leaking at a rate of 4 gallons per minute. Four minutes ago, the large pool had the same amount of water as the small pool. Now, the large pool has four times as much water as the small pool. How much water does the small pool have now?",4.0,fallback_last_number,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:38:27.486460+00:00,,
+mgsm_trilingual_214,es,8,gpt-5.6-sol,C_step2_answer_from_backtranslation,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: Jerry has two swimming pools, both of which are leaking at a rate of 4 gallons per minute. Four minutes ago, the large pool had the same amount of water as the small pool. Now, the large pool has four times as much water as the small pool. How much water does the small pool have now?","Let the small pool currently contain \(x\) gallons, so the large pool contains \(4x\) gallons.
+
+Four minutes ago, each pool had \(4 \times 4=16\) more gallons:
+
+\[
+x+16=4x+16
+\]
+
+Thus,
+
+\[
+3x=0 \quad\Rightarrow\quad x=0.
+\]
+
+FINAL ANSWER: 0",0.0,final_answer_line,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:38:32.605297+00:00,,"Jerry has two swimming pools, both of which are leaking at a rate of 4 gallons per minute. Four minutes ago, the large pool had the same amount of water as the small pool. Now, the large pool has four times as much water as the small pool. How much water does the small pool have now?"
