@@ -1,0 +1,4 @@
+language,language_name,n_trials,n_api_errors,n_answered,n_correct,accuracy,n_fallback_parse,n_no_number
+en,English,50,0,50,50,1.0,0,0
+es,Spanish,50,0,50,48,0.96,0,0
+ja,Japanese,50,0,50,48,0.96,0,0

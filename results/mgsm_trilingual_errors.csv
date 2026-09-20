@@ -1,0 +1,57 @@
+question_id,language,question,gold_answer,prompt,raw_output,parsed_prediction,parse_method,correct,model,model_returned,temperature,timestamp,error_message,finish_reason,prompt_tokens,completion_tokens,reasoning_tokens
+mgsm_trilingual_039,ja,ダナは、徒歩の時よりも4倍の速さで走ることができますが、走る速度の半分の速さでスキップすることができます。彼女が1時間に3マイルの速度でスキップできる場合、3分の1の時間を走り、3分の2を歩くとしたら、6時間で何キロ進めますか？,18,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: ダナは、徒歩の時よりも4倍の速さで走ることができますが、走る速度の半分の速さでスキップすることができます。彼女が1時間に3マイルの速度でスキップできる場合、3分の1の時間を走り、3分の2を歩くとしたら、6時間で何キロ進めますか？","スキップの速度は走る速度の半分なので、走る速度は  
+\(3 \times 2 = 6\) マイル/時。
+
+走る速度は歩く速度の4倍なので、歩く速度は  
+\(6 \div 4 = 1.5\) マイル/時。
+
+6時間のうち、
+
+- 走る時間：\(6 \times \frac13 = 2\)時間 → \(6 \times 2 = 12\)マイル
+- 歩く時間：\(6 \times \frac23 = 4\)時間 → \(1.5 \times 4 = 6\)マイル
+
+合計は \(12+6=18\) マイルです。  
+\(1\)マイル \(=1.6\)キロとして、
+
+\[
+18 \times 1.6 = 28.8\text{キロ}
+\]
+
+FINAL ANSWER: 28.8",28.8,final_answer_line,False,gpt-5.6-sol,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:30:16.588046+00:00,,stop,125,321,103
+mgsm_trilingual_086,es,"Greg ha configurado una alarma que se activa tres veces al día a modo de recordatorio. Cuando suena la alarma, sigue sonando hasta que Greg la apaga. La primera vez que se activó hoy, sonó cuatro veces. La segunda vez que se activó, sonó tres veces más que la primera vez. La tercera vez, sonó la mitad del tiempo de la segunda vez. ¿Cuántas veces sonó la alarma en total?",22,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: Greg ha configurado una alarma que se activa tres veces al día a modo de recordatorio. Cuando suena la alarma, sigue sonando hasta que Greg la apaga. La primera vez que se activó hoy, sonó cuatro veces. La segunda vez que se activó, sonó tres veces más que la primera vez. La tercera vez, sonó la mitad del tiempo de la segunda vez. ¿Cuántas veces sonó la alarma en total?","Primera alarma: \(4\) veces.  
+Segunda alarma: \(4+3=7\) veces.  
+Tercera alarma: \(7\div2=3.5\) veces.
+
+Total: \(4+7+3.5=14.5\).
+
+FINAL ANSWER: 14.5",14.5,final_answer_line,False,gpt-5.6-sol,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:30:41.338001+00:00,,stop,128,241,164
+mgsm_trilingual_139,ja,キャンディーマシーンには、青いガムボールの数の4倍の数のピンクのガムボールが入っている。12個の青いガムボールが入っているとすると、ピンクはいくつあるか？,70,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: キャンディーマシーンには、青いガムボールの数の4倍の数のピンクのガムボールが入っている。12個の青いガムボールが入っているとすると、ピンクはいくつあるか？","青いガムボールは12個で、ピンクはその4倍です。
+
+\(12 \times 4 = 48\)
+
+FINAL ANSWER: 48",48.0,final_answer_line,False,gpt-5.6-sol,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:31:00.032614+00:00,,stop,92,39,0
+mgsm_trilingual_214,es,"Jerry tiene dos piscinas, ambas con fugas que las van vaciando a una velocidad de 4 galones/minuto. Hace 4 minutos, la piscina grande tenía la misma cantidad de agua que la piscina pequeña. Ahora, la piscina grande tiene cuatro veces la cantidad de agua de la piscina chica. ¿Qué cantidad de agua tiene ahora la piscina chica?",8,"Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>
+
+Problem: Jerry tiene dos piscinas, ambas con fugas que las van vaciando a una velocidad de 4 galones/minuto. Hace 4 minutos, la piscina grande tenía la misma cantidad de agua que la piscina pequeña. Ahora, la piscina grande tiene cuatro veces la cantidad de agua de la piscina chica. ¿Qué cantidad de agua tiene ahora la piscina chica?","En 4 minutos, cada piscina perdió:
+
+\[
+4 \times 4 = 16 \text{ galones}
+\]
+
+Si ahora la piscina pequeña tiene \(x\) galones, la grande tiene \(4x\). Hace 4 minutos tenían \(x+16\) y \(4x+16\) galones, respectivamente. Como entonces tenían la misma cantidad:
+
+\[
+x+16=4x+16
+\]
+
+\[
+3x=0 \quad\Rightarrow\quad x=0
+\]
+
+FINAL ANSWER: 0",0.0,final_answer_line,False,gpt-5.6-sol,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-09-20T05:31:52.059137+00:00,,stop,107,417,291

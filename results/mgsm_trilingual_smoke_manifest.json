@@ -1,0 +1,21 @@
+{
+  "started_utc": "2026-09-20T05:29:23.816389+00:00",
+  "finished_utc": "2026-09-20T05:29:35.103862+00:00",
+  "model_requested": "gpt-5.6-sol",
+  "models_returned": [
+    "gpt-5.6-sol"
+  ],
+  "temperature": "not set (model only supports its default; explicit temperature=0 is rejected)",
+  "prompt_template": "Solve the following math problem carefully. Return the final answer on the last line in this format: FINAL ANSWER: <number>\n\nProblem: {question}",
+  "n_questions": 5,
+  "languages": [
+    "en",
+    "es",
+    "ja"
+  ],
+  "n_calls": 15,
+  "workers": 4,
+  "data_file": "data/mgsm_trilingual_sample.json",
+  "python": "3.13.9",
+  "openai_sdk": "3.16.2"
+}
