@@ -1,0 +1,97 @@
+id,sample,gold_label,n_axioms,prompt,raw_output,prediction,correct,error_message,timestamp
+spat_01,1,entailed,3,"Premises:
+left_of(apple, book)
+left_of(book, cup)
+forall(X, Y, Z, left_of(X, Y) and left_of(Y, Z) -> left_of(X, Z))
+
+Query: left_of(apple, cup)",entailed,entailed,True,,2026-09-27T17:42:18.650088+00:00
+spat_01,2,entailed,3,"Premises:
+left_of(apple, book)
+left_of(book, cup)
+forall(X, Y, Z, left_of(X, Y) and left_of(Y, Z) -> left_of(X, Z))
+
+Query: left_of(apple, cup)",entailed,entailed,True,,2026-09-27T17:42:18.647685+00:00
+spat_01,3,entailed,3,"Premises:
+left_of(apple, book)
+left_of(book, cup)
+forall(X, Y, Z, left_of(X, Y) and left_of(Y, Z) -> left_of(X, Z))
+
+Query: left_of(apple, cup)",entailed,entailed,True,,2026-09-27T17:42:18.536881+00:00
+spat_02,1,entailed,3,"Premises:
+north_of(Mia, Noah)
+north_of(Noah, Liam)
+forall(X, Y, Z, north_of(X, Y) and north_of(Y, Z) -> north_of(X, Z))
+
+Query: north_of(Mia, Liam)",entailed,entailed,True,,2026-09-27T17:42:19.389290+00:00
+spat_02,2,entailed,3,"Premises:
+north_of(Mia, Noah)
+north_of(Noah, Liam)
+forall(X, Y, Z, north_of(X, Y) and north_of(Y, Z) -> north_of(X, Z))
+
+Query: north_of(Mia, Liam)",entailed,entailed,True,,2026-09-27T17:42:19.681106+00:00
+spat_02,3,entailed,3,"Premises:
+north_of(Mia, Noah)
+north_of(Noah, Liam)
+forall(X, Y, Z, north_of(X, Y) and north_of(Y, Z) -> north_of(X, Z))
+
+Query: north_of(Mia, Liam)",entailed,entailed,True,,2026-09-27T17:42:20.137775+00:00
+spat_03,1,entailed,2,"Premises:
+behind(chair, desk)
+forall(X, Y, behind(X, Y) <-> front_of(Y, X))
+
+Query: front_of(desk, chair)",entailed,entailed,True,,2026-09-27T17:42:21.137226+00:00
+spat_03,2,entailed,2,"Premises:
+behind(chair, desk)
+forall(X, Y, behind(X, Y) <-> front_of(Y, X))
+
+Query: front_of(desk, chair)",entailed,entailed,True,,2026-09-27T17:42:20.598960+00:00
+spat_03,3,entailed,2,"Premises:
+behind(chair, desk)
+forall(X, Y, behind(X, Y) <-> front_of(Y, X))
+
+Query: front_of(desk, chair)",entailed,entailed,True,,2026-09-27T17:42:20.895567+00:00
+spat_04,1,contradicted,5,"Premises:
+east_of(park, school)
+east_of(library, park)
+forall(X, Y, west_of(X, Y) <-> east_of(Y, X))
+forall(X, Y, Z, east_of(X, Y) and east_of(Y, Z) -> east_of(X, Z))
+forall(X, Y, east_of(X, Y) -> not(east_of(Y, X)))
+
+Query: west_of(library, school)",contradicted,contradicted,True,,2026-09-27T17:42:23.204696+00:00
+spat_04,2,contradicted,5,"Premises:
+east_of(park, school)
+east_of(library, park)
+forall(X, Y, west_of(X, Y) <-> east_of(Y, X))
+forall(X, Y, Z, east_of(X, Y) and east_of(Y, Z) -> east_of(X, Z))
+forall(X, Y, east_of(X, Y) -> not(east_of(Y, X)))
+
+Query: west_of(library, school)",contradicted,contradicted,True,,2026-09-27T17:42:23.218074+00:00
+spat_04,3,contradicted,5,"Premises:
+east_of(park, school)
+east_of(library, park)
+forall(X, Y, west_of(X, Y) <-> east_of(Y, X))
+forall(X, Y, Z, east_of(X, Y) and east_of(Y, Z) -> east_of(X, Z))
+forall(X, Y, east_of(X, Y) -> not(east_of(Y, X)))
+
+Query: west_of(library, school)",contradicted,contradicted,True,,2026-09-27T17:42:23.317551+00:00
+spat_05,1,contradicted,4,"Premises:
+above(red, blue)
+above(blue, green)
+forall(X, Y, Z, above(X, Y) and above(Y, Z) -> above(X, Z))
+forall(X, Y, above(X, Y) -> not(above(Y, X)))
+
+Query: above(green, red)",contradicted,contradicted,True,,2026-09-27T17:42:23.899302+00:00
+spat_05,2,contradicted,4,"Premises:
+above(red, blue)
+above(blue, green)
+forall(X, Y, Z, above(X, Y) and above(Y, Z) -> above(X, Z))
+forall(X, Y, above(X, Y) -> not(above(Y, X)))
+
+Query: above(green, red)",contradicted,contradicted,True,,2026-09-27T17:42:23.898821+00:00
+spat_05,3,contradicted,4,"Premises:
+above(red, blue)
+above(blue, green)
+forall(X, Y, Z, above(X, Y) and above(Y, Z) -> above(X, Z))
+forall(X, Y, above(X, Y) -> not(above(Y, X)))
+
+Query: above(green, red)",contradicted,contradicted,True,,2026-09-27T17:42:24.084696+00:00

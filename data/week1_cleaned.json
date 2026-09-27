@@ -7,7 +7,8 @@
     "cleaning_changes": [
       "Items 8, 10, 14 were relabeled. Under classical entailment semantics these are fallacies (affirming the consequent, denying the antecedent, undistributed middle respectively): the premises neither entail nor contradict the query, so the correct label is Unknown. The original Week 1 answer key marked all three False, which conflates 'not validly derivable' with 'derivably false' -- exactly the ambiguity Part C's True/False -> Entailed/Contradicted/Unknown relabeling is meant to remove.",
       "Items 18 and 19 implicitly relied on knowing that 'behind'/'in front of' and 'east of'/'west of' are converse relations -- unstated lexical world knowledge. Made each converse relation an explicit formal meaning-postulate premise (e.g. forall(X,Y, behind(X,Y) <-> front_of(Y,X))) so the ground truth is self-contained rather than depending on implicit semantics, per Part C.",
-      "All other items (1-7, 9, 11-13, 15-17, 20) were already single-phenomenon and free of external world-knowledge dependence; only their label was renamed (True->Entailed, False->Contradicted) and a formal representation was added."
+      "All other items (1-7, 9, 11-13, 15-17, 20) were already single-phenomenon and free of external world-knowledge dependence; only their label was renamed (True->Entailed, False->Contradicted) and a formal representation was added.",
+      "Week 5 Task 5: audited every spatial item's formal representation for missing axioms after Week 4 found spat_04's oracle-symbolic condition failing 4/4 real-API samples not from a reasoning error but from a missing transitivity/asymmetry axiom. The audit found the same gap in spat_01, spat_02, and spat_05 too (all previously graded 'correct', but only derivable by assuming real-world knowledge of what left_of/north_of/above mean, not by pure formal deduction from the stated premises). Added explicit transitivity axioms to spat_01, spat_02, spat_04, spat_05, and an additional asymmetry axiom to spat_04 and spat_05 (needed for their 'contradicted' labels to be strictly derivable). spat_03 was reviewed and needed no change -- it's a single-step converse-relation item with no transitivity involved."
     ]
   },
   "items": [
@@ -186,9 +187,10 @@
       "subtype": "transitivity",
       "premises_nl": ["The apple is left of the book.", "The book is left of the cup."],
       "query_nl": "The apple is left of the cup.",
-      "premises_formal": ["left_of(apple, book)", "left_of(book, cup)"],
+      "premises_formal": ["left_of(apple, book)", "left_of(book, cup)", "forall(X, Y, Z, left_of(X, Y) and left_of(Y, Z) -> left_of(X, Z))"],
       "query_formal": "left_of(apple, cup)",
-      "label": "entailed"
+      "label": "entailed",
+      "cleaning_note": "Week 5 Task 5: added an explicit transitivity axiom for left_of. Without it, the query is not strictly entailed by the two premises alone -- a purely formal reasoner has no way to know left_of composes across a chain unless told so; only real-world knowledge of what 'left of' means supplied that step before. Per the plan's instruction to check the formal representation before calling a D-condition error a reasoning failure -- this item wasn't flagged as an error (D was already answered correctly), but the same gap that broke spat_04 was present here too, just not yet exposed."
     },
     {
       "id": "spat_02",
@@ -197,9 +199,10 @@
       "subtype": "transitivity",
       "premises_nl": ["Mia is north of Noah.", "Noah is north of Liam."],
       "query_nl": "Mia is north of Liam.",
-      "premises_formal": ["north_of(Mia, Noah)", "north_of(Noah, Liam)"],
+      "premises_formal": ["north_of(Mia, Noah)", "north_of(Noah, Liam)", "forall(X, Y, Z, north_of(X, Y) and north_of(Y, Z) -> north_of(X, Z))"],
       "query_formal": "north_of(Mia, Liam)",
-      "label": "entailed"
+      "label": "entailed",
+      "cleaning_note": "Week 5 Task 5: same fix as spat_01 -- added an explicit transitivity axiom for north_of, which was missing."
     },
     {
       "id": "spat_03",
@@ -220,10 +223,10 @@
       "subtype": "transitivity_with_converse_relation",
       "premises_nl": ["The park is east of the school.", "The library is east of the park."],
       "query_nl": "The library is west of the school.",
-      "premises_formal": ["east_of(park, school)", "east_of(library, park)", "forall(X, Y, west_of(X, Y) <-> east_of(Y, X))"],
+      "premises_formal": ["east_of(park, school)", "east_of(library, park)", "forall(X, Y, west_of(X, Y) <-> east_of(Y, X))", "forall(X, Y, Z, east_of(X, Y) and east_of(Y, Z) -> east_of(X, Z))", "forall(X, Y, east_of(X, Y) -> not(east_of(Y, X)))"],
       "query_formal": "west_of(library, school)",
       "label": "contradicted",
-      "cleaning_note": "Same fix as spat_03: made the east_of/west_of converse relation an explicit formal premise rather than assumed world knowledge. Kept as a compound transitivity+converse item ('as much as possible' single-phenomenon, not absolute, per Part C) since it deliberately tests whether direction is tracked correctly across a chain and a converse together."
+      "cleaning_note": "Made the east_of/west_of converse relation an explicit formal premise rather than assumed world knowledge. Kept as a compound transitivity+converse item ('as much as possible' single-phenomenon, not absolute, per Part C) since it deliberately tests whether direction is tracked correctly across a chain and a converse together. Week 5 Task 5: this item's D (oracle symbolic) condition was answered 'unknown' instead of 'contradicted' across 4/4 real-API samples (Week 4 audit) -- diagnosed as a missing-axiom problem, not a reasoning problem, and fixed here by adding both a transitivity axiom (needed to derive east_of(library,school) from the two premises) and an asymmetry axiom (needed to then conclude west_of(library,school), i.e. east_of(school,library), is false). Both were required for the gold label to be strictly derivable at all."
     },
     {
       "id": "spat_05",
@@ -232,9 +235,10 @@
       "subtype": "transitivity_and_antisymmetry",
       "premises_nl": ["The red box is above the blue box.", "The blue box is above the green box."],
       "query_nl": "The green box is above the red box.",
-      "premises_formal": ["above(red, blue)", "above(blue, green)"],
+      "premises_formal": ["above(red, blue)", "above(blue, green)", "forall(X, Y, Z, above(X, Y) and above(Y, Z) -> above(X, Z))", "forall(X, Y, above(X, Y) -> not(above(Y, X)))"],
       "query_formal": "above(green, red)",
-      "label": "contradicted"
+      "label": "contradicted",
+      "cleaning_note": "Week 5 Task 5: added explicit transitivity and asymmetry axioms for above, both missing before. Without them, above(green,red) is merely unlicensed by the premises (would strictly be 'unknown'), not actually contradicted -- concluding 'contradicted' requires deriving above(red,green) via transitivity and then ruling out its reverse via asymmetry."
     }
   ]
 }
