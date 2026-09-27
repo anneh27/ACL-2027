@@ -1,4 +1,15 @@
-# ACL 2027 Week 2/3 — Mini-MGSM Replication + Cherokee Semantic-vs-Reasoning Pilot
+# ACL 2027 Week 2/3/4/5 — Mini-MGSM Replication + Cherokee Semantic-vs-Reasoning Pilot
+
+## Week 5 update (separating translation/semantic-recovery errors from reasoning errors)
+
+346 new real API calls this week, on top of Week 4's. Full write-up: `results/week5_summary.md`. Headline finding, consistent across three independent checks: essentially every "error" found this week traces to a missing piece of the task specification (the extraction schema never captures *what's being asked*; a Cherokee back-translation step introduces a distortion direct reading avoided; a formal spatial premise omits a transitivity axiom the gold label assumes) — not to weak reasoning. Zero pure reasoning failures found across the Cherokee pilot's 20 items.
+
+- **Task 1** (`src/mgsm_semantic_recovery_trilingual.py`, `src/mgsm_semantic_recovery_rescore.py`): ported the two-stage extract-then-reason probe to the real-API trilingual MGSM data (300 calls). Found and fixed a Spanish comma-decimal bug in the scoring itself. Fidelity 88-96% -> 96-100% after the fix and crediting valid abstractions (e.g. 3/4 -> 0.75); task-semantic-sufficiency sits at 82-84% uniformly across languages, pointing at a schema-design gap, not a language effect.
+- **Task 2** (`src/mgsm_translation_number_audit.py`): audited all 50 items x Spanish + Japanese for number mismatches. 2 confirmed real translation defects out of 100 pairs (one is new: `mgsm_057`'s Japanese version states a false premise); the other 16 flags are verified-benign language-convention differences, documented in `data/mgsm_translation_audit_verified.json`.
+- **Task 3** (`results/week5_isolation_verification.md`): verified, automatically on every call plus by hand on a worked example, that the reasoning stage receives only the Stage-1 extraction — no original question, no language marker.
+- **Task 4** (`src/cherokee_attribution_table.py`): refined the Cherokee error taxonomy into language/semantic-recovery vs. explicit-back-translation-failure vs. dataset/formal-representation-issue vs. reasoning, per the plan's own B-correct/C-wrong rule. 0 of 20 items are reasoning failures.
+- **Task 5** (`data/week1_cleaned.json`, `src/verify_spatial_axioms.py`): found the missing-axiom problem that broke `spat_04` in Week 4 was also present (undetected) in `spat_01`, `spat_02`, and `spat_05`. Added the missing axioms and verified with 15 fresh real API calls: all 5 spatial items now correct in all 15 samples.
+- **Task 6** (`results/week5_reasoning_tokens_audit.md`): confirmed `reasoning_tokens=0` is a genuine API-reported value, not a missing-field default. No code fix needed.
 
 ## Week 4 update (real API calls)
 
