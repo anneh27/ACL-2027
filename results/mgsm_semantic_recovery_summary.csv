@@ -1,0 +1,4 @@
+language_name,n,surface_quantity_fidelity_rate,task_semantic_sufficiency_rate
+English,50,0.96,0.84
+Japanese,50,0.88,0.82
+Spanish,50,0.88,0.84
