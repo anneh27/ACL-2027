@@ -1,28 +1,41 @@
 {
   "_readme": "JUDGMENT, not computed values. Written by Claude after reading each item's English source, Cherokee text, and the model's back-translation; Anne should verify these (the plan asks who verified what). The pilot script reads this file and marks every value it uses here as 'manual override' in the CSV; predictions and correct/incorrect flags are never taken from this file.",
+  "_week5_taxonomy": "Week 5 Task 4 refines 'translation' into two distinct categories, per the plan's own attribution rules: 'language/semantic recovery' when Cherokee comprehension fails outright (both B, the direct read, AND C, the back-translate-then-answer chain, are wrong) -- vs. 'explicit back-translation failure' when B is correct but C is wrong, meaning direct reading succeeded and it was specifically the act of writing an explicit English back-translation that introduced the distortion (the plan's own wording: 'B correct + C wrong suggests the explicit translation step may have introduced semantic distortion'). 'dataset/formal-representation issue' replaces 'data ambiguity' for D-wrong cases per the plan's instruction to check the formal representation before calling it a reasoning failure. See error_type_refined_week5 on each item below; error_type (Week 4) is left as originally written for continuity.",
   "error_type_overrides": {
     "neg_03": {
       "type": "translation",
+      "error_type_refined_week5": "explicit_back_translation_failure",
+      "week5_note": "B correct (direct Cherokee reading), C wrong (fails only after the explicit back-translation step). Per the plan's own rule, this specific pattern points at the translation step itself, not general Cherokee comprehension -- the model can read this Cherokee correctly, but writing it out in English and reasoning from that English introduces the distortion instead of removing it.",
       "note": "A, B, D correct; only the explicit back-translation failed. The model rendered the Cherokee as 'This is not their heavenly home. It is his home.', which has no connection to 'Nina does not own a bicycle'. B was still correct, most likely from surface structure (a negated statement followed by the same statement asserted), not from recovered meaning. Re-sampling (results/cherokee_pilot_v2_stability.csv): C was wrong in 1 of 3 fresh runs, and every fresh back-translation was again unrelated text ('his twins in heaven'), so the outcome is unstable: the label is reached, or missed, from structure alone."
     },
     "cond_04": {
       "type": "translation",
+      "error_type_refined_week5": "language_semantic_recovery",
+      "week5_note": "Both B AND C wrong (A, D correct). Unlike neg_03, direct reading also fails here, so this is not narrowly a back-translation-step artifact -- it is a general failure to recover this item's meaning from Cherokee at all, by either method.",
       "note": "Fails in both B and C while A and D are correct. The back-translation ('Whenever Ewi was about to eat those watching nearby... Ewi was a man-eater') shares nothing with the English modus-tollens problem. This Cherokee item was independently rated lowest confidence in Week 3 before any grading. Not a scoring error (see results/scoring_dispute_evidence.csv). Re-sampling: C was wrong in 3/3 fresh runs (each back-translation is a different unrelated story: deer feeding, a guest, a big eater), so the C failure is stable. B was wrong in 1 of 3 fresh runs (2 of 4 samples including the original), so B's failure on this item is not deterministic."
     },
     "spat_01": {
       "type": "translation",
+      "error_type_refined_week5": "language_semantic_recovery",
+      "week5_note": "Both B AND C wrong (A, D correct) -- general recovery failure, same reasoning as cond_04, not isolated to the back-translation step.",
       "note": "Fails in both B and C while A and D are correct. The 'left of' relation does not survive: the back-translation has no spatial relation at all ('there on the mountain makes...'), so there is no transitive chain to reason over. Re-sampling: B wrong in 1/3 fresh runs, C wrong in 2/3; the back-translations vary (hunter/game, farmer/animals) but never contain a left/right relation, so success or failure depends on whether the model happens to treat the invented 'X produces Y' chain as transitive."
     },
     "spat_02": {
       "type": "translation",
+      "error_type_refined_week5": "explicit_back_translation_failure",
+      "week5_note": "B correct, C wrong -- same pattern as neg_03: direct reading succeeds, the explicit back-translation step is where the entity gets corrupted ('Noah' misread as 'Norway').",
       "note": "C wrong in the original run only. The Cherokee text writes the second entity inconsistently (a locative-looking suffix in the first sentence, bare in the second). Original back-translation read the first as 'Norway' ('Maya is north of Norway. Noah is north of Lavmi...'), which breaks the chain, so 'unknown' was a valid answer to that text. Re-sampling: 2 of 3 fresh back-translations read the name as 'Noah' and answered entailed, so this error is unstable; the underlying defect is the inconsistent entity form in the Cherokee candidate."
     },
     "spat_03": {
       "type": "translation",
+      "error_type_refined_week5": "explicit_back_translation_failure",
+      "week5_note": "B correct, C wrong -- direct reading succeeds; the explicit back-translation step drops both named objects (chair, desk) even though it keeps the behind/ahead relation.",
       "note": "C wrong in the original run only. The original back-translation ('A little way behind is where I will turn. The place where I will turn is a little way ahead.') keeps a behind/ahead relation but loses both objects (chair, desk). Re-sampling: 0 of 3 fresh runs were wrong (all answered entailed), although those back-translations are even further from the source ('My turn is a little later...'), so the correct answers there are not evidence of recovered meaning. Sampling noise contributes to this error."
     },
     "spat_04": {
       "type": "data ambiguity",
+      "error_type_refined_week5": "dataset_formal_representation_issue",
+      "week5_note": "D wrong, A/B/C correct. Per the plan's explicit instruction ('D wrong should first trigger a check of the symbolic representation itself'), checked the formal premises before attributing this to reasoning: they lack a transitivity/asymmetry axiom for east_of that the gold label needs (see Week 5 Task 5 for the corrected axioms and the check across all 5 spatial items).",
       "note": "D (oracle symbolic) is wrong although B and C are right. The formal premises give east_of(park,school), east_of(library,park) and the east/west converse postulate, but no transitivity or asymmetry axiom for east_of, and the gold label 'contradicted' needs both. Read strictly, 'unknown' is a defensible answer to the symbolic input as written. The other spatial items have the same implicit dependence (the gold labels assume transitivity), so this is a gap in the dataset's formal representations, not evidence about Cherokee. See the stability check for whether the wrong D answer repeats. Re-sampling: the wrong D answer ('unknown') repeated in 3/3 fresh runs, so it is stable, which supports the data-ambiguity reading over sampling noise."
     }
   },

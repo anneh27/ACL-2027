@@ -1,0 +1,21 @@
+id,reasoning_type,gold_label,A_english,B_cherokee_direct,C_backtranslate_then_answer,D_oracle_symbolic,attribution,note
+neg_01,negation,contradicted,True,True,True,True,none,
+neg_02,negation,contradicted,True,True,True,True,none,
+neg_03,negation,contradicted,True,True,False,True,explicit_back_translation_failure,"B correct (direct Cherokee reading), C wrong (fails only after the explicit back-translation step). Per the plan's own rule, this specific pattern points at the translation step itself, not general Cherokee comprehension -- the model can read this Cherokee correctly, but writing it out in English and reasoning from that English introduces the distortion instead of removing it."
+neg_04,negation,entailed,True,True,True,True,none,
+neg_05,negation,contradicted,True,True,True,True,none,
+cond_01,conditional,entailed,True,True,True,True,none,
+cond_02,conditional,entailed,True,True,True,True,none,
+cond_03,conditional,unknown,True,True,True,True,none,
+cond_04,conditional,contradicted,True,False,False,True,language_semantic_recovery,"Both B AND C wrong (A, D correct). Unlike neg_03, direct reading also fails here, so this is not narrowly a back-translation-step artifact -- it is a general failure to recover this item's meaning from Cherokee at all, by either method."
+cond_05,conditional,unknown,True,True,True,True,none,
+quant_01,quantifier,entailed,True,True,True,True,none,
+quant_02,quantifier,contradicted,True,True,True,True,none,
+quant_03,quantifier,entailed,True,True,True,True,none,
+quant_04,quantifier,unknown,True,True,True,True,none,
+quant_05,quantifier,entailed,True,True,True,True,none,
+spat_01,spatial,entailed,True,False,False,True,language_semantic_recovery,"Both B AND C wrong (A, D correct) -- general recovery failure, same reasoning as cond_04, not isolated to the back-translation step."
+spat_02,spatial,entailed,True,True,False,True,explicit_back_translation_failure,"B correct, C wrong -- same pattern as neg_03: direct reading succeeds, the explicit back-translation step is where the entity gets corrupted ('Noah' misread as 'Norway')."
+spat_03,spatial,entailed,True,True,False,True,explicit_back_translation_failure,"B correct, C wrong -- direct reading succeeds; the explicit back-translation step drops both named objects (chair, desk) even though it keeps the behind/ahead relation."
+spat_04,spatial,contradicted,True,True,True,False,dataset_formal_representation_issue,"D wrong, A/B/C correct. Per the plan's explicit instruction ('D wrong should first trigger a check of the symbolic representation itself'), checked the formal premises before attributing this to reasoning: they lack a transitivity/asymmetry axiom for east_of that the gold label needs (see Week 5 Task 5 for the corrected axioms and the check across all 5 spatial items)."
+spat_05,spatial,contradicted,True,True,True,True,none,
