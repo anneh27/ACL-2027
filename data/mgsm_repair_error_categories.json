@@ -1,0 +1,30 @@
+{
+  "_readme": "JUDGMENT, not computed. All 5 (question_id, language) pairs where Condition C (critic+repair) is still wrong, read by hand against the critic's output, the repair, and Stage 2's reasoning. Categories extend the plan's 4 (critic missed it / critic repaired wrong / repair correct but Stage 2 failed / repair introduced new distortion) with two more needed by what was actually found: source_text_defect_undetectable (the extraction correctly reflects a defective official translation -- no amount of better detection or repair can fix a problem that was never visible in any input the critic has access to) and not_a_real_failure_gold_label_defect (the repaired pipeline produces an answer that is MORE faithful to the question than the official gold label, which itself reflects an uncorrected translation defect). Anne should verify.",
+  "categories": {
+    "mgsm_trilingual_086|es": {
+      "bottleneck": "detection_failure",
+      "plan_category": "1_critic_failed_to_detect",
+      "note": "Critic correctly caught one real issue (target/question omitted) but its own checklist explicitly includes 'are quantitative relations preserved?' and 'is there ambiguity that could lead to multiple interpretations?' -- and said nothing about either, even though the actual cause of the wrong answer is exactly that: the original extraction read Spanish 'tres veces mas' (genuinely ambiguous: '3 more' vs '3 times as much') as additive, and gold assumes multiplicative. The repair added a target marker but left the additive misreading untouched, so Stage 2 still computes 14.5 instead of 22. The critic applied its checklist incompletely, not incorrectly."
+    },
+    "mgsm_trilingual_139|ja": {
+      "bottleneck": "source_text_defect_undetectable",
+      "plan_category": "other_not_in_plan_taxonomy",
+      "note": "The Japanese question itself omits '22 more than' (confirmed, Week 5 Task 2). The critic sees only the question and the extraction, both already downstream of the defective source -- there is no representation anywhere in this pipeline where '22' could be recovered from. The critic correctly judged the extraction consistent with the (defective) question and added a target marker; Stage 2 correctly computes pink=4x12=48 from that. Nothing about detection, repair quality, or reasoning is at fault; the defect is upstream of everything this pipeline can see."
+    },
+    "mgsm_trilingual_207|en": {
+      "bottleneck": "repair_introduced_distortion",
+      "plan_category": "4_repair_introduced_new_distortion",
+      "note": "The ORIGINAL extraction was already complete and correct (baseline got 2600 right). The critic raised a false alarm ('target not explicit enough' -- it was computable, just not separately labeled) and the repair appended a 5th entry, {\"quantity\": 0, \"role\": \"target: total weight...\"}, onto the 4 unchanged original entries. Stage 2 then inverted the chocolate/apple weight-multiplier direction (computed apple=2xchoc=80g instead of choc=2xapple=20g) and got 7400 instead of 2600 -- the only input that changed between the correct baseline run and this wrong one is the added zero-valued target entry, so it is the implicated cause even though the exact mechanism (why it flips the multiplier direction) isn't fully clear. The repair format itself is the flaw: asking for a numeric 'quantity' field for something that is explicitly UNKNOWN (the value to be solved for) produces a fake data point (0) that looks real to Stage 2."
+    },
+    "mgsm_trilingual_214|es": {
+      "bottleneck": "source_text_defect_undetectable",
+      "plan_category": "other_not_in_plan_taxonomy",
+      "note": "The Spanish question says the pools held 'la misma cantidad' (the same amount) 4 minutes ago, where English says 'twice as much' (confirmed defect, Week 4). Solving the Spanish text exactly as written gives x=0, which is what both the baseline AND the critic-repaired path compute -- 0 is the mathematically correct answer to the (defective) Spanish premise, not a bug in the repair. Same category as mgsm_139: nothing downstream of the source text can fix this. (The repair here also added a zero-valued 'target' entry, like mgsm_207 -- but unlike 207, it doesn't appear to have caused the wrong answer, since the correct answer under the Spanish premise genuinely is 0. Flagged as a secondary, lower-confidence observation, not used to justify this item's category.)"
+    },
+    "mgsm_trilingual_039|ja": {
+      "bottleneck": "not_a_real_failure_gold_label_defect",
+      "plan_category": "other_not_in_plan_taxonomy",
+      "note": "This is the known ja_039 defect (Week 4/5): the Japanese question asks for kilometers, but the official gold answer (18) is actually in miles, never converted. Baseline landed on 18 only because it never attempted the mile-to-km conversion the question asks for. The critic correctly caught 'the miles-to-kilometers conversion factor is not preserved', the repair correctly added it, and Stage 2 correctly computed 28.97 km -- MORE faithful to the literal Japanese question than the baseline's lucky miss. Scored 'wrong' only because gold itself is defective. If anything, this is evidence the critic+repair pipeline is working too well relative to a flawed reference, not a pipeline failure."
+    }
+  }
+}
