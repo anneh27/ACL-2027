@@ -1,0 +1,4 @@
+method,n,extraction_fidelity,accuracy,recovery_rate,recovery_rate_n,regression_rate,regression_rate_n
+A_Baseline,150,0.9067,0.8333,,25,,125
+B_Generic_reflection,150,0.9067,0.8467,0.28,25,0.04,125
+C_Semantic_Recovery_Critic,150,0.9067,0.9667,0.88,25,0.016,125

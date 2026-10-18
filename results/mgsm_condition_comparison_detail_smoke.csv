@@ -1,0 +1,11 @@
+question_id,language,A_correct,B_correct,C_correct,A_fidelity
+mgsm_trilingual_001,en,False,True,True,True
+mgsm_trilingual_001,es,False,False,True,True
+mgsm_trilingual_001,ja,False,False,True,True
+mgsm_trilingual_006,en,False,False,True,True
+mgsm_trilingual_006,es,False,True,True,True
+mgsm_trilingual_006,ja,False,False,True,True
+mgsm_trilingual_007,en,False,True,True,True
+mgsm_trilingual_007,es,False,True,True,True
+mgsm_trilingual_007,ja,False,True,True,True
+mgsm_trilingual_008,en,True,True,True,True
