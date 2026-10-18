@@ -1,0 +1,79 @@
+condition,question_id,language,gold_answer,reflection_raw_output,reflection_error,extraction_changed,final_extraction,stage2_prompt,stage2_raw_output,stage2_prediction,stage2_parse_method,stage2_error,correct,model,temperature,timestamp
+B_generic_reflection,mgsm_trilingual_001,en,3,"[{""quantity"":2,""role"":""blue fiber amount and first addend in the total""},{""quantity"":0.5,""role"":""multiplier applied to the blue fiber amount to determine the white fiber amount""}]",,True,"[{""quantity"": 2, ""role"": ""blue fiber amount and first addend in the total""}, {""quantity"": 0.5, ""role"": ""multiplier applied to the blue fiber amount to determine the white fiber amount""}]","[{""quantity"": 2, ""role"": ""blue fiber amount and first addend in the total""}, {""quantity"": 0.5, ""role"": ""multiplier applied to the blue fiber amount to determine the white fiber amount""}]","The white fiber amount is \(0.5 \times 2 = 1\).  
+Total fiber: \(2 + 1 = 3\).
+
+FINAL ANSWER: 3",3,final_answer_line,,True,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-18T17:35:28.191309+00:00
+B_generic_reflection,mgsm_trilingual_001,es,3,"[{""quantity"":1,""role"":""gown for which fabric is needed""},{""quantity"":2,""role"":""rolls of blue fabric needed for one gown""},{""quantity"":0.5,""role"":""fraction of the blue-fabric amount used to determine the white-fabric rolls""}]",,True,"[{""quantity"": 1, ""role"": ""gown for which fabric is needed""}, {""quantity"": 2, ""role"": ""rolls of blue fabric needed for one gown""}, {""quantity"": 0.5, ""role"": ""fraction of the blue-fabric amount used to determine the white-fabric rolls""}]","[{""quantity"": 1, ""role"": ""gown for which fabric is needed""}, {""quantity"": 2, ""role"": ""rolls of blue fabric needed for one gown""}, {""quantity"": 0.5, ""role"": ""fraction of the blue-fabric amount used to determine the white-fabric rolls""}]",FINAL ANSWER: 1,1,final_answer_line,,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-18T17:35:27.714301+00:00
+B_generic_reflection,mgsm_trilingual_001,ja,3,"[{""quantity"":2,""role"":""initial amount of blue fiber rolls required""},{""quantity"":0.5,""role"":""multiplier applied to the blue fiber amount to determine the white fiber amount""}]",,True,"[{""quantity"": 2, ""role"": ""initial amount of blue fiber rolls required""}, {""quantity"": 0.5, ""role"": ""multiplier applied to the blue fiber amount to determine the white fiber amount""}]","[{""quantity"": 2, ""role"": ""initial amount of blue fiber rolls required""}, {""quantity"": 0.5, ""role"": ""multiplier applied to the blue fiber amount to determine the white fiber amount""}]",FINAL ANSWER: 1,1,final_answer_line,,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-18T17:35:28.341087+00:00
+B_generic_reflection,mgsm_trilingual_006,en,260,"[{""quantity"":2,""role"":""multiplier used to calculate Toulouse's sheep count from Charleston's""},{""quantity"":4,""role"":""multiplier used to calculate Charleston's sheep count from Seattle's""},{""quantity"":20,""role"":""given number of sheep in Seattle""}]",,True,"[{""quantity"": 2, ""role"": ""multiplier used to calculate Toulouse's sheep count from Charleston's""}, {""quantity"": 4, ""role"": ""multiplier used to calculate Charleston's sheep count from Seattle's""}, {""quantity"": 20, ""role"": ""given number of sheep in Seattle""}]","[{""quantity"": 2, ""role"": ""multiplier used to calculate Toulouse's sheep count from Charleston's""}, {""quantity"": 4, ""role"": ""multiplier used to calculate Charleston's sheep count from Seattle's""}, {""quantity"": 20, ""role"": ""given number of sheep in Seattle""}]","Toulouse’s sheep count: \(2 \times 4 \times 20 = 160\).
+
+FINAL ANSWER: 160",160,final_answer_line,,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-18T17:35:27.836173+00:00
+B_generic_reflection,mgsm_trilingual_006,es,260,"[{""quantity"":2,""role"":""multiplier: Toulouse has twice as many sheep as Charleston""},{""quantity"":4,""role"":""multiplier: Charleston has four times as many sheep as Seattle""},{""quantity"":20,""role"":""given number of sheep in Seattle, used to determine the total""}]",,True,"[{""quantity"": 2, ""role"": ""multiplier: Toulouse has twice as many sheep as Charleston""}, {""quantity"": 4, ""role"": ""multiplier: Charleston has four times as many sheep as Seattle""}, {""quantity"": 20, ""role"": ""given number of sheep in Seattle, used to determine the total""}]","[{""quantity"": 2, ""role"": ""multiplier: Toulouse has twice as many sheep as Charleston""}, {""quantity"": 4, ""role"": ""multiplier: Charleston has four times as many sheep as Seattle""}, {""quantity"": 20, ""role"": ""given number of sheep in Seattle, used to determine the total""}]","Seattle: 20 sheep  
+Charleston: \(4 \times 20 = 80\) sheep  
+Toulouse: \(2 \times 80 = 160\) sheep  
+
+Total: \(20 + 80 + 160 = 260\)
+
+FINAL ANSWER: 260",260,final_answer_line,,True,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-18T17:35:31.833070+00:00
+B_generic_reflection,mgsm_trilingual_006,ja,260,"[
+  {""quantity"": 2, ""role"": ""ratio multiplier: Toulouse has twice as many sheep as Charleston""},
+  {""quantity"": 4, ""role"": ""ratio multiplier: Charleston has four times as many sheep as Seattle""},
+  {""quantity"": 20, ""role"": ""given number of sheep kept by Seattle, used as the base amount""}
+]",,True,"[{""quantity"": 2, ""role"": ""ratio multiplier: Toulouse has twice as many sheep as Charleston""}, {""quantity"": 4, ""role"": ""ratio multiplier: Charleston has four times as many sheep as Seattle""}, {""quantity"": 20, ""role"": ""given number of sheep kept by Seattle, used as the base amount""}]","[{""quantity"": 2, ""role"": ""ratio multiplier: Toulouse has twice as many sheep as Charleston""}, {""quantity"": 4, ""role"": ""ratio multiplier: Charleston has four times as many sheep as Seattle""}, {""quantity"": 20, ""role"": ""given number of sheep kept by Seattle, used as the base amount""}]","Toulouse has \(2 \times 4 \times 20 = 160\) sheep.
+
+FINAL ANSWER: 160",160,final_answer_line,,False,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-18T17:35:32.903386+00:00
+B_generic_reflection,mgsm_trilingual_007,en,160,"[{""quantity"":200,""role"":""total file size in GB to be downloaded""},{""quantity"":2,""role"":""download rate in GB per minute, used before and after the restart""},{""quantity"":40,""role"":""percent of the file downloaded when the interruption occurs; this progress is lost""},{""quantity"":20,""role"":""restart and update delay in minutes, added to the total time""}]",,True,"[{""quantity"": 200, ""role"": ""total file size in GB to be downloaded""}, {""quantity"": 2, ""role"": ""download rate in GB per minute, used before and after the restart""}, {""quantity"": 40, ""role"": ""percent of the file downloaded when the interruption occurs; this progress is lost""}, {""quantity"": 20, ""role"": ""restart and update delay in minutes, added to the total time""}]","[{""quantity"": 200, ""role"": ""total file size in GB to be downloaded""}, {""quantity"": 2, ""role"": ""download rate in GB per minute, used before and after the restart""}, {""quantity"": 40, ""role"": ""percent of the file downloaded when the interruption occurs; this progress is lost""}, {""quantity"": 20, ""role"": ""restart and update delay in minutes, added to the total time""}]","40% of 200 GB is 80 GB, taking 40 minutes. After the 20-minute delay, restarting the full 200 GB download takes 100 minutes.
+
+Total time: 40 + 20 + 100 = 160 minutes.
+
+FINAL ANSWER: 160",160,final_answer_line,,True,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-18T17:35:34.170225+00:00
+B_generic_reflection,mgsm_trilingual_007,es,160,"[{""quantity"":200,""role"":""total file size in GB to be downloaded, including again after restarting from the beginning""},{""quantity"":2,""role"":""download speed in GB per minute""},{""quantity"":40,""role"":""percentage of the file downloaded before the forced restart, determining the interrupted download time""},{""quantity"":20,""role"":""forced restart and update installation delay in minutes""}]",,True,"[{""quantity"": 200, ""role"": ""total file size in GB to be downloaded, including again after restarting from the beginning""}, {""quantity"": 2, ""role"": ""download speed in GB per minute""}, {""quantity"": 40, ""role"": ""percentage of the file downloaded before the forced restart, determining the interrupted download time""}, {""quantity"": 20, ""role"": ""forced restart and update installation delay in minutes""}]","[{""quantity"": 200, ""role"": ""total file size in GB to be downloaded, including again after restarting from the beginning""}, {""quantity"": 2, ""role"": ""download speed in GB per minute""}, {""quantity"": 40, ""role"": ""percentage of the file downloaded before the forced restart, determining the interrupted download time""}, {""quantity"": 20, ""role"": ""forced restart and update installation delay in minutes""}]","Interrupted download: \(200 \times 40\% \div 2 = 40\) minutes  
+Restart delay: \(20\) minutes  
+Full re-download: \(200 \div 2 = 100\) minutes  
+
+Total: \(40 + 20 + 100 = 160\) minutes
+
+FINAL ANSWER: 160",160,final_answer_line,,True,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-18T17:35:34.527091+00:00
+B_generic_reflection,mgsm_trilingual_007,ja,160,"[{""quantity"":200,""role"":""total file size in gigabytes; used for both the interrupted attempt and the restarted download""},{""quantity"":1,""role"":""one-minute time interval in the download rate""},{""quantity"":2,""role"":""gigabytes downloaded per one minute""},{""quantity"":40,""role"":""percent of the file downloaded before the interruption; this progress is lost""},{""quantity"":20,""role"":""restart duration in minutes; added as a delay before downloading again""}]",,True,"[{""quantity"": 200, ""role"": ""total file size in gigabytes; used for both the interrupted attempt and the restarted download""}, {""quantity"": 1, ""role"": ""one-minute time interval in the download rate""}, {""quantity"": 2, ""role"": ""gigabytes downloaded per one minute""}, {""quantity"": 40, ""role"": ""percent of the file downloaded before the interruption; this progress is lost""}, {""quantity"": 20, ""role"": ""restart duration in minutes; added as a delay before downloading again""}]","[{""quantity"": 200, ""role"": ""total file size in gigabytes; used for both the interrupted attempt and the restarted download""}, {""quantity"": 1, ""role"": ""one-minute time interval in the download rate""}, {""quantity"": 2, ""role"": ""gigabytes downloaded per one minute""}, {""quantity"": 40, ""role"": ""percent of the file downloaded before the interruption; this progress is lost""}, {""quantity"": 20, ""role"": ""restart duration in minutes; added as a delay before downloading again""}]","160
+
+FINAL ANSWER: 160",160,final_answer_line,,True,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-18T17:35:38.674363+00:00
+B_generic_reflection,mgsm_trilingual_008,en,45,"[
+  {
+    ""quantity"": 3,
+    ""role"": ""outbound driving duration in hours, multiplied by the initial speed""
+  },
+  {
+    ""quantity"": 60,
+    ""role"": ""outbound speed in mph, multiplied by 3 hours to find distance traveled from home""
+  },
+  {
+    ""quantity"": 4,
+    ""role"": ""planned total duration in hours for the return journey""
+  },
+  {
+    ""quantity"": 2,
+    ""role"": ""first portion of the return journey in hours spent stationary""
+  },
+  {
+    ""quantity"": 0.5,
+    ""role"": ""return driving duration in hours at 30 mph""
+  },
+  {
+    ""quantity"": 30,
+    ""role"": ""return speed in mph during the half-hour driving segment""
+  },
+  {
+    ""quantity"": 4,
+    ""role"": ""total return-time allowance in hours from which earlier segments are subtracted to find remaining driving time""
+  },
+  {
+    ""quantity"": 80,
+    ""role"": ""return speed in mph during the remaining time""
+  },
+  {
+    ""quantity"": 4,
+    ""role"": ""elapsed return-journey duration in hours at which the final distance from home is requested""
+  }
+]",,True,"[{""quantity"": 3, ""role"": ""outbound driving duration in hours, multiplied by the initial speed""}, {""quantity"": 60, ""role"": ""outbound speed in mph, multiplied by 3 hours to find distance traveled from home""}, {""quantity"": 4, ""role"": ""planned total duration in hours for the return journey""}, {""quantity"": 2, ""role"": ""first portion of the return journey in hours spent stationary""}, {""quantity"": 0.5, ""role"": ""return driving duration in hours at 30 mph""}, {""quantity"": 30, ""role"": ""return speed in mph during the half-hour driving segment""}, {""quantity"": 4, ""role"": ""total return-time allowance in hours from which earlier segments are subtracted to find remaining driving time""}, {""quantity"": 80, ""role"": ""return speed in mph during the remaining time""}, {""quantity"": 4, ""role"": ""elapsed return-journey duration in hours at which the final distance from home is requested""}]","[{""quantity"": 3, ""role"": ""outbound driving duration in hours, multiplied by the initial speed""}, {""quantity"": 60, ""role"": ""outbound speed in mph, multiplied by 3 hours to find distance traveled from home""}, {""quantity"": 4, ""role"": ""planned total duration in hours for the return journey""}, {""quantity"": 2, ""role"": ""first portion of the return journey in hours spent stationary""}, {""quantity"": 0.5, ""role"": ""return driving duration in hours at 30 mph""}, {""quantity"": 30, ""role"": ""return speed in mph during the half-hour driving segment""}, {""quantity"": 4, ""role"": ""total return-time allowance in hours from which earlier segments are subtracted to find remaining driving time""}, {""quantity"": 80, ""role"": ""return speed in mph during the remaining time""}, {""quantity"": 4, ""role"": ""elapsed return-journey duration in hours at which the final distance from home is requested""}]","45
+
+FINAL ANSWER: 45",45,final_answer_line,,True,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-18T17:35:40.255311+00:00

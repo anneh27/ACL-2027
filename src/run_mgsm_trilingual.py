@@ -60,7 +60,17 @@ def load_env(path):
 
 def call_model(client, model, prompt, system=None):
     """One real chat-completion call with bounded retries on transient errors.
-    Returns a dict of raw results; never raises."""
+    Returns a dict of raw results; never raises. Single-turn convenience
+    wrapper around call_model_messages() -- see that for multi-turn calls
+    (e.g. Week 6's generic-reflection condition, which continues an earlier
+    extraction turn rather than starting fresh)."""
+    messages = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]
+    return call_model_messages(client, model, messages)
+
+
+def call_model_messages(client, model, messages):
+    """Same retry/rate-limit handling as call_model(), but takes a full
+    messages list so callers can build multi-turn conversations."""
     import openai
 
     last_error = ""
@@ -71,7 +81,6 @@ def call_model(client, model, prompt, system=None):
         if _quota_exhausted.is_set():
             return {"raw_output": "", "error_message": "skipped: API credits exhausted earlier in this run"}
         try:
-            messages = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]
             resp = client.chat.completions.create(model=model, messages=messages)
             usage = resp.usage
             details = getattr(usage, "completion_tokens_details", None)

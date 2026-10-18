@@ -100,13 +100,22 @@ def parse_json_array(raw_output):
 
 def verify_isolation(stage2_prompt, stage2_system, question, item_id, lang):
     """Task 3: the reasoning stage must receive only the Stage-1 representation.
-    Raises if the original question, its language code, or the item id leaked
-    into what Stage 2 actually sees."""
+    Raises if the original question text or the item id leaked into what Stage 2
+    actually sees.
+
+    Does NOT bare-match the language name (e.g. "Spanish") -- that produced a
+    real false positive (Week 6): mgsm_trilingual_166 asks about making a
+    "Spanish flan," and a repaired extraction describing that dish in English
+    legitimately contains the word "Spanish" -- that's problem CONTENT (present
+    in the English source too), not a leak of which language the ORIGINAL text
+    was written in. The f"[{lang}]" bracket-tag check is kept: a pipeline-style
+    tag like "[es]" is not something ordinary problem content would produce by
+    coincidence, unlike a bare language-name word."""
     combined = (stage2_prompt or "") + (stage2_system or "")
     if question.strip() and question.strip() in combined:
         raise AssertionError(f"{item_id}[{lang}]: original question text leaked into the Stage-2 prompt")
-    if item_id in combined or f"[{lang}]" in combined or LANG_NAMES[lang] in combined:
-        raise AssertionError(f"{item_id}[{lang}]: item id or language identity leaked into the Stage-2 prompt")
+    if item_id in combined or f"[{lang}]" in combined:
+        raise AssertionError(f"{item_id}[{lang}]: item id or a language-code tag leaked into the Stage-2 prompt")
 
 
 def run_one(job):
