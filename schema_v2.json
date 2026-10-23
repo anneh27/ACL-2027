@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MGSM Stage-1 extraction schema v2",
+  "description": "Week 7 Task 3 fix. v1's schema was a flat array of {quantity, role} entries, with no dedicated place to express 'the unknown quantity to be solved for' -- the Critic+Repair baseline (Week 6) worked around this by appending a quantities-array entry like {\"quantity\": 0, \"role\": \"target: total weight...\"}, which looks like a real data point and corrupted at least one otherwise-correct Stage 2 run (mgsm_207, see results/week6_task4_error_analysis_summary.md). v2 separates 'things that were measured' (quantities, unchanged in spirit from v1) from 'the thing to be computed' (target, a dedicated non-numeric object), so there is no numeric placeholder for Stage 2 to mistake for a real value.",
+  "type": "object",
+  "required": ["quantities", "target"],
+  "additionalProperties": false,
+  "properties": {
+    "quantities": {
+      "type": "array",
+      "description": "Every quantity mentioned in the problem and the role it plays -- same spirit as v1, unchanged.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["quantity", "role"],
+        "additionalProperties": false,
+        "properties": {
+          "quantity": {"type": "number", "description": "A real, given or computable numeric value from the problem. Never a placeholder for an unknown -- unknowns belong in 'target', not here."},
+          "role": {"type": "string", "minLength": 1, "description": "Short English label for what this quantity represents and how it is used."}
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "description": "The unknown quantity Stage 2 must solve for -- deliberately NOT part of the quantities array, and deliberately has no 'quantity' field, so there is no numeric placeholder (e.g. 0) that could be mistaken for a real, known value.",
+      "required": ["entity", "operation", "output_unit"],
+      "additionalProperties": false,
+      "properties": {
+        "entity": {"type": "string", "minLength": 1, "description": "What the final answer refers to, in plain English -- e.g. 'total weight of all candy', 'how many more candies John has than James', 'Sylvie's annual salary'. Must distinguish a total/sum from one specific entity's value, and a difference from an absolute value -- this is exactly what v1's 'target/question intent loss' failures (Week 6 Task 1, 11/25 cases) lost."},
+        "operation": {"type": "string", "minLength": 1, "description": "How to combine the quantities to get the answer -- e.g. 'sum', 'difference', 'one entity's derived value', 'ratio', 'repeated application (apply per-year increase 3 times)'. Exists because Week 6 Task 4 found an aggregation-relation failure (mgsm_087) where the right numbers were extracted but nothing said the per-year increase had to be applied 3 separate times, not once."},
+        "output_unit": {"type": ["string", "null"], "description": "The unit the final numeric answer must be expressed in -- e.g. 'dollars' (not cents), 'hours' (not minutes), 'kilometers'. Use null only if the problem is a bare count with no unit. Exists because Week 6 Task 1 found 6/25 failures were exactly this: the right number computed in the wrong unit (mgsm_151 cents vs. dollars, mgsm_228 minutes vs. hours, mgsm_173 monthly vs. annual)."}
+      }
+    }
+  },
+  "examples": [
+    {
+      "quantities": [
+        {"quantity": 2, "role": "blue fiber bolts, given"},
+        {"quantity": 0.5, "role": "multiplier: white fiber = half the blue fiber amount"}
+      ],
+      "target": {
+        "entity": "total bolts of fiber needed (blue + white)",
+        "operation": "sum",
+        "output_unit": "bolts"
+      }
+    },
+    {
+      "quantities": [
+        {"quantity": 25, "role": "cost in cents to inflate one tire"},
+        {"quantity": 5, "role": "number of bicycle customers, each with 2 tires"},
+        {"quantity": 3, "role": "number of tricycle customers, each with 3 tires"},
+        {"quantity": 1, "role": "number of unicycle customers, with 1 tire"}
+      ],
+      "target": {
+        "entity": "total amount Shawnda made that day",
+        "operation": "sum of (tires inflated x cost per tire), converted from cents",
+        "output_unit": "dollars"
+      }
+    }
+  ]
+}
