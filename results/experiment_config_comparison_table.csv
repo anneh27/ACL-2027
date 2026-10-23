@@ -1,0 +1,5 @@
+condition,script,n_correct,n_total,accuracy,source_file
+A_direct_reasoning,src/run_mgsm_trilingual.py,146,150,0.9733,results/mgsm_trilingual_full.csv
+B_original_stage1_stage2,src/mgsm_semantic_recovery_trilingual.py,125,150,0.8333,results/mgsm_semantic_recovery_full.csv
+C_generic_reflection,src/mgsm_semantic_critic_repair.py (run_condition_b),127,150,0.8467,results/mgsm_condition_b_reflection.csv
+D_critic_plus_repair,src/mgsm_semantic_critic_repair.py (run_condition_c),145,150,0.9667,results/mgsm_condition_c_critic_repair.csv
