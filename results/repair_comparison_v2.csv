@@ -1,26 +1,28 @@
-question_id,language,v1_generic_reflection_correct,v1_critic_repair_correct,v2_critic_repair_correct,v2_was_repaired,v2_total_tokens,manual_oracle_repair_correct,is_known_v1_regression_item
-mgsm_trilingual_039,ja,True,False,False,True,3524,,True
-mgsm_trilingual_086,es,False,False,False,True,2951,,True
-mgsm_trilingual_139,ja,False,False,False,True,1758,,True
-mgsm_trilingual_207,en,True,False,True,False,1456,,True
-mgsm_trilingual_214,es,False,False,False,False,1987,,True
-mgsm_trilingual_001,en,False,True,True,False,1182,,False
-mgsm_trilingual_001,es,False,True,True,False,1279,,False
-mgsm_trilingual_001,ja,False,True,True,False,1219,,False
-mgsm_trilingual_006,en,False,True,True,False,1422,,False
-mgsm_trilingual_006,es,True,True,True,False,1446,,False
-mgsm_trilingual_006,ja,False,True,True,False,1474,,False
-mgsm_trilingual_007,en,True,True,True,False,1596,,False
-mgsm_trilingual_007,es,True,True,True,False,1543,,False
-mgsm_trilingual_007,ja,True,True,True,False,1624,,False
-mgsm_trilingual_008,en,True,True,True,False,1955,,False
-mgsm_trilingual_008,es,True,True,True,True,3182,,False
-mgsm_trilingual_008,ja,True,True,True,False,2092,,False
-mgsm_trilingual_022,en,True,True,True,False,1690,,False
-mgsm_trilingual_022,es,True,True,True,False,1590,,False
-mgsm_trilingual_022,ja,True,True,True,False,1630,,False
-mgsm_trilingual_023,en,True,True,True,False,1216,,False
-mgsm_trilingual_023,es,True,True,True,False,1307,,False
-mgsm_trilingual_023,ja,True,True,True,False,1484,,False
-mgsm_trilingual_026,en,True,True,True,False,1474,,False
-mgsm_trilingual_026,es,True,True,True,False,1505,,False
+question_id,language,v1_generic_reflection_correct,v1_critic_repair_correct,v2_critic_repair_correct,v2_was_repaired,v2_total_tokens,manual_oracle_repair_correct,manual_oracle_repair_note,is_known_v1_regression_item
+mgsm_trilingual_001,en,False,True,True,False,1154,True,"repaired by hand, recovered",False
+mgsm_trilingual_001,es,False,True,True,False,1237,True,"repaired by hand, recovered",False
+mgsm_trilingual_001,ja,False,True,True,False,1281,True,"repaired by hand, recovered",False
+mgsm_trilingual_006,en,False,True,True,False,1339,True,"repaired by hand, recovered",False
+mgsm_trilingual_006,es,True,True,True,False,1557,True,"repaired by hand, recovered",False
+mgsm_trilingual_006,ja,False,True,True,False,1555,True,"repaired by hand, recovered",False
+mgsm_trilingual_007,en,True,True,True,False,1561,True,"repaired by hand, recovered",False
+mgsm_trilingual_007,es,True,True,True,False,1721,True,"repaired by hand, recovered",False
+mgsm_trilingual_007,ja,True,True,True,False,1704,True,"repaired by hand, recovered",False
+mgsm_trilingual_057,ja,False,True,True,True,2454,,"no stage1_repaired_json provided (annotator judged this a source-text defect, not an extraction fix)",False
+mgsm_trilingual_086,es,False,False,False,True,3110,,"no stage1_repaired_json provided (annotator judged this a source-text defect, not an extraction fix)",True
+mgsm_trilingual_087,en,True,True,True,False,1879,True,"repaired by hand, recovered",False
+mgsm_trilingual_139,ja,False,False,False,False,1287,,"no stage1_repaired_json provided (annotator judged this a source-text defect, not an extraction fix)",True
+mgsm_trilingual_151,en,False,True,True,False,1720,True,"repaired by hand, recovered",False
+mgsm_trilingual_151,es,False,True,True,True,2556,True,"repaired by hand, recovered",False
+mgsm_trilingual_173,ja,True,True,True,False,1859,True,"repaired by hand, recovered",False
+mgsm_trilingual_214,es,False,False,False,False,1947,,"no stage1_repaired_json provided (annotator judged this a source-text defect, not an extraction fix)",True
+mgsm_trilingual_228,en,False,True,True,False,1423,True,"repaired by hand, recovered",False
+mgsm_trilingual_228,es,False,True,True,False,1523,True,"repaired by hand, recovered",False
+mgsm_trilingual_228,ja,False,True,True,False,1659,True,"repaired by hand, recovered",False
+mgsm_trilingual_229,en,True,True,True,False,1680,True,"repaired by hand, recovered",False
+mgsm_trilingual_229,ja,False,True,True,True,2563,True,"repaired by hand, recovered",False
+mgsm_trilingual_240,en,False,True,True,False,1288,True,"repaired by hand, recovered",False
+mgsm_trilingual_240,es,False,True,True,False,1336,True,"repaired by hand, recovered",False
+mgsm_trilingual_240,ja,False,True,True,False,1442,True,"repaired by hand, recovered",False
+mgsm_trilingual_039,ja,True,False,False,True,3610,,outside Task 2's 25-item manual-repair population (not a Condition-B failure),True
+mgsm_trilingual_207,en,True,False,True,False,1436,,outside Task 2's 25-item manual-repair population (not a Condition-B failure),True

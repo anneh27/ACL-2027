@@ -12,7 +12,13 @@ results/mgsm_condition_c_critic_repair.csv) was wrong -- mgsm_trilingual_039
 example -- plus a sample of items v1 Condition D got RIGHT, as negative
 controls to catch any new regression v2 introduces (not just whether it
 fixes the known ones). Pass --full to run the entire 150-item set instead,
-for a complete head-to-head table.
+for a complete head-to-head table. Pass --items-csv to use an arbitrary
+(question_id, language) set instead -- in particular, results/
+manual_semantic_repair_25.csv, the 25 original Condition-B (Stage1->Stage2)
+failures that Task 2 manually repaired, which is the population the plan's
+automatic-vs-generic-reflection-vs-manual-Oracle-Repair comparison is
+actually about (the 5-regression default above answers a narrower question:
+does schema v2 fix/not-regress Condition D specifically).
 
 This is a NEW, fresh end-to-end run (extraction -> critic -> repair ->
 Stage 2), not a re-use of v1's saved Stage-1 extractions, since the whole
@@ -23,6 +29,7 @@ Usage:
     python src/mgsm_schema_v2_pipeline.py --tag smoke --n-controls 3
     python src/mgsm_schema_v2_pipeline.py
     python src/mgsm_schema_v2_pipeline.py --full
+    python src/mgsm_schema_v2_pipeline.py --items-csv results/manual_semantic_repair_25.csv --tag condition_b_failures
 """
 import argparse
 import json
@@ -134,6 +141,13 @@ def select_items(args, sample_items):
     if args.full:
         return [(it["id"], lang) for it in sample_items for lang in ("en", "es", "ja")]
 
+    if args.items_csv:
+        items_df = pd.read_csv(args.items_csv)
+        keys = list(dict.fromkeys(
+            [(r["question_id"], r["language"]) for _, r in items_df.iterrows()] + KNOWN_V1_REGRESSION_ITEMS
+        ))  # union, de-duplicated, order preserved -- always also covers the plan's named regression cases
+        return [(qid, lang) for qid, lang in keys if qid in by_key]
+
     v1_d_path = os.path.join(RESULTS_DIR, "mgsm_condition_c_critic_repair.csv")
     v1_d = pd.read_csv(v1_d_path)
     v1_correct_keys = [
@@ -145,24 +159,51 @@ def select_items(args, sample_items):
     return [(qid, lang) for qid, lang in keys if qid in by_key]
 
 
+def load_manual_oracle_repair():
+    """Task 2's own output (results/manual_semantic_repair_25_resolved.csv) -- the manual
+    annotation (missing_semantics, error_type, stage1_repaired_json) and the Stage-2 rerun on
+    it were both done outside this script; this just reads the result. Returns {} if that file
+    doesn't exist yet (Task 2 not done), so the comparison column degrades to all-None rather
+    than erroring -- this script must still run standalone before/without Task 2."""
+    path = os.path.join(RESULTS_DIR, "manual_semantic_repair_25_resolved.csv")
+    if not os.path.exists(path):
+        return {}
+    df = pd.read_csv(path, keep_default_na=False)
+    out = {}
+    for _, r in df.iterrows():
+        correct_after = r["correct_after"]
+        correct_after = {"True": True, "False": False}.get(str(correct_after), None)
+        out[(r["question_id"], r["language"])] = {
+            "manual_oracle_repair_correct": correct_after,
+            "manual_oracle_repair_note": r["note"] or ("repaired by hand, recovered" if correct_after else ""),
+        }
+    return out
+
+
 def build_repair_comparison_v2(v2_records, suffix):
     """Per-item before/after table: v1 Condition C (generic reflection), v1 Condition D
-    (critic+repair, the schema this fixes), v2 critic+repair, and a placeholder column for
-    manual Oracle Repair -- Task 2's output, not produced here and left blank rather than
-    guessed at, since that manual annotation is explicitly out of scope for this script."""
+    (critic+repair, the schema this fixes), v2 critic+repair, and manual Oracle Repair (Task 2's
+    output, read from results/manual_semantic_repair_25_resolved.csv if present). Only items that
+    were part of Task 2's 25-item manual-repair population get a non-null manual column value --
+    items outside that population (e.g. the 2 Condition-D-only regressions, mgsm_039/207, which
+    were never Condition-B failures and so were never manually repaired) correctly show None,
+    not a guess."""
     v1_c = pd.read_csv(os.path.join(RESULTS_DIR, "mgsm_condition_b_reflection.csv")).set_index(["question_id", "language"])
     v1_d = pd.read_csv(os.path.join(RESULTS_DIR, "mgsm_condition_c_critic_repair.csv")).set_index(["question_id", "language"])
+    manual = load_manual_oracle_repair()
 
     rows = []
     for r in v2_records:
         key = (r["question_id"], r["language"])
+        manual_entry = manual.get(key, {})
         rows.append({
             "question_id": r["question_id"], "language": r["language"],
             "v1_generic_reflection_correct": v1_c.loc[key, "correct"] if key in v1_c.index else None,
             "v1_critic_repair_correct": v1_d.loc[key, "correct"] if key in v1_d.index else None,
             "v2_critic_repair_correct": r["correct"],
             "v2_was_repaired": r["was_repaired"], "v2_total_tokens": r["total_tokens"],
-            "manual_oracle_repair_correct": None,  # Task 2, pending -- not filled in by this script
+            "manual_oracle_repair_correct": manual_entry.get("manual_oracle_repair_correct"),
+            "manual_oracle_repair_note": manual_entry.get("manual_oracle_repair_note", "outside Task 2's 25-item manual-repair population (not a Condition-B failure)"),
             "is_known_v1_regression_item": key in KNOWN_V1_REGRESSION_ITEMS,
         })
     comparison = pd.DataFrame(rows)
@@ -178,6 +219,8 @@ def main():
     parser.add_argument("--n-controls", type=int, default=20,
                          help="negative-control items (v1-Condition-D-correct, not among the known regressions) to also re-run under v2")
     parser.add_argument("--full", action="store_true", help="run all 150 (question, language) pairs instead of the regression+control subset")
+    parser.add_argument("--items-csv", default=None,
+                         help="CSV with question_id/language columns to use as the item set instead of the regression+control default (always unioned with the known regression items)")
     args = parser.parse_args()
 
     load_env(os.path.join(PROJECT_ROOT, ".env"))
@@ -191,8 +234,14 @@ def main():
 
     keys = select_items(args, sample_items)
     jobs = [(client, model, qid, lang, by_id[qid]["questions"][lang], by_id[qid]["gold_answer"]) for qid, lang in keys]
+    if args.full:
+        scope_desc = "full 150-item set"
+    elif args.items_csv:
+        scope_desc = f"{args.items_csv}'s item set unioned with the {len(KNOWN_V1_REGRESSION_ITEMS)} known v1 regressions"
+    else:
+        scope_desc = f"{len(KNOWN_V1_REGRESSION_ITEMS)} known v1 regressions + {len(jobs) - len(KNOWN_V1_REGRESSION_ITEMS)} negative controls"
     print(f"Running schema v2 pipeline (fresh extraction -> critic -> repair -> Stage 2) on {len(jobs)} "
-          f"(question, language) pairs with model {model} ({'full 150-item set' if args.full else str(len(KNOWN_V1_REGRESSION_ITEMS)) + ' known v1 regressions + ' + str(len(jobs) - len(KNOWN_V1_REGRESSION_ITEMS)) + ' negative controls'})...")
+          f"(question, language) pairs with model {model} ({scope_desc})...")
 
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         records = list(pool.map(_safe(run_one_v2), jobs))
