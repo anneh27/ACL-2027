@@ -1,0 +1,47 @@
+condition,id,reasoning_type,raw_output,error,prediction,gold_label,correct,n_calls,model,temperature,timestamp,stage1_raw_output,stage1_error,stage1_parsed,stage2_prompt,stage2_raw_output,stage2_error,critic_raw_output,critic_sufficient,was_repaired,repair_raw_output,final_extraction
+A_direct,spat_01,spatial,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:38.940844+00:00,,,,,,,,,,,
+A_direct,spat_02,spatial,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:38.333145+00:00,,,,,,,,,,,
+A_direct,spat_03,spatial,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:38.250594+00:00,,,,,,,,,,,
+A_direct,spat_04,spatial,contradicted,,contradicted,contradicted,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:38.944138+00:00,,,,,,,,,,,
+A_direct,spat_05,spatial,contradicted,,contradicted,contradicted,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:39.205036+00:00,,,,,,,,,,,
+B_extract_reason,spat_01,spatial,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:41.458000+00:00,"{""premises"":[""left_of(apple,book)"",""left_of(book,cup)""],""query"":""left_of(apple,cup)""}",,"{""premises"": [""left_of(apple,book)"", ""left_of(book,cup)""], ""query"": ""left_of(apple,cup)""}","{""premises"": [""left_of(apple,book)"", ""left_of(book,cup)""], ""query"": ""left_of(apple,cup)""}",entailed,,,,,,
+B_extract_reason,spat_02,spatial,,,unknown,entailed,False,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:41.894716+00:00,"{""premises"":[""northOf(Mia,Noah)"",""northOf(Noah,Liam)""],""query"":""northOf(Mia,Liam)""}",,"{""premises"": [""northOf(Mia,Noah)"", ""northOf(Noah,Liam)""], ""query"": ""northOf(Mia,Liam)""}","{""premises"": [""northOf(Mia,Noah)"", ""northOf(Noah,Liam)""], ""query"": ""northOf(Mia,Liam)""}",unknown,,,,,,
+B_extract_reason,spat_03,spatial,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:41.663472+00:00,"{""premises"":[""behind(chair,desk)""],""query"":""inFrontOf(desk,chair)""}",,"{""premises"": [""behind(chair,desk)""], ""query"": ""inFrontOf(desk,chair)""}","{""premises"": [""behind(chair,desk)""], ""query"": ""inFrontOf(desk,chair)""}",entailed,,,,,,
+B_extract_reason,spat_04,spatial,,,contradicted,contradicted,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:44.190134+00:00,"{""premises"":[""east_of(park,school)"",""east_of(library,park)""],""query"":""west_of(library,school)""}",,"{""premises"": [""east_of(park,school)"", ""east_of(library,park)""], ""query"": ""west_of(library,school)""}","{""premises"": [""east_of(park,school)"", ""east_of(library,park)""], ""query"": ""west_of(library,school)""}",contradicted,,,,,,
+B_extract_reason,spat_05,spatial,,,contradicted,contradicted,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:43.539997+00:00,"{""premises"":[""above(red_box,blue_box)"",""above(blue_box,green_box)""],""query"":""above(green_box,red_box)""}",,"{""premises"": [""above(red_box,blue_box)"", ""above(blue_box,green_box)""], ""query"": ""above(green_box,red_box)""}","{""premises"": [""above(red_box,blue_box)"", ""above(blue_box,green_box)""], ""query"": ""above(green_box,red_box)""}",contradicted,,,,,,
+C_critic_repair,spat_01,spatial,,,entailed,entailed,True,4,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:52.347150+00:00,"{""premises"":[""left_of(apple,book)"",""left_of(book,cup)""],""query"":""left_of(apple,cup)""}",,,"{""premises"": [""left_of(apple,book)"", ""left_of(book,cup)"", ""forall x forall y forall z ((left_of(x,y) and left_of(y,z)) -> left_of(x,z))""], ""query"": ""left_of(apple,cup)""}",entailed,,"Sufficient: No
+
+Missing or distorted information:
+- The formalization does not encode the transitivity of “left of,” which is needed to assess the query using only the formal version.
+
+Suggested repair:
+- Add `forall x forall y forall z ((left_of(x,y) and left_of(y,z)) -> left_of(x,z))`.",False,True,"{""premises"":[""left_of(apple,book)"",""left_of(book,cup)"",""forall x forall y forall z ((left_of(x,y) and left_of(y,z)) -> left_of(x,z))""],""query"":""left_of(apple,cup)""}","{""premises"": [""left_of(apple,book)"", ""left_of(book,cup)"", ""forall x forall y forall z ((left_of(x,y) and left_of(y,z)) -> left_of(x,z))""], ""query"": ""left_of(apple,cup)""}"
+C_critic_repair,spat_02,spatial,,,entailed,entailed,True,4,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:51.458239+00:00,"{""premises"":[""north_of(Mia,Noah)"",""north_of(Noah,Liam)""],""query"":""north_of(Mia,Liam)""}",,,"{""premises"": [""north_of(Mia,Noah)"", ""north_of(Noah,Liam)"", ""forall x forall y forall z ((north_of(x,y) and north_of(y,z)) -> north_of(x,z))""], ""query"": ""north_of(Mia,Liam)""}",entailed,,"Sufficient: No
+
+Missing or distorted information:
+- The transitivity of “north of,” needed to derive the query from the premises, is not formalized.
+
+Suggested repair:
+- Add `forall x forall y forall z ((north_of(x,y) and north_of(y,z)) -> north_of(x,z))`.",False,True,"{""premises"":[""north_of(Mia,Noah)"",""north_of(Noah,Liam)"",""forall x forall y forall z ((north_of(x,y) and north_of(y,z)) -> north_of(x,z))""],""query"":""north_of(Mia,Liam)""}","{""premises"": [""north_of(Mia,Noah)"", ""north_of(Noah,Liam)"", ""forall x forall y forall z ((north_of(x,y) and north_of(y,z)) -> north_of(x,z))""], ""query"": ""north_of(Mia,Liam)""}"
+C_critic_repair,spat_03,spatial,,,entailed,entailed,True,4,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:50.767269+00:00,"{""premises"":[""behind(chair,desk)""],""query"":""in_front_of(desk,chair)""}",,,"{""premises"": [""behind(chair,desk)"", ""forall(x,forall(y,iff(behind(x,y),in_front_of(y,x))))""], ""query"": ""in_front_of(desk,chair)""}",entailed,,"Sufficient: No
+
+Missing or distorted information:
+- The extraction omits that “the chair is behind the desk” is equivalent to “the desk is in front of the chair”; the two predicates are otherwise formally unrelated.
+
+Suggested repair:
+- Normalize both statements to the same relation, or add an axiom such as `forall(x,forall(y,iff(behind(x,y),in_front_of(y,x))))`.",False,True,"{""premises"":[""behind(chair,desk)"",""forall(x,forall(y,iff(behind(x,y),in_front_of(y,x))))""],""query"":""in_front_of(desk,chair)""}","{""premises"": [""behind(chair,desk)"", ""forall(x,forall(y,iff(behind(x,y),in_front_of(y,x))))""], ""query"": ""in_front_of(desk,chair)""}"
+C_critic_repair,spat_04,spatial,,,unknown,contradicted,False,4,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:09:01.179819+00:00,"{""premises"":[""east_of(park,school)"",""east_of(library,park)""],""query"":""west_of(library,school)""}",,,"{""premises"": [""east_of(park,school)"", ""east_of(library,park)"", ""forall x,y,z ((east_of(x,y) and east_of(y,z)) -> east_of(x,z))"", ""forall x,y (west_of(x,y) iff east_of(y,x))""], ""query"": ""west_of(library,school)""}",unknown,,"Sufficient: No
+
+Missing or distorted information:
+- The extraction omits the spatial semantics connecting the predicates: `east_of` is transitive, and `west_of(x,y)` is the inverse of `east_of(y,x)`. Without these axioms, the query cannot be assessed using only the formal version.
+
+Suggested repair:
+- Add `forall x,y,z ((east_of(x,y) and east_of(y,z)) -> east_of(x,z))`.
+- Add `forall x,y (west_of(x,y) iff east_of(y,x))`.",False,True,"{""premises"":[""east_of(park,school)"",""east_of(library,park)"",""forall x,y,z ((east_of(x,y) and east_of(y,z)) -> east_of(x,z))"",""forall x,y (west_of(x,y) iff east_of(y,x))""],""query"":""west_of(library,school)""}","{""premises"": [""east_of(park,school)"", ""east_of(library,park)"", ""forall x,y,z ((east_of(x,y) and east_of(y,z)) -> east_of(x,z))"", ""forall x,y (west_of(x,y) iff east_of(y,x))""], ""query"": ""west_of(library,school)""}"
+C_critic_repair,spat_05,spatial,,,contradicted,contradicted,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:08:54.421084+00:00,"{""premises"":[""above(red_box,blue_box)"",""above(blue_box,green_box)""],""query"":""above(green_box,red_box)""}",,,"{""premises"": [""above(red_box,blue_box)"", ""above(blue_box,green_box)""], ""query"": ""above(green_box,red_box)""}",contradicted,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""above(red_box,blue_box)"", ""above(blue_box,green_box)""], ""query"": ""above(green_box,red_box)""}"
