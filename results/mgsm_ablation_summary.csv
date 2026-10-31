@@ -1,0 +1,5 @@
+condition,n_correct,n_total,accuracy,n_calls_per_item,avg_tokens_per_item
+v1_no_repair,125,150,0.8333,2,"not captured in this condition's log (known gap, see results/experiment_config.md)"
+v1_critic,145,150,0.9667,3-4,"not captured in this condition's log (known gap, see results/experiment_config.md)"
+v2_no_repair,144,150,0.96,2,1023.2
+v2_critic,143,150,0.9533,2-4,1721.2

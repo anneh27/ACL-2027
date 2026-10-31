@@ -1,0 +1,5 @@
+base,other,description,recovered,base_wrong,regressed,base_right,net_change
+v1_no_repair,v1_critic,Critic/Repair's effect on top of schema v1,22,25,2,125,20
+v2_no_repair,v2_critic,Critic/Repair's effect on top of schema v2,1,6,2,144,-1
+v1_no_repair,v2_no_repair,Schema v2's effect alone (no Critic in either),22,25,3,125,19
+v1_critic,v2_critic,Schema v2's effect with Critic in both,1,5,3,145,-2

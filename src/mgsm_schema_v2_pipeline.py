@@ -30,6 +30,8 @@ Usage:
     python src/mgsm_schema_v2_pipeline.py
     python src/mgsm_schema_v2_pipeline.py --full
     python src/mgsm_schema_v2_pipeline.py --items-csv results/manual_semantic_repair_25.csv --tag condition_b_failures
+    python src/mgsm_schema_v2_pipeline.py --full --no-critic --n-items 6   # smoke test the "v2, no repair" ablation cell
+    python src/mgsm_schema_v2_pipeline.py --full --no-critic               # the full "v2, no repair" ablation cell
 """
 import argparse
 import json
@@ -67,7 +69,7 @@ def _safe(fn):
     """Same discipline as Week 6's critic/repair script: one bad item must not
     discard every other already-completed (and already-paid-for) API call."""
     def wrapped(job):
-        client, model, qid, lang, question, gold = job
+        client, model, qid, lang, question, gold, use_critic = job
         try:
             return fn(job)
         except Exception as exc:  # noqa: BLE001 -- deliberately broad, see docstring above
@@ -87,7 +89,7 @@ def _token_total(*call_results):
 
 
 def run_one_v2(job):
-    client, model, qid, lang, question, gold = job
+    client, model, qid, lang, question, gold, use_critic = job
 
     stage1 = call_model(client, model, question, system=EXTRACT_SYSTEM_V2)
     extraction_raw = stage1["raw_output"]
@@ -96,11 +98,13 @@ def run_one_v2(job):
 
     critic, repair = {"raw_output": "", "error_message": ""}, {"raw_output": "", "error_message": ""}
     sufficient, missing_text, repair_text, was_repaired = None, "", "", False
+    critic_called, repair_called = False, False
     final_obj = parsed
 
-    if parsed is not None:
+    if parsed is not None and use_critic:
         critic_prompt = f"Problem:\n{question}\n\nExtraction:\n{extraction_raw}"
         critic = call_model(client, model, critic_prompt, system=CRITIC_SYSTEM_V2)
+        critic_called = True
         sufficient, missing_text, repair_text = parse_critic(critic["raw_output"])
 
         if sufficient is False:
@@ -109,6 +113,7 @@ def run_one_v2(job):
                 f"Critic's missing/distorted information:\n{missing_text}\n\nCritic's suggested repair:\n{repair_text}"
             )
             repair = call_model(client, model, repair_prompt, system=REPAIR_SYSTEM_V2)
+            repair_called = True
             repaired_obj, repair_parse_error = (None, "repair API error") if repair["error_message"] \
                 else parse_v2_json(repair["raw_output"])
             final_obj = repaired_obj if repaired_obj is not None else parsed
@@ -131,7 +136,8 @@ def run_one_v2(job):
         "stage2_prediction": prediction, "stage2_parse_method": parse_method, "stage2_error": stage2["error_message"],
         "correct": correct, "model": model, "model_returned": stage2.get("model_returned"),
         "total_tokens": _token_total(stage1, critic, repair, stage2), "temperature": TEMPERATURE_NOTE,
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "n_calls": 2 + int(critic_called) + int(repair_called),
+        "use_critic": use_critic, "timestamp": datetime.now(timezone.utc).isoformat(),
     }
 
 
@@ -221,6 +227,9 @@ def main():
     parser.add_argument("--full", action="store_true", help="run all 150 (question, language) pairs instead of the regression+control subset")
     parser.add_argument("--items-csv", default=None,
                          help="CSV with question_id/language columns to use as the item set instead of the regression+control default (always unioned with the known regression items)")
+    parser.add_argument("--no-critic", action="store_true",
+                         help="skip the critic/repair step entirely -- Stage1(v2) -> Stage2(v2) only, the 'v2 without repair' ablation cell")
+    parser.add_argument("--n-items", type=int, default=None, help="truncate the selected item set to the first N (question,language) pairs, for a smoke test")
     args = parser.parse_args()
 
     load_env(os.path.join(PROJECT_ROOT, ".env"))
@@ -233,14 +242,17 @@ def main():
     by_id = {it["id"]: it for it in sample_items}
 
     keys = select_items(args, sample_items)
-    jobs = [(client, model, qid, lang, by_id[qid]["questions"][lang], by_id[qid]["gold_answer"]) for qid, lang in keys]
+    if args.n_items:
+        keys = keys[: args.n_items]
+    jobs = [(client, model, qid, lang, by_id[qid]["questions"][lang], by_id[qid]["gold_answer"], not args.no_critic) for qid, lang in keys]
     if args.full:
         scope_desc = "full 150-item set"
     elif args.items_csv:
         scope_desc = f"{args.items_csv}'s item set unioned with the {len(KNOWN_V1_REGRESSION_ITEMS)} known v1 regressions"
     else:
         scope_desc = f"{len(KNOWN_V1_REGRESSION_ITEMS)} known v1 regressions + {len(jobs) - len(KNOWN_V1_REGRESSION_ITEMS)} negative controls"
-    print(f"Running schema v2 pipeline (fresh extraction -> critic -> repair -> Stage 2) on {len(jobs)} "
+    step_desc = "extraction -> Stage 2 (no critic/repair)" if args.no_critic else "extraction -> critic -> repair -> Stage 2"
+    print(f"Running schema v2 pipeline ({step_desc}) on {len(jobs)} "
           f"(question, language) pairs with model {model} ({scope_desc})...")
 
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
@@ -262,7 +274,8 @@ def main():
         print(f"\nOf the {len(on_known)} known v1 Condition-D regression items re-run here: "
               f"{fixed}/{len(on_known)} now correct under schema v2.")
 
-    suffix = f"_{args.tag}" if args.tag else ("_full" if args.full else "")
+    no_critic_tag = "_no_critic" if args.no_critic else ""
+    suffix = (f"_{args.tag}" if args.tag else ("_full" if args.full else "")) + no_critic_tag
     os.makedirs(RESULTS_DIR, exist_ok=True)
     csv_path = os.path.join(RESULTS_DIR, f"mgsm_schema_v2_pipeline{suffix}.csv")
     pd.DataFrame(records).to_csv(csv_path, index=False)
@@ -271,7 +284,7 @@ def main():
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
     print(f"\nWrote {csv_path}")
 
-    if not args.full:
+    if not args.full and not args.no_critic:
         comparison, comp_path = build_repair_comparison_v2(records, suffix)
         print(f"Wrote {comp_path}")
         print(comparison[["question_id", "language", "v1_critic_repair_correct", "v2_critic_repair_correct", "is_known_v1_regression_item"]].to_string(index=False))
