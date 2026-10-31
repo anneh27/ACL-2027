@@ -1,0 +1,148 @@
+id,reasoning_type,subtype,E_stage1_raw_output,E_stage1_error,E_critic_raw_output,E_critic_sufficient,E_was_repaired,E_repair_raw_output,E_final_extraction,E_reason_prompt,E_raw_output,E_reason_error,E_prediction,gold_label,E_correct,connective_counts_match,connective_counts_gold,connective_counts_extracted,n_calls,model,temperature,timestamp
+neg_01,negation,simple_negation,"{""premises"":[""not(atPlayground(ᎳᎥᎻ))""],""query"":""atPlayground(ᎳᎥᎻ)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(atPlayground(ᎳᎥᎻ))""], ""query"": ""atPlayground(ᎳᎥᎻ)""}","{""premises"": [""not(atPlayground(ᎳᎥᎻ))""], ""query"": ""atPlayground(ᎳᎥᎻ)""}",contradicted,,contradicted,contradicted,True,True,{'not': 1},{'not': 1},3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:05:32.181606+00:00
+neg_02,negation,simple_negation,"{""premises"":[""not(Burned(asdayi))""],""query"":""Burned(asdayi)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(Burned(asdayi))""], ""query"": ""Burned(asdayi)""}","{""premises"": [""not(Burned(asdayi))""], ""query"": ""Burned(asdayi)""}",contradicted,,contradicted,contradicted,True,True,{'not': 1},{'not': 1},3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:05:30.018579+00:00
+neg_03,negation,simple_negation,"{""premises"":[""not(galvladi_taliwoyuli(Nene))""],""query"":""taliwoyuli(Nene)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(galvladi_taliwoyuli(Nene))""], ""query"": ""taliwoyuli(Nene)""}","{""premises"": [""not(galvladi_taliwoyuli(Nene))""], ""query"": ""taliwoyuli(Nene)""}",unknown,,unknown,contradicted,False,True,{'not': 1},{'not': 1},3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:06:39.997536+00:00
+neg_04,negation,double_negation_elimination,"{""premises"":[""not(not(reads(atsvsti)))""],""query"":""reads(atsvsti)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(not(reads(atsvsti)))""], ""query"": ""reads(atsvsti)""}","{""premises"": [""not(not(reads(atsvsti)))""], ""query"": ""reads(atsvsti)""}",entailed,,entailed,entailed,True,True,{'not': 2},{'not': 2},3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:05:29.857575+00:00
+neg_05,negation,simple_negation,"{""premises"":[""not(Asdayusdi(daniel))""],""query"":""Asdayusdi(daniel)""}",,"Sufficient: No
+
+Missing or distorted information:
+- The Cherokee predicates Daniel’s saying that something will be difficult/strong; the extraction incorrectly treats ᎠᏍᏓᏳᏍᏗ as a property directly predicated of Daniel.
+- Negation scopes over the saying event (“Daniel did not say …”), not over the embedded difficult/strong proposition.
+- The query likewise asks whether Daniel said the embedded proposition, not whether Daniel himself has the property Asdayusdi.
+
+Suggested repair:
+- Represent the premise as `not(Said(daniel, Asdayusdi))` and the query as `Said(daniel, Asdayusdi)`, or use an equivalent unary predicate such as `not(SaidAsdayusdi(daniel))` and `SaidAsdayusdi(daniel)`.",False,True,"{""premises"":[""not(Said(daniel, Asdayusdi))""],""query"":""Said(daniel, Asdayusdi)""}","{""premises"": [""not(Said(daniel, Asdayusdi))""], ""query"": ""Said(daniel, Asdayusdi)""}","{""premises"": [""not(Said(daniel, Asdayusdi))""], ""query"": ""Said(daniel, Asdayusdi)""}",contradicted,,contradicted,contradicted,True,True,{'not': 1},{'not': 1},4,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:06:05.740643+00:00
+cond_01,conditional,modus_ponens,"{""premises"":[""if(StartsStudying(Emma),Passes(Emma))"",""StartsStudying(Emma)""],""query"":""Passes(Emma)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""if(StartsStudying(Emma),Passes(Emma))"", ""StartsStudying(Emma)""], ""query"": ""Passes(Emma)""}","{""premises"": [""if(StartsStudying(Emma),Passes(Emma))"", ""StartsStudying(Emma)""], ""query"": ""Passes(Emma)""}",entailed,,entailed,entailed,True,True,{'if': 1},{'if': 1},3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:05:36.300902+00:00
+cond_02,conditional,modus_ponens,"{""premises"":[""if(Atsvtasga(Atsvtasdi),and(Sleeps(Maya),AtHome(Maya)))"",""Atsvtasga(Atsvtasdi)""],""query"":""Sleeps(Maya)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""if(Atsvtasga(Atsvtasdi),and(Sleeps(Maya),AtHome(Maya)))"", ""Atsvtasga(Atsvtasdi)""], ""query"": ""Sleeps(Maya)""}","{""premises"": [""if(Atsvtasga(Atsvtasdi),and(Sleeps(Maya),AtHome(Maya)))"", ""Atsvtasga(Atsvtasdi)""], ""query"": ""Sleeps(Maya)""}",entailed,,entailed,entailed,True,False,{'if': 1},"{'if': 1, 'and': 1}",3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:06:10.291110+00:00
+cond_03,conditional,affirming_the_consequent_fallacy,"{""premises"":[""if(believesShouldDoIt(noah),intrinsicallyMotivated(noah))"",""intrinsicallyMotivated(noah)""],""query"":""didIt(noah)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""if(believesShouldDoIt(noah),intrinsicallyMotivated(noah))"", ""intrinsicallyMotivated(noah)""], ""query"": ""didIt(noah)""}","{""premises"": [""if(believesShouldDoIt(noah),intrinsicallyMotivated(noah))"", ""intrinsicallyMotivated(noah)""], ""query"": ""didIt(noah)""}",unknown,,unknown,unknown,True,True,{'if': 1},{'if': 1},3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:05:59.575020+00:00
+cond_04,conditional,modus_tollens,"{""premises"":[""if(eats(deer),arrives_early_today(deer))"",""not(arrives_early_today(deer))""],""query"":""eats(deer)""}",,"Sufficient: No
+
+Missing or distorted information:
+- The conditional antecedent includes what the deer eats, but the extraction reduces it to the unrestricted proposition `eats(deer)`.
+- The conditional consequent is not faithfully represented as `arrives_early_today(deer)`; the Cherokee contains additional content and negation/modification that the extraction omits.
+- Because the antecedent is overgeneralized, it is incorrectly made identical to the query’s generic claim that the deer eats.
+- The extraction therefore fails to preserve the negation scope and full predicate structure of the first premise.
+
+Suggested repair:
+- Represent the conditional’s complete antecedent, including the object and its modifiers, with a distinct predicate or arguments.
+- Translate the complete consequent, preserving its internal negation and modifiers rather than replacing it with `arrives_early_today(deer)`.
+- Keep the query as a separate generic eating claim unless the Cherokee explicitly makes it identical to the conditional antecedent.",False,True,"{""premises"":[""if(eats(deer,unigatinige_jitaisehi),not(nuwonadanisv(deer,egwanahaiyusdi,without(dilasidisgv),today)))"",""not(arrives_early_today(deer))""],""query"":""eats(deer)""}","{""premises"": [""if(eats(deer,unigatinige_jitaisehi),not(nuwonadanisv(deer,egwanahaiyusdi,without(dilasidisgv),today)))"", ""not(arrives_early_today(deer))""], ""query"": ""eats(deer)""}","{""premises"": [""if(eats(deer,unigatinige_jitaisehi),not(nuwonadanisv(deer,egwanahaiyusdi,without(dilasidisgv),today)))"", ""not(arrives_early_today(deer))""], ""query"": ""eats(deer)""}",unknown,,unknown,contradicted,False,False,"{'if': 1, 'not': 1}","{'if': 1, 'not': 2}",4,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:07:31.351417+00:00
+cond_05,conditional,denying_the_antecedent_fallacy,"{""premises"":[""if(attends(leo,meeting),starts(meeting))"",""not(attends(leo,meeting))""],""query"":""not(starts(meeting))""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""if(attends(leo,meeting),starts(meeting))"", ""not(attends(leo,meeting))""], ""query"": ""not(starts(meeting))""}","{""premises"": [""if(attends(leo,meeting),starts(meeting))"", ""not(attends(leo,meeting))""], ""query"": ""not(starts(meeting))""}",unknown,,unknown,unknown,True,True,"{'if': 1, 'not': 2}","{'if': 1, 'not': 2}",3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:06:24.702677+00:00
+quant_01,quantifier,universal_instantiation,"{""premises"":[""forall(x, if(Editor(x),Writer(x)))"",""Editor(Maria)""],""query"":""Writer(Maria)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""forall(x, if(Editor(x),Writer(x)))"", ""Editor(Maria)""], ""query"": ""Writer(Maria)""}","{""premises"": [""forall(x, if(Editor(x),Writer(x)))"", ""Editor(Maria)""], ""query"": ""Writer(Maria)""}",entailed,,entailed,entailed,True,False,{'forall': 1},"{'forall': 1, 'if': 1}",3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:06:23.816900+00:00
+quant_02,quantifier,universal_negative,"{""premises"":[""forall(x, if(Galisgini(x), not(Asquoda(x))))"",""Galisgini(Biligisi)""],""query"":""Asquoda(Biligisi)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""forall(x, if(Galisgini(x), not(Asquoda(x))))"", ""Galisgini(Biligisi)""], ""query"": ""Asquoda(Biligisi)""}","{""premises"": [""forall(x, if(Galisgini(x), not(Asquoda(x))))"", ""Galisgini(Biligisi)""], ""query"": ""Asquoda(Biligisi)""}",contradicted,,contradicted,contradicted,True,False,"{'forall': 1, 'not': 1}","{'forall': 1, 'if': 1, 'not': 1}",3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:06:39.807067+00:00
+quant_03,quantifier,valid_particular_syllogism,"{""premises"":[""forall(x, if(teacher(x),not(worker(x))))"",""exists(x, and(teacher(x),singer(x)))""],""query"":""exists(x, and(singer(x),worker(x)))""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""forall(x, if(teacher(x),not(worker(x))))"", ""exists(x, and(teacher(x),singer(x)))""], ""query"": ""exists(x, and(singer(x),worker(x)))""}","{""premises"": [""forall(x, if(teacher(x),not(worker(x))))"", ""exists(x, and(teacher(x),singer(x)))""], ""query"": ""exists(x, and(singer(x),worker(x)))""}",unknown,,unknown,entailed,False,False,"{'forall': 1, 'exists': 2}","{'forall': 1, 'if': 1, 'not': 1, 'exists': 2, 'and': 2}",3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:06:45.310613+00:00
+quant_04,quantifier,undistributed_middle_fallacy,"{""premises"":[""exists(x,and(Displayers(x),Dancers(x)))"",""exists(x,and(Displayers(x),Singers(x)))""],""query"":""exists(x,and(Dancers(x),Singers(x)))""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""exists(x,and(Displayers(x),Dancers(x)))"", ""exists(x,and(Displayers(x),Singers(x)))""], ""query"": ""exists(x,and(Dancers(x),Singers(x)))""}","{""premises"": [""exists(x,and(Displayers(x),Dancers(x)))"", ""exists(x,and(Displayers(x),Singers(x)))""], ""query"": ""exists(x,and(Dancers(x),Singers(x)))""}",unknown,,unknown,unknown,True,False,{'exists': 3},"{'exists': 3, 'and': 3}",3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:06:49.617328+00:00
+quant_05,quantifier,valid_particular_syllogism,"{""premises"":[""forall(x, if(ᏗᏓᏅᏫᏍᎩ(x), not(ᏗᎦᎸᏔᏂᏙᎯ(x))))"",""exists(x, and(ᏗᏓᏅᏫᏍᎩ(x), ᏗᎪᏪᎵᏍᎩ(x)))""],""query"":""exists(x, and(ᏗᎪᏪᎵᏍᎩ(x), not(ᏗᎦᎸᏔᏂᏙᎯ(x))))""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""forall(x, if(ᏗᏓᏅᏫᏍᎩ(x), not(ᏗᎦᎸᏔᏂᏙᎯ(x))))"", ""exists(x, and(ᏗᏓᏅᏫᏍᎩ(x), ᏗᎪᏪᎵᏍᎩ(x)))""], ""query"": ""exists(x, and(ᏗᎪᏪᎵᏍᎩ(x), not(ᏗᎦᎸᏔᏂᏙᎯ(x))))""}","{""premises"": [""forall(x, if(ᏗᏓᏅᏫᏍᎩ(x), not(ᏗᎦᎸᏔᏂᏙᎯ(x))))"", ""exists(x, and(ᏗᏓᏅᏫᏍᎩ(x), ᏗᎪᏪᎵᏍᎩ(x)))""], ""query"": ""exists(x, and(ᏗᎪᏪᎵᏍᎩ(x), not(ᏗᎦᎸᏔᏂᏙᎯ(x))))""}",entailed,,entailed,entailed,True,False,"{'forall': 1, 'not': 2, 'exists': 2}","{'forall': 1, 'if': 1, 'not': 2, 'exists': 2, 'and': 2}",3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:07:00.982261+00:00
+spat_01,spatial,transitivity,"{""premises"":[""produces_in_mountain(Taganawi,Awiyeli)"",""produces_in_mountain(Awiyeli,Alisdayvdi)""],""query"":""produces_in_mountain(Taganawi,Alisdayvdi)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""produces_in_mountain(Taganawi,Awiyeli)"", ""produces_in_mountain(Awiyeli,Alisdayvdi)""], ""query"": ""produces_in_mountain(Taganawi,Alisdayvdi)""}","{""premises"": [""produces_in_mountain(Taganawi,Awiyeli)"", ""produces_in_mountain(Awiyeli,Alisdayvdi)""], ""query"": ""produces_in_mountain(Taganawi,Alisdayvdi)""}",unknown,,unknown,entailed,False,False,{'forall': 1},{},3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:07:15.062795+00:00
+spat_02,spatial,transitivity,"{""premises"":[""leftOf(Maya,Noah)"",""leftOf(Noah,Liam)""],""query"":""leftOf(Maya,Liam)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""leftOf(Maya,Noah)"", ""leftOf(Noah,Liam)""], ""query"": ""leftOf(Maya,Liam)""}","{""premises"": [""leftOf(Maya,Noah)"", ""leftOf(Noah,Liam)""], ""query"": ""leftOf(Maya,Liam)""}",entailed,,entailed,entailed,True,False,{'forall': 1},{},3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:06:55.655660+00:00
+spat_03,spatial,converse_relation,"{""premises"":[""behind(igasdi,daganilvdi)""],""query"":""inFrontOf(daganilvdi,igasdi)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""behind(igasdi,daganilvdi)""], ""query"": ""inFrontOf(daganilvdi,igasdi)""}","{""premises"": [""behind(igasdi,daganilvdi)""], ""query"": ""inFrontOf(daganilvdi,igasdi)""}",entailed,,entailed,entailed,True,False,{'forall': 1},{},3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:07:09.709429+00:00
+spat_04,spatial,transitivity_with_converse_relation,"{""premises"":[""eastOf(ᎠᏓᏬᏍᏗ,ᏫᏗᎦᎾᏄᎪᏫᏍᏗᏱ)"",""eastOf(ᎪᏪᎵᏗᏱ,ᎠᏓᏬᏍᏗ)""],""query"":""westOf(ᎪᏪᎵᏗᏱ,ᏫᏗᎦᎾᏄᎪᏫᏍᏗᏱ)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""eastOf(ᎠᏓᏬᏍᏗ,ᏫᏗᎦᎾᏄᎪᏫᏍᏗᏱ)"", ""eastOf(ᎪᏪᎵᏗᏱ,ᎠᏓᏬᏍᏗ)""], ""query"": ""westOf(ᎪᏪᎵᏗᏱ,ᏫᏗᎦᎾᏄᎪᏫᏍᏗᏱ)""}","{""premises"": [""eastOf(ᎠᏓᏬᏍᏗ,ᏫᏗᎦᎾᏄᎪᏫᏍᏗᏱ)"", ""eastOf(ᎪᏪᎵᏗᏱ,ᎠᏓᏬᏍᏗ)""], ""query"": ""westOf(ᎪᏪᎵᏗᏱ,ᏫᏗᎦᎾᏄᎪᏫᏍᏗᏱ)""}",contradicted,,contradicted,contradicted,True,False,"{'forall': 3, 'not': 1}",{},3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:07:31.255495+00:00
+spat_05,spatial,transitivity_and_antisymmetry,"{""premises"":[""above(red_box,blue_box)"",""above(blue_box,green_box)""],""query"":""above(green_box,red_box)""}",,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""above(red_box,blue_box)"", ""above(blue_box,green_box)""], ""query"": ""above(green_box,red_box)""}","{""premises"": [""above(red_box,blue_box)"", ""above(blue_box,green_box)""], ""query"": ""above(green_box,red_box)""}",contradicted,,contradicted,contradicted,True,False,"{'forall': 2, 'not': 1}",{},3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:07:18.511560+00:00
