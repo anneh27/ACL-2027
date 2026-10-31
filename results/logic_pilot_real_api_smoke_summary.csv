@@ -1,0 +1,4 @@
+condition,n,n_correct,accuracy,n_calls_total
+A_direct,4,4,1.0,4
+B_extract_reason,4,4,1.0,8
+C_critic_repair,4,4,1.0,12

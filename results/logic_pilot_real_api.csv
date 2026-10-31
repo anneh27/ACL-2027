@@ -1,0 +1,183 @@
+condition,id,reasoning_type,raw_output,error,prediction,gold_label,correct,n_calls,model,temperature,timestamp,stage1_raw_output,stage1_error,stage1_parsed,stage2_prompt,stage2_raw_output,stage2_error,critic_raw_output,critic_sufficient,was_repaired,repair_raw_output,final_extraction
+A_direct,neg2_01,negation,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:17.690959+00:00,,,,,,,,,,,
+A_direct,neg2_02,negation,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:17.545662+00:00,,,,,,,,,,,
+A_direct,neg2_03,negation,unknown,,unknown,unknown,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:17.680236+00:00,,,,,,,,,,,
+A_direct,neg2_04,negation,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:18.296846+00:00,,,,,,,,,,,
+A_direct,neg2_05,negation,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:18.727993+00:00,,,,,,,,,,,
+A_direct,cond2_01,conditional,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:18.337186+00:00,,,,,,,,,,,
+A_direct,cond2_02,conditional,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:18.421767+00:00,,,,,,,,,,,
+A_direct,cond2_03,conditional,unknown,,unknown,unknown,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:19.115422+00:00,,,,,,,,,,,
+A_direct,cond2_04,conditional,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:19.061676+00:00,,,,,,,,,,,
+A_direct,cond2_05,conditional,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:19.133314+00:00,,,,,,,,,,,
+A_direct,quant2_01,quantifier,unknown,,unknown,unknown,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:19.724699+00:00,,,,,,,,,,,
+A_direct,quant2_02,quantifier,unknown,,unknown,unknown,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:19.981934+00:00,,,,,,,,,,,
+A_direct,quant2_03,quantifier,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:19.859688+00:00,,,,,,,,,,,
+A_direct,quant2_04,quantifier,unknown,,unknown,unknown,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:20.613819+00:00,,,,,,,,,,,
+A_direct,quant2_05,quantifier,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:20.441573+00:00,,,,,,,,,,,
+A_direct,fall_01,fallacious_reasoning_form,unknown,,unknown,unknown,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:20.629113+00:00,,,,,,,,,,,
+A_direct,fall_02,fallacious_reasoning_form,unknown,,unknown,unknown,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:21.466009+00:00,,,,,,,,,,,
+A_direct,fall_03,fallacious_reasoning_form,unknown,,unknown,unknown,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:21.729795+00:00,,,,,,,,,,,
+A_direct,fall_04,fallacious_reasoning_form,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:21.950383+00:00,,,,,,,,,,,
+A_direct,fall_05,fallacious_reasoning_form,unknown,,unknown,unknown,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:21.467018+00:00,,,,,,,,,,,
+B_extract_reason,neg2_01,negation,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:24.355094+00:00,"{""premises"":[""not(and(home(Alice),home(Bob)))""],""query"":""or(not(home(Alice)),not(home(Bob)))""}",,"{""premises"": [""not(and(home(Alice),home(Bob)))""], ""query"": ""or(not(home(Alice)),not(home(Bob)))""}","{""premises"": [""not(and(home(Alice),home(Bob)))""], ""query"": ""or(not(home(Alice)),not(home(Bob)))""}",entailed,,,,,,
+B_extract_reason,neg2_02,negation,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:23.751311+00:00,"{""premises"":[""not(or(sick(Chris),sick(Dana)))""],""query"":""and(not(sick(Chris)),not(sick(Dana)))""}",,"{""premises"": [""not(or(sick(Chris),sick(Dana)))""], ""query"": ""and(not(sick(Chris)),not(sick(Dana)))""}","{""premises"": [""not(or(sick(Chris),sick(Dana)))""], ""query"": ""and(not(sick(Chris)),not(sick(Dana)))""}",entailed,,,,,,
+B_extract_reason,neg2_03,negation,,,unknown,unknown,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:25.402127+00:00,"{""premises"":[""not(forall(x, if(bird(x), canFly(x))))""],""query"":""forall(x, if(bird(x), not(canFly(x))))""}",,"{""premises"": [""not(forall(x, if(bird(x), canFly(x))))""], ""query"": ""forall(x, if(bird(x), not(canFly(x))))""}","{""premises"": [""not(forall(x, if(bird(x), canFly(x))))""], ""query"": ""forall(x, if(bird(x), not(canFly(x))))""}",unknown,,,,,,
+B_extract_reason,neg2_04,negation,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:24.914589+00:00,"{""premises"":[""not(not(not(tired(Eve))))""],""query"":""not(tired(Eve))""}",,"{""premises"": [""not(not(not(tired(Eve))))""], ""query"": ""not(tired(Eve))""}","{""premises"": [""not(not(not(tired(Eve))))""], ""query"": ""not(tired(Eve))""}",entailed,,,,,,
+B_extract_reason,neg2_05,negation,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:26.117322+00:00,"{""premises"":[""not(if(studies(Frank),fails(Frank)))""],""query"":""and(studies(Frank),not(fails(Frank)))""}",,"{""premises"": [""not(if(studies(Frank),fails(Frank)))""], ""query"": ""and(studies(Frank),not(fails(Frank)))""}","{""premises"": [""not(if(studies(Frank),fails(Frank)))""], ""query"": ""and(studies(Frank),not(fails(Frank)))""}",entailed,,,,,,
+B_extract_reason,cond2_01,conditional,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:26.933252+00:00,"{""premises"":[""iff(passesClass(Hannah),completesAllAssignments(Hannah))"",""completesAllAssignments(Hannah)""],""query"":""passesClass(Hannah)""}",,"{""premises"": [""iff(passesClass(Hannah),completesAllAssignments(Hannah))"", ""completesAllAssignments(Hannah)""], ""query"": ""passesClass(Hannah)""}","{""premises"": [""iff(passesClass(Hannah),completesAllAssignments(Hannah))"", ""completesAllAssignments(Hannah)""], ""query"": ""passesClass(Hannah)""}",entailed,,,,,,
+B_extract_reason,cond2_02,conditional,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:27.012326+00:00,"{""premises"":[""iff(wins_game(Ian),rolls_six(Ian))"",""not(rolls_six(Ian))""],""query"":""not(wins_game(Ian))""}",,"{""premises"": [""iff(wins_game(Ian),rolls_six(Ian))"", ""not(rolls_six(Ian))""], ""query"": ""not(wins_game(Ian))""}","{""premises"": [""iff(wins_game(Ian),rolls_six(Ian))"", ""not(rolls_six(Ian))""], ""query"": ""not(wins_game(Ian))""}",entailed,,,,,,
+B_extract_reason,cond2_03,conditional,,,unknown,unknown,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:28.229841+00:00,"{""premises"":[""if(wakes_up_early(Jack),goes_for_a_run(Jack))"",""if(goes_for_a_run(Jack),feels_energetic(Jack))"",""feels_energetic(Jack)""],""query"":""woke_up_early(Jack)""}",,"{""premises"": [""if(wakes_up_early(Jack),goes_for_a_run(Jack))"", ""if(goes_for_a_run(Jack),feels_energetic(Jack))"", ""feels_energetic(Jack)""], ""query"": ""woke_up_early(Jack)""}","{""premises"": [""if(wakes_up_early(Jack),goes_for_a_run(Jack))"", ""if(goes_for_a_run(Jack),feels_energetic(Jack))"", ""feels_energetic(Jack)""], ""query"": ""woke_up_early(Jack)""}",unknown,,,,,,
+B_extract_reason,cond2_04,conditional,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:28.250520+00:00,"{""premises"":[""if(studies(Kim),understands_material(Kim))"",""if(understands_material(Kim),passes_test(Kim))"",""if(passes_test(Kim),gets_certificate(Kim))"",""studies(Kim)""],""query"":""gets_certificate(Kim)""}",,"{""premises"": [""if(studies(Kim),understands_material(Kim))"", ""if(understands_material(Kim),passes_test(Kim))"", ""if(passes_test(Kim),gets_certificate(Kim))"", ""studies(Kim)""], ""query"": ""gets_certificate(Kim)""}","{""premises"": [""if(studies(Kim),understands_material(Kim))"", ""if(understands_material(Kim),passes_test(Kim))"", ""if(passes_test(Kim),gets_certificate(Kim))"", ""studies(Kim)""], ""query"": ""gets_certificate(Kim)""}",entailed,,,,,,
+B_extract_reason,cond2_05,conditional,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:29.254104+00:00,"{""premises"":[""or(takesTrain(Liam),drives(Liam))"",""not(takesTrain(Liam))""],""query"":""drives(Liam)""}",,"{""premises"": [""or(takesTrain(Liam),drives(Liam))"", ""not(takesTrain(Liam))""], ""query"": ""drives(Liam)""}","{""premises"": [""or(takesTrain(Liam),drives(Liam))"", ""not(takesTrain(Liam))""], ""query"": ""drives(Liam)""}",entailed,,,,,,
+B_extract_reason,quant2_01,quantifier,,,unknown,unknown,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:29.250978+00:00,"{""premises"":[""forall(x, square(x) -> rectangle(x))""],""query"":""forall(x, rectangle(x) -> square(x))""}",,"{""premises"": [""forall(x, square(x) -> rectangle(x))""], ""query"": ""forall(x, rectangle(x) -> square(x))""}","{""premises"": [""forall(x, square(x) -> rectangle(x))""], ""query"": ""forall(x, rectangle(x) -> square(x))""}",unknown,,,,,,
+B_extract_reason,quant2_02,quantifier,,,unknown,unknown,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:30.493282+00:00,"{""premises"":[""forall(x, unicorn(x) -> magical(x))""],""query"":""exists(x, and(unicorn(x),magical(x)))""}",,"{""premises"": [""forall(x, unicorn(x) -> magical(x))""], ""query"": ""exists(x, and(unicorn(x),magical(x)))""}","{""premises"": [""forall(x, unicorn(x) -> magical(x))""], ""query"": ""exists(x, and(unicorn(x),magical(x)))""}",unknown,,,,,,
+B_extract_reason,quant2_03,quantifier,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:30.459260+00:00,"{""premises"":[""forall(x, dog(x) -> mammal(x))"",""forall(x, mammal(x) -> animal(x))""],""query"":""forall(x, dog(x) -> animal(x))""}",,"{""premises"": [""forall(x, dog(x) -> mammal(x))"", ""forall(x, mammal(x) -> animal(x))""], ""query"": ""forall(x, dog(x) -> animal(x))""}","{""premises"": [""forall(x, dog(x) -> mammal(x))"", ""forall(x, mammal(x) -> animal(x))""], ""query"": ""forall(x, dog(x) -> animal(x))""}",entailed,,,,,,
+B_extract_reason,quant2_04,quantifier,,,unknown,unknown,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:33.624831+00:00,"{""premises"":[""forall(x, if(student(x), exists(y, and(teacher(y), favorite(x,y)))))""],""query"":""exists(y, and(teacher(y), forall(x, if(student(x), favorite(x,y)))))""}",,"{""premises"": [""forall(x, if(student(x), exists(y, and(teacher(y), favorite(x,y)))))""], ""query"": ""exists(y, and(teacher(y), forall(x, if(student(x), favorite(x,y)))))""}","{""premises"": [""forall(x, if(student(x), exists(y, and(teacher(y), favorite(x,y)))))""], ""query"": ""exists(y, and(teacher(y), forall(x, if(student(x), favorite(x,y)))))""}",unknown,,,,,,
+B_extract_reason,quant2_05,quantifier,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:31.299769+00:00,"{""premises"":[""forall(x, if(reptile(x), not(warm_blooded(x))))"",""forall(x, if(snake(x), reptile(x)))""],""query"":""forall(x, if(snake(x), not(warm_blooded(x))))""}",,"{""premises"": [""forall(x, if(reptile(x), not(warm_blooded(x))))"", ""forall(x, if(snake(x), reptile(x)))""], ""query"": ""forall(x, if(snake(x), not(warm_blooded(x))))""}","{""premises"": [""forall(x, if(reptile(x), not(warm_blooded(x))))"", ""forall(x, if(snake(x), reptile(x)))""], ""query"": ""forall(x, if(snake(x), not(warm_blooded(x))))""}",entailed,,,,,,
+B_extract_reason,fall_01,fallacious_reasoning_form,,,unknown,unknown,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:32.859382+00:00,"{""premises"":[""not(happy(Noah))""],""query"":""sad(Noah)""}",,"{""premises"": [""not(happy(Noah))""], ""query"": ""sad(Noah)""}","{""premises"": [""not(happy(Noah))""], ""query"": ""sad(Noah)""}",unknown,,,,,,
+B_extract_reason,fall_02,fallacious_reasoning_form,,,unknown,unknown,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:34.108249+00:00,"{""premises"":[""forall(x, if(and(brick(x),in(x,wall)),light(x)))""],""query"":""light(wall)""}",,"{""premises"": [""forall(x, if(and(brick(x),in(x,wall)),light(x)))""], ""query"": ""light(wall)""}","{""premises"": [""forall(x, if(and(brick(x),in(x,wall)),light(x)))""], ""query"": ""light(wall)""}",unknown,,,,,,
+B_extract_reason,fall_03,fallacious_reasoning_form,,,unknown,unknown,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:35.012916+00:00,"{""premises"":[""powerful(committee)""],""query"":""forall(x, if(memberOf(x,committee),powerful(x)))""}",,"{""premises"": [""powerful(committee)""], ""query"": ""forall(x, if(memberOf(x,committee),powerful(x)))""}","{""premises"": [""powerful(committee)""], ""query"": ""forall(x, if(memberOf(x,committee),powerful(x)))""}",unknown,,,,,,
+B_extract_reason,fall_04,fallacious_reasoning_form,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:34.852652+00:00,"{""premises"":[""if(says_trustworthy(book),trustworthy(book))"",""says_trustworthy(book)""],""query"":""trustworthy(book)""}",,"{""premises"": [""if(says_trustworthy(book),trustworthy(book))"", ""says_trustworthy(book)""], ""query"": ""trustworthy(book)""}","{""premises"": [""if(says_trustworthy(book),trustworthy(book))"", ""says_trustworthy(book)""], ""query"": ""trustworthy(book)""}",entailed,,,,,,
+B_extract_reason,fall_05,fallacious_reasoning_form,,,unknown,unknown,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:36.326423+00:00,"{""premises"":[""and(and(swan(swan_a),white(swan_a)),and(and(swan(swan_b),white(swan_b)),and(swan(swan_c),white(swan_c))))""],""query"":""forall(x, swan(x) -> white(x))""}",,"{""premises"": [""and(and(swan(swan_a),white(swan_a)),and(and(swan(swan_b),white(swan_b)),and(swan(swan_c),white(swan_c))))""], ""query"": ""forall(x, swan(x) -> white(x))""}","{""premises"": [""and(and(swan(swan_a),white(swan_a)),and(and(swan(swan_b),white(swan_b)),and(swan(swan_c),white(swan_c))))""], ""query"": ""forall(x, swan(x) -> white(x))""}",unknown,,,,,,
+C_critic_repair,neg2_01,negation,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:39.939464+00:00,"{""premises"":[""not(and(home(Alice),home(Bob)))""],""query"":""or(not(home(Alice)),not(home(Bob)))""}",,,"{""premises"": [""not(and(home(Alice),home(Bob)))""], ""query"": ""or(not(home(Alice)),not(home(Bob)))""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(and(home(Alice),home(Bob)))""], ""query"": ""or(not(home(Alice)),not(home(Bob)))""}"
+C_critic_repair,neg2_02,negation,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:39.226534+00:00,"{""premises"":[""not(or(sick(Chris),sick(Dana)))""],""query"":""and(not(sick(Chris)),not(sick(Dana)))""}",,,"{""premises"": [""not(or(sick(Chris),sick(Dana)))""], ""query"": ""and(not(sick(Chris)),not(sick(Dana)))""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(or(sick(Chris),sick(Dana)))""], ""query"": ""and(not(sick(Chris)),not(sick(Dana)))""}"
+C_critic_repair,neg2_03,negation,,,unknown,unknown,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:43.399210+00:00,"{""premises"":[""not(forall(x, if(bird(x), canFly(x))))""],""query"":""forall(x, if(bird(x), not(canFly(x))))""}",,,"{""premises"": [""not(forall(x, if(bird(x), canFly(x))))""], ""query"": ""forall(x, if(bird(x), not(canFly(x))))""}",unknown,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(forall(x, if(bird(x), canFly(x))))""], ""query"": ""forall(x, if(bird(x), not(canFly(x))))""}"
+C_critic_repair,neg2_04,negation,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:41.740283+00:00,"{""premises"":[""not(not(not(tired(Eve))))""],""query"":""not(tired(Eve))""}",,,"{""premises"": [""not(not(not(tired(Eve))))""], ""query"": ""not(tired(Eve))""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(not(not(tired(Eve))))""], ""query"": ""not(tired(Eve))""}"
+C_critic_repair,neg2_05,negation,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:43.447772+00:00,"{""premises"":[""not(if(studies(Frank),fails(Frank)))""],""query"":""and(studies(Frank),not(fails(Frank)))""}",,,"{""premises"": [""not(if(studies(Frank),fails(Frank)))""], ""query"": ""and(studies(Frank),not(fails(Frank)))""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(if(studies(Frank),fails(Frank)))""], ""query"": ""and(studies(Frank),not(fails(Frank)))""}"
+C_critic_repair,cond2_01,conditional,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:43.696257+00:00,"{""premises"":[""iff(passes_class(Hannah),completes_all_assignments(Hannah))"",""completes_all_assignments(Hannah)""],""query"":""passes_class(Hannah)""}",,,"{""premises"": [""iff(passes_class(Hannah),completes_all_assignments(Hannah))"", ""completes_all_assignments(Hannah)""], ""query"": ""passes_class(Hannah)""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""iff(passes_class(Hannah),completes_all_assignments(Hannah))"", ""completes_all_assignments(Hannah)""], ""query"": ""passes_class(Hannah)""}"
+C_critic_repair,cond2_02,conditional,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:44.697503+00:00,"{""premises"":[""iff(wins_game(Ian),rolls_six(Ian))"",""not(rolls_six(Ian))""],""query"":""not(wins_game(Ian))""}",,,"{""premises"": [""iff(wins_game(Ian),rolls_six(Ian))"", ""not(rolls_six(Ian))""], ""query"": ""not(wins_game(Ian))""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""iff(wins_game(Ian),rolls_six(Ian))"", ""not(rolls_six(Ian))""], ""query"": ""not(wins_game(Ian))""}"
+C_critic_repair,cond2_03,conditional,,,unknown,unknown,True,4,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:52.646332+00:00,"{""premises"":[""if(wakes_up_early(Jack),goes_for_a_run(Jack))"",""if(goes_for_a_run(Jack),feels_energetic(Jack))"",""feels_energetic(Jack)""],""query"":""woke_up_early(Jack)""}",,,"{""premises"": [""if(wakes_up_early(Jack),goes_for_a_run(Jack))"", ""if(goes_for_a_run(Jack),feels_energetic(Jack))"", ""feels_energetic(Jack)""], ""query"": ""wakes_up_early(Jack)""}",unknown,,"Sufficient: No
+
+Missing or distorted information:
+- The same “wake up early” proposition is represented by two different predicates: `wakes_up_early` in the premise and `woke_up_early` in the query.
+
+Suggested repair:
+- Use a consistent predicate, e.g. change the query to `wakes_up_early(Jack)`, or explicitly formalize tense if the present/past distinction is intended.",False,True,"{""premises"":[""if(wakes_up_early(Jack),goes_for_a_run(Jack))"",""if(goes_for_a_run(Jack),feels_energetic(Jack))"",""feels_energetic(Jack)""],""query"":""wakes_up_early(Jack)""}","{""premises"": [""if(wakes_up_early(Jack),goes_for_a_run(Jack))"", ""if(goes_for_a_run(Jack),feels_energetic(Jack))"", ""feels_energetic(Jack)""], ""query"": ""wakes_up_early(Jack)""}"
+C_critic_repair,cond2_04,conditional,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:46.442400+00:00,"{""premises"":[""if(studies(Kim),understands_material(Kim))"",""if(understands_material(Kim),passes_test(Kim))"",""if(passes_test(Kim),gets_certificate(Kim))"",""studies(Kim)""],""query"":""gets_certificate(Kim)""}",,,"{""premises"": [""if(studies(Kim),understands_material(Kim))"", ""if(understands_material(Kim),passes_test(Kim))"", ""if(passes_test(Kim),gets_certificate(Kim))"", ""studies(Kim)""], ""query"": ""gets_certificate(Kim)""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""if(studies(Kim),understands_material(Kim))"", ""if(understands_material(Kim),passes_test(Kim))"", ""if(passes_test(Kim),gets_certificate(Kim))"", ""studies(Kim)""], ""query"": ""gets_certificate(Kim)""}"
+C_critic_repair,cond2_05,conditional,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:47.119964+00:00,"{""premises"":[""or(takesTrain(Liam),drives(Liam))"",""not(takesTrain(Liam))""],""query"":""drives(Liam)""}",,,"{""premises"": [""or(takesTrain(Liam),drives(Liam))"", ""not(takesTrain(Liam))""], ""query"": ""drives(Liam)""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""or(takesTrain(Liam),drives(Liam))"", ""not(takesTrain(Liam))""], ""query"": ""drives(Liam)""}"
+C_critic_repair,quant2_01,quantifier,,,unknown,unknown,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:47.862608+00:00,"{""premises"":[""forall(x, square(x) -> rectangle(x))""],""query"":""forall(x, rectangle(x) -> square(x))""}",,,"{""premises"": [""forall(x, square(x) -> rectangle(x))""], ""query"": ""forall(x, rectangle(x) -> square(x))""}",unknown,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""forall(x, square(x) -> rectangle(x))""], ""query"": ""forall(x, rectangle(x) -> square(x))""}"
+C_critic_repair,quant2_02,quantifier,,,unknown,unknown,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:50.538010+00:00,"{""premises"":[""forall(x, unicorn(x) -> magical(x))""],""query"":""exists(x, and(unicorn(x),magical(x)))""}",,,"{""premises"": [""forall(x, unicorn(x) -> magical(x))""], ""query"": ""exists(x, and(unicorn(x),magical(x)))""}",unknown,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""forall(x, unicorn(x) -> magical(x))""], ""query"": ""exists(x, and(unicorn(x),magical(x)))""}"
+C_critic_repair,quant2_03,quantifier,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:50.498858+00:00,"{""premises"":[""forall(x, dog(x) -> mammal(x))"",""forall(x, mammal(x) -> animal(x))""],""query"":""forall(x, dog(x) -> animal(x))""}",,,"{""premises"": [""forall(x, dog(x) -> mammal(x))"", ""forall(x, mammal(x) -> animal(x))""], ""query"": ""forall(x, dog(x) -> animal(x))""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""forall(x, dog(x) -> mammal(x))"", ""forall(x, mammal(x) -> animal(x))""], ""query"": ""forall(x, dog(x) -> animal(x))""}"
+C_critic_repair,quant2_04,quantifier,,,unknown,unknown,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:53.119514+00:00,"{""premises"":[""forall(x, if(student(x), exists(y, and(teacher(y), favorite(x,y)))))""],""query"":""exists(y, and(teacher(y), forall(x, if(student(x), favorite(x,y)))))""}",,,"{""premises"": [""forall(x, if(student(x), exists(y, and(teacher(y), favorite(x,y)))))""], ""query"": ""exists(y, and(teacher(y), forall(x, if(student(x), favorite(x,y)))))""}",unknown,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""forall(x, if(student(x), exists(y, and(teacher(y), favorite(x,y)))))""], ""query"": ""exists(y, and(teacher(y), forall(x, if(student(x), favorite(x,y)))))""}"
+C_critic_repair,quant2_05,quantifier,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:53.217038+00:00,"{""premises"":[""forall(x, if(reptile(x), not(warm_blooded(x))))"",""forall(x, if(snake(x), reptile(x)))""],""query"":""forall(x, if(snake(x), not(warm_blooded(x))))""}",,,"{""premises"": [""forall(x, if(reptile(x), not(warm_blooded(x))))"", ""forall(x, if(snake(x), reptile(x)))""], ""query"": ""forall(x, if(snake(x), not(warm_blooded(x))))""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""forall(x, if(reptile(x), not(warm_blooded(x))))"", ""forall(x, if(snake(x), reptile(x)))""], ""query"": ""forall(x, if(snake(x), not(warm_blooded(x))))""}"
+C_critic_repair,fall_01,fallacious_reasoning_form,,,unknown,unknown,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:53.550469+00:00,"{""premises"":[""not(happy(Noah))""],""query"":""sad(Noah)""}",,,"{""premises"": [""not(happy(Noah))""], ""query"": ""sad(Noah)""}",unknown,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(happy(Noah))""], ""query"": ""sad(Noah)""}"
+C_critic_repair,fall_02,fallacious_reasoning_form,,,unknown,unknown,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:58.881432+00:00,"{""premises"":[""forall(x, and(brick(x),in(x,wall)) -> light(x))""],""query"":""light(wall)""}",,,"{""premises"": [""forall(x, and(brick(x),in(x,wall)) -> light(x))""], ""query"": ""light(wall)""}",unknown,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""forall(x, and(brick(x),in(x,wall)) -> light(x))""], ""query"": ""light(wall)""}"
+C_critic_repair,fall_03,fallacious_reasoning_form,,,unknown,unknown,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:57.728381+00:00,"{""premises"":[""powerful(committee)""],""query"":""forall(x, if(memberOf(x,committee), powerful(x)))""}",,,"{""premises"": [""powerful(committee)""], ""query"": ""forall(x, if(memberOf(x,committee), powerful(x)))""}",unknown,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""powerful(committee)""], ""query"": ""forall(x, if(memberOf(x,committee), powerful(x)))""}"
+C_critic_repair,fall_04,fallacious_reasoning_form,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:02:56.382652+00:00,"{""premises"":[""if(says_trustworthy(book),trustworthy(book))"",""says_trustworthy(book)""],""query"":""trustworthy(book)""}",,,"{""premises"": [""if(says_trustworthy(book),trustworthy(book))"", ""says_trustworthy(book)""], ""query"": ""trustworthy(book)""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""if(says_trustworthy(book),trustworthy(book))"", ""says_trustworthy(book)""], ""query"": ""trustworthy(book)""}"
+C_critic_repair,fall_05,fallacious_reasoning_form,,,unknown,unknown,True,4,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:03:02.603510+00:00,"{""premises"":[""and(white(swan_a),and(white(swan_b),white(swan_c)))""],""query"":""forall(x, swan(x) -> white(x))""}",,,"{""premises"": [""and(swan(swan_a),and(swan(swan_b),swan(swan_c)))"", ""and(saw(olivia,swan_a),and(saw(olivia,swan_b),saw(olivia,swan_c)))"", ""and(white(swan_a),and(white(swan_b),white(swan_c)))""], ""query"": ""forall(x, swan(x) -> white(x))""}",unknown,,"Sufficient: No
+
+Missing or distorted information:
+- The premise omits that swan_a, swan_b, and swan_c are swans.
+- The premise omits that Olivia saw each of these swans.
+
+Suggested repair:
+- Add swan(swan_a), swan(swan_b), and swan(swan_c).
+- Add saw(olivia,swan_a), saw(olivia,swan_b), and saw(olivia,swan_c).",False,True,"{""premises"":[""and(swan(swan_a),and(swan(swan_b),swan(swan_c)))"",""and(saw(olivia,swan_a),and(saw(olivia,swan_b),saw(olivia,swan_c)))"",""and(white(swan_a),and(white(swan_b),white(swan_c)))""],""query"":""forall(x, swan(x) -> white(x))""}","{""premises"": [""and(swan(swan_a),and(swan(swan_b),swan(swan_c)))"", ""and(saw(olivia,swan_a),and(saw(olivia,swan_b),saw(olivia,swan_c)))"", ""and(white(swan_a),and(white(swan_b),white(swan_c)))""], ""query"": ""forall(x, swan(x) -> white(x))""}"

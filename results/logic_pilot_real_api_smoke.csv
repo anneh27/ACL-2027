@@ -1,0 +1,37 @@
+condition,id,reasoning_type,raw_output,error,prediction,gold_label,correct,n_calls,model,temperature,timestamp,stage1_raw_output,stage1_error,stage1_parsed,stage2_prompt,stage2_raw_output,stage2_error,critic_raw_output,critic_sufficient,was_repaired,repair_raw_output,final_extraction
+A_direct,neg2_01,negation,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:01:49.111368+00:00,,,,,,,,,,,
+A_direct,neg2_02,negation,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:01:49.109949+00:00,,,,,,,,,,,
+A_direct,neg2_03,negation,unknown,,unknown,unknown,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:01:49.722827+00:00,,,,,,,,,,,
+A_direct,neg2_04,negation,entailed,,entailed,entailed,True,1,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:01:49.367814+00:00,,,,,,,,,,,
+B_extract_reason,neg2_01,negation,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:01:51.759139+00:00,"{""premises"":[""not(and(home(Alice),home(Bob)))""],""query"":""or(not(home(Alice)),not(home(Bob)))""}",,"{""premises"": [""not(and(home(Alice),home(Bob)))""], ""query"": ""or(not(home(Alice)),not(home(Bob)))""}","{""premises"": [""not(and(home(Alice),home(Bob)))""], ""query"": ""or(not(home(Alice)),not(home(Bob)))""}",entailed,,,,,,
+B_extract_reason,neg2_02,negation,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:01:51.945707+00:00,"{""premises"":[""not(or(sick(Chris),sick(Dana)))""],""query"":""and(not(sick(Chris)),not(sick(Dana)))""}",,"{""premises"": [""not(or(sick(Chris),sick(Dana)))""], ""query"": ""and(not(sick(Chris)),not(sick(Dana)))""}","{""premises"": [""not(or(sick(Chris),sick(Dana)))""], ""query"": ""and(not(sick(Chris)),not(sick(Dana)))""}",entailed,,,,,,
+B_extract_reason,neg2_03,negation,,,unknown,unknown,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:01:53.658367+00:00,"{""premises"":[""not(forall(x, bird(x) -> canFly(x)))""],""query"":""forall(x, bird(x) -> not(canFly(x)))""}",,"{""premises"": [""not(forall(x, bird(x) -> canFly(x)))""], ""query"": ""forall(x, bird(x) -> not(canFly(x)))""}","{""premises"": [""not(forall(x, bird(x) -> canFly(x)))""], ""query"": ""forall(x, bird(x) -> not(canFly(x)))""}",unknown,,,,,,
+B_extract_reason,neg2_04,negation,,,entailed,entailed,True,2,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:01:53.830880+00:00,"{""premises"":[""not(not(not(tired(Eve))))""],""query"":""not(tired(Eve))""}",,"{""premises"": [""not(not(not(tired(Eve))))""], ""query"": ""not(tired(Eve))""}","{""premises"": [""not(not(not(tired(Eve))))""], ""query"": ""not(tired(Eve))""}",entailed,,,,,,
+C_critic_repair,neg2_01,negation,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:01:57.661533+00:00,"{""premises"":[""not(and(home(Alice),home(Bob)))""],""query"":""or(not(home(Alice)),not(home(Bob)))""}",,,"{""premises"": [""not(and(home(Alice),home(Bob)))""], ""query"": ""or(not(home(Alice)),not(home(Bob)))""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(and(home(Alice),home(Bob)))""], ""query"": ""or(not(home(Alice)),not(home(Bob)))""}"
+C_critic_repair,neg2_02,negation,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:01:57.298612+00:00,"{""premises"":[""not(or(sick(Chris),sick(Dana)))""],""query"":""and(not(sick(Chris)),not(sick(Dana)))""}",,,"{""premises"": [""not(or(sick(Chris),sick(Dana)))""], ""query"": ""and(not(sick(Chris)),not(sick(Dana)))""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(or(sick(Chris),sick(Dana)))""], ""query"": ""and(not(sick(Chris)),not(sick(Dana)))""}"
+C_critic_repair,neg2_03,negation,,,unknown,unknown,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:01:59.994166+00:00,"{""premises"":[""not(forall(x, if(bird(x), canFly(x))))""],""query"":""forall(x, if(bird(x), not(canFly(x))))""}",,,"{""premises"": [""not(forall(x, if(bird(x), canFly(x))))""], ""query"": ""forall(x, if(bird(x), not(canFly(x))))""}",unknown,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(forall(x, if(bird(x), canFly(x))))""], ""query"": ""forall(x, if(bird(x), not(canFly(x))))""}"
+C_critic_repair,neg2_04,negation,,,entailed,entailed,True,3,gpt-5.6-sol,not set (model only supports its default; explicit temperature=0 is rejected),2026-10-31T05:01:58.425898+00:00,"{""premises"":[""not(not(not(tired(Eve))))""],""query"":""not(tired(Eve))""}",,,"{""premises"": [""not(not(not(tired(Eve))))""], ""query"": ""not(tired(Eve))""}",entailed,,"Sufficient: Yes
+
+Missing or distorted information:
+- none
+
+Suggested repair:
+- none",True,False,,"{""premises"": [""not(not(not(tired(Eve))))""], ""query"": ""not(tired(Eve))""}"
